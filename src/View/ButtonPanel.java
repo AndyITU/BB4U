@@ -15,8 +15,9 @@ public class ButtonPanel extends JPanel
     public ButtonPanel() {
         super();
         this.setLayout(new GridLayout(0,3));
-        this.setPreferredSize(new Dimension(1000,50));
+        this.setPreferredSize(new Dimension(1000,100));
         this.setVisible(true);
+        this.setMaximumSize(new Dimension(1000,250));
         
         JButton firstPage = new JButton("Not View");
         JButton primaryPage = new JButton("Booking View");

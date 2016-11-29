@@ -27,8 +27,6 @@ public class InformationPanel extends JPanel
         this.setLayout(new GridLayout(2,2));
         this.setPreferredSize(new Dimension(1000,50));
         this.setVisible(true);
-        this.setLocation(10, 800);
-        
         
         JButton button = new JButton("BOOK SELECTED");
         button.addActionListener(new ActionListener() {
@@ -61,12 +59,12 @@ public class InformationPanel extends JPanel
     
     private JPanel setFirst() {
         JPanel panelOne = new JPanel();
-        panelOne.setLayout(new GridLayout(2,4));
+        panelOne.setLayout(new GridLayout(2,2));
         int bifID = 3;
         
-        JLabel theaterS = new JLabel("Sal:");
-        JLabel theaterLabel = new JLabel("Biografsal nr:" + bifID + ".   " + "60/70 sæder ledige");
-        JLabel movieS = new JLabel("Film: ");
+        JLabel theaterS = new JLabel("Film:");
+        JLabel theaterLabel = new JLabel("Sal:");
+        JLabel movieS = new JLabel("Biografsal nr:" + bifID + ".   " + "60/70 sæder ledige");
         JLabel movieLabel = new JLabel("WarZ with Brad Pitt");
         
         panelOne.add(theaterS);

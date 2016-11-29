@@ -73,12 +73,10 @@ public class Seat extends JButton implements MouseListener
         repaint();
     }
     public void mousePressed(MouseEvent e) {
-        if (!isSelected) {
-            isSelected = !isSelected;
-        }
         System.out.println("I got pressed");
     }
     public void mouseReleased(MouseEvent e) {
+        System.out.println("I got released");
         // Maybe do something?
     }
     public boolean getBooked() {
