@@ -18,7 +18,7 @@ public class Database {
 
             System.out.println("Database initialized");
             System.out.println("Dropping tables...");
-            statement.executeUpdate("DROP TABLE auditoriums, seats, shows;");
+            statement.executeUpdate("DROP TABLE auditoriums, reservations, shows;");
             System.out.println("Creating new tables...");
 
             statement.executeUpdate(
@@ -26,18 +26,18 @@ public class Database {
             statement.executeUpdate(
                     "CREATE TABLE auditoriums (id int AUTO_INCREMENT PRIMARY KEY, rows int, cols int);");
             statement.executeUpdate(
-                    "CREATE TABLE seats (id int, row int, show_id int, taken boolean);");
+                    "CREATE TABLE reservations (id int, show_id int, row int, col int, aud_id int, name VARCHAR(128), contact_info VARCHAR(128));");
             System.out.println("Inserting data...");
             statement.executeUpdate(
                     "INSERT INTO shows (aud_id, movie, date, duration) VALUES (1, 'Star Wars IV - A New Hope', '2016-11-27 21:30:00', '2:05');");
             statement.executeUpdate(
                     "INSERT INTO auditoriums (rows, cols) VALUES (5, 10);");
-            System.out.println("Inserting seats...");
-            for (int i = 1; i <= 5; i++) {
+            System.out.println("Inserting reservations...");
+            /*for (int i = 1; i <= 5; i++) {
                 for (int j = 1; j <= 10; j++) {
-                    statement.executeUpdate("INSERT INTO seats VALUES("+i+", "+j+", 1, FALSE); ");
+                    statement.executeUpdate("INSERT INTO reservations VALUES("+i+", "+j+", 1, FALSE); ");
                 }
-            }
+            }*/
             System.out.println("Queries finished successfully. Closing connection...");
         } catch(SQLException e) {
             e.printStackTrace();
@@ -122,22 +122,22 @@ public class Database {
         return auditoriums;
     }
 
-    static SeatModel[] getSeats(int show_id) {
-        SeatModel[] seats;
+    static SeatModel[] getReservations(int show_id) {
+        SeatModel[] reservations;
 
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
 
             String q = show_id > 0 ? " WHERE show_id = "+show_id : "";
-            ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM seats"+q+";");
+            ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM reservations"+q+";");
             rs.next();
-            seats = new SeatModel[rs.getInt("total")];
+            reservations = new SeatModel[rs.getInt("total")];
             try {
-                rs = statement.executeQuery("SELECT * FROM seats;");
+                rs = statement.executeQuery("SELECT * FROM reservations;");
                 int i = 0;
                 while (rs.next()) {
-                    seats[i] = new SeatModel(rs.getInt("id"), rs.getInt("row"), rs.getInt("show_id"), rs.getBoolean("taken"));
+                    reservations[i] = new SeatModel(rs.getInt("id"), rs.getInt("row"), rs.getInt("show_id"), rs.getBoolean("taken"));
                     i++;
                 }
             } catch (SQLException e) {
@@ -146,7 +146,7 @@ public class Database {
         } catch(SQLException e) {
             e.printStackTrace();
             // If query fails, auditoriums should be returned as an empty array
-            seats = new SeatModel[0];
+            reservations = new SeatModel[0];
         } finally {
             try {
                 connection.close();
@@ -155,7 +155,7 @@ public class Database {
             }
         }
 
-        return seats;
+        return reservations;
     }
 
 

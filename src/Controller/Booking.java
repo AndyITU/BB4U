@@ -5,7 +5,7 @@ import java.sql.*;
 public class Booking {
 
     public static SeatModel[] getSeats(int show_id) {
-        return Controller.Database.getSeats(show_id);
+        return Controller.Database.getReservations(show_id);
     }
 
     static void bookSeats(SeatModel[] seats) throws SQLException, IllegalArgumentException {
