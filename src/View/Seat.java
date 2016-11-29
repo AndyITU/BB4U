@@ -61,13 +61,7 @@ public class Seat extends JButton implements MouseListener
     }
 
     public void mouseClicked(MouseEvent e) {
-        clickCount++;
-        if (clickCount % 2 == 1) {
-            isSelected = true;
-        }
-        else {
-            isSelected = false;
-        }
+        isSelected = !isSelected;
         repaint();
     }
     public void mouseExited(MouseEvent e) {
@@ -79,11 +73,16 @@ public class Seat extends JButton implements MouseListener
         repaint();
     }
     public void mousePressed(MouseEvent e) {
+        if (!isSelected) {
+            isSelected = !isSelected;
+        }
         System.out.println("I got pressed");
     }
     public void mouseReleased(MouseEvent e) {
-        System.out.println("Mouse released; # of clicks: "
-                + e.getClickCount());
+        // Maybe do something?
+    }
+    public boolean getBooked() {
+        return isBooked;
     }
     public void setBooked(Boolean b) {
         if (isSelected) {

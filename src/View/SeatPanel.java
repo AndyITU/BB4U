@@ -36,7 +36,8 @@ public class SeatPanel extends JPanel
     public void startBook(boolean b) {
         for (int i = 0; i < rowID; i++) {
             for (int k = 0; k < columnID; k++) {
-                seats[i][k].setBooked(b);
+                boolean book = seats[i][k].getBooked();
+                seats[i][k].setBooked(!book);
             }
         }
     }

@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class ButtonPanel extends JPanel
 {
-    JButton searchPage;
+    JButton searchButton;
     public ButtonPanel() {
         super();
         this.setLayout(new GridLayout(0,3));
@@ -20,15 +20,15 @@ public class ButtonPanel extends JPanel
         
         JButton firstPage = new JButton("Not View");
         JButton primaryPage = new JButton("Booking View");
-        searchPage = new JButton("Search View");
+        searchButton = new JButton("Search View");
         this.add(firstPage);
         this.add(primaryPage);
-        this.add(searchPage);
+        this.add(searchButton);
         
     }
 
     public JButton getSearchButton() {
-        return searchPage;
+        return searchButton;
     }
         
 }
