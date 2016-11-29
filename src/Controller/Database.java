@@ -1,10 +1,7 @@
-/**
- *
- *
- *
- * @author Andreas Clausen (gruppe 41)
- *
- *
+package Controller;
+import Model.*;
+import java.sql.*;
+
 public class Database {
     // Very secret credentials
     private static final String DB = "jdbc:mysql://mydb.itu.dk/BB4U";
@@ -55,22 +52,22 @@ public class Database {
     }
 
 
-    /* GETTERS
+    /* GETTERS */
 
-    public static Model.Show[] getShows() {
-        Model.Show[] shows;
+    public static Show[] getShows() {
+        Show[] shows;
 
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM shows;");
             rs.next();
-            shows = new Model.Show[rs.getInt("total")];
+            shows = new Show[rs.getInt("total")];
             try {
                 rs = statement.executeQuery("SELECT * FROM shows;");
                 int i = 0;
                 while (rs.next()) {
-                    shows[i] = new Model.Show(rs.getInt("id"), rs.getInt("aud_id"), rs.getString("movie"),
+                    shows[i] = new Show(rs.getInt("id"), rs.getInt("aud_id"), rs.getString("movie"),
                             rs.getDate("date"), rs.getTime("Duration"));
                     i++;
                 }
@@ -79,7 +76,7 @@ public class Database {
             }
         } catch(SQLException e) {
             e.printStackTrace();
-            shows = new Model.Show[0];
+            shows = new Show[0];
         } finally {
             try {
                 connection.close();
@@ -91,20 +88,20 @@ public class Database {
         return shows;
     }
 
-    public static Model.Auditorium[] getAuditoriums() {
-        Model.Auditorium[] auditoriums;
+    public static Auditorium[] getAuditoriums() {
+        Auditorium[] auditoriums;
 
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM auditoriums;");
             rs.next();
-            auditoriums = new Model.Auditorium[rs.getInt("total")];
+            auditoriums = new Auditorium[rs.getInt("total")];
             try {
                 rs = statement.executeQuery("SELECT * FROM auditoriums;");
                 int i = 0;
                 while (rs.next()) {
-                    auditoriums[i] = new Model.Auditorium(rs.getInt("id"), rs.getInt("rows"), rs.getInt("cols"));
+                    auditoriums[i] = new Auditorium(rs.getInt("id"), rs.getInt("rows"), rs.getInt("cols"));
                     i++;
                 }
             } catch (SQLException e) {
@@ -113,7 +110,7 @@ public class Database {
         } catch(SQLException e) {
             e.printStackTrace();
             // If query fails, auditoriums should be returned as an empty array
-            auditoriums = new Model.Auditorium[0];
+            auditoriums = new Auditorium[0];
         } finally {
             try {
                 connection.close();
@@ -125,8 +122,8 @@ public class Database {
         return auditoriums;
     }
 
-    static View.Seat[] getSeats(int show_id) {
-        View.Seat[] seats;
+    static SeatModel[] getSeats(int show_id) {
+        SeatModel[] seats;
 
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
@@ -135,12 +132,12 @@ public class Database {
             String q = show_id > 0 ? " WHERE show_id = "+show_id : "";
             ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM seats"+q+";");
             rs.next();
-            seats = new View.Seat[rs.getInt("total")];
+            seats = new SeatModel[rs.getInt("total")];
             try {
                 rs = statement.executeQuery("SELECT * FROM seats;");
                 int i = 0;
                 while (rs.next()) {
-                    seats[i] = new Model.SeatModel(rs.getInt("id"), rs.getInt("row"), rs.getInt("show_id"), rs.getBoolean("taken"));
+                    seats[i] = new SeatModel(rs.getInt("id"), rs.getInt("row"), rs.getInt("show_id"), rs.getBoolean("taken"));
                     i++;
                 }
             } catch (SQLException e) {
@@ -149,7 +146,7 @@ public class Database {
         } catch(SQLException e) {
             e.printStackTrace();
             // If query fails, auditoriums should be returned as an empty array
-            seats = new View.Seat[0];
+            seats = new SeatModel[0];
         } finally {
             try {
                 connection.close();
@@ -162,7 +159,7 @@ public class Database {
     }
 
 
-    /* SETTERS
+    /* SETTERS */
     static void updateTable(String q) throws SQLException {
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
@@ -176,4 +173,3 @@ public class Database {
         }
     }
 }
-*/

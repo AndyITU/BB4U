@@ -11,19 +11,19 @@ public class SeatModel {
         this.isBooked = isBooked;
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
 
-    int getRow() {
+    public int getRow() {
         return row;
     }
 
-    int getAud_id() {
+    public int getAud_id() {
         return aud_id;
     }
 
-    boolean isBooked() {
+    public boolean isBooked() {
         return isBooked;
     }
 
