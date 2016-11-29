@@ -6,6 +6,7 @@ package Hej;
 public class hej {
 
     hej() {
+        System.out.println("Hej");
     }
 }
 
