@@ -1,26 +1,26 @@
 package Model;
 
 public class SeatModel {
-    private int id, row, aud_id;
+    private int col, row, show_id;
     private boolean isBooked;
 
-    public SeatModel(int id, int row, int aud_id, boolean isBooked) {
-        this.id = id;
+    public SeatModel(int col, int row, int show_id, boolean isBooked) {
+        this.col = col;
         this.row = row;
-        this.aud_id = aud_id;
+        this.show_id = show_id;
         this.isBooked = isBooked;
     }
 
-    public int getId() {
-        return id;
+    public int getCol() {
+        return col;
     }
 
     public int getRow() {
         return row;
     }
 
-    public int getAud_id() {
-        return aud_id;
+    public int getShow_id() {
+        return show_id;
     }
 
     public boolean isBooked() {
