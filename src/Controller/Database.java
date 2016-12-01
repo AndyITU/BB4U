@@ -50,17 +50,19 @@ public class Database {
 
     /* GETTERS */
 
-    public static Show[] getShows() {
+    public static Show[] getShows(int id) {
         Show[] shows;
 
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM shows;");
+
+            String q = id > 0 ? " WHERE show_id = "+id : "";
+            ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM shows"+q+";");
             rs.next();
             shows = new Show[rs.getInt("total")];
             try {
-                rs = statement.executeQuery("SELECT * FROM shows;");
+                rs = statement.executeQuery("SELECT * FROM shows"+q+";");
                 int i = 0;
                 while (rs.next()) {
                     shows[i] = new Show(rs.getInt("id"), rs.getInt("aud_id"), rs.getString("movie"),
@@ -155,6 +157,32 @@ public class Database {
     }
     // getter without parameter
     static Reservation[] getReservations() { return getReservations(0); }
+
+    static boolean isReserved(Reservation[] reservations) {
+        try {
+            connection = DriverManager.getConnection(DB, USER, PASS);
+            Statement statement = connection.createStatement();
+            ResultSet rs;
+
+            for(Reservation r: reservations) {
+                rs = statement.executeQuery("SELECT * FROM reservations " +
+                        "WHERE show_id="+r.getShow_id()+" AND row="+r.getRow()+" AND col="+r.getCol()+";");
+                if(rs.next())
+                    return true;
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return true;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     /* SETTERS */
