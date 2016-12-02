@@ -59,7 +59,7 @@ public class InformationPanel extends JPanel
     
     private JPanel setFirst() {
         JPanel panelOne = new JPanel();
-        panelOne.setLayout(new GridLayout(2,2));
+        panelOne.setLayout(new GridLayout(3,2));
         int bifID = 3;
         
         JLabel theaterS = new JLabel("Film:");
@@ -71,6 +71,8 @@ public class InformationPanel extends JPanel
         panelOne.add(movieLabel);
         panelOne.add(theaterLabel);
         panelOne.add(movieS);
+        panelOne.add(new JLabel("Ledige sæder:"));
+        panelOne.add(new JLabel("100/150"));
         return panelOne;
     }
 }

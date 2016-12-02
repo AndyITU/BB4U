@@ -14,7 +14,7 @@ public class OverviewFrame
     private static SeatPanel sPanel;
     private static ButtonPanel bPanel;
     private static InformationPanel iPanel;
-    // private static CanvasPanel cPanel;
+    private static CanvasPanel cPanel;
     private static JFrame frame;
 
     public static void main (String[] args ) {
@@ -24,14 +24,14 @@ public class OverviewFrame
         }
 
         System.out.println(args);
-        sPanel = new SeatPanel(10,10); bPanel = new ButtonPanel(); iPanel = new InformationPanel(sPanel.getSeats()); // cPanel = new CanvasPanel();
+        sPanel = new SeatPanel(4,10); bPanel = new ButtonPanel(); iPanel = new InformationPanel(sPanel.getSeats()); cPanel = new CanvasPanel();
         frame = new JFrame("Booking Overview");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1000,1000));
         frame.setVisible(true);
         frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         frame.getContentPane().add(bPanel);
-        //frame.getContentPane().add(cPanel);
+        frame.getContentPane().add(cPanel);
         frame.getContentPane().add(sPanel);
         frame.getContentPane().add(iPanel);
         frame.pack();

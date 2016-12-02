@@ -21,6 +21,7 @@ public class Database {
             statement.executeUpdate("DROP TABLE auditoriums, reservations, shows;");
             System.out.println("*** SUCCESS ***\nCreating new tables...");
 
+
             statement.executeUpdate(
                     "CREATE TABLE shows (id int AUTO_INCREMENT PRIMARY KEY, aud_id int NOT NULL, movie VARCHAR(128) NOT NULL, date DATETIME NOT NULL, duration TIME NOT NULL);");
             statement.executeUpdate(

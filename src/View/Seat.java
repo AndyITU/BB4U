@@ -34,10 +34,10 @@ public class Seat extends JButton implements MouseListener
     
     private void makeSquare(Graphics g) {
         if (isSelected) {
-            g.setColor(Color.CYAN);
+            g.setColor(Color.pink);
         }
             else if (isHighlighted) {
-            g.setColor(Color.YELLOW);
+            g.setColor(Color.orange);
         }
             else if (isBooked) {
             g.setColor(Color.RED);
