@@ -1,8 +1,23 @@
 package Controller;
 import Model.*;
-import java.sql.*;
+import java.sql.SQLException;
 
 public class Booking {
+    private int show_id;
+    private Show show;
+
+
+    /* GETTERS */
+
+    public Show getShow(int id) {
+        if(show_id == id)
+            return show;
+        else {
+            show_id = id;
+            show = Database.getShows(id)[0];
+            return show;
+        }
+    }
 
     public static SeatModel[] getSeats(int show_id) {
         Reservation[] r = Database.getReservations(show_id);
@@ -14,20 +29,25 @@ public class Booking {
         return s;
     }
 
-    static void bookSeats(SeatModel[] seats) throws /*SQLException,*/IllegalArgumentException {
-        for(SeatModel s: seats)
-            if(s.isBooked())
+
+    /* SETTERS */
+
+    public static void bookSeats(Reservation[] reservations) throws SQLException, IllegalArgumentException {
+        for(Reservation r: reservations)
+            if(r.getId() > 0)
                 throw new IllegalArgumentException("One or more of the seats are already booked!");
 
-        /*try {
-            for(SeatModel s: seats) {
+        try {
+            for(Reservation r: reservations) {
                 Database.updateTable(
-                        "UPDATE seats SET taken=true WHERE id=" + s.getCol() +
-                        " AND aud_id=" + s.getShow_id() + " AND row=" + s.getRow() + ";"
+                        "INSERT INTO reservations (show_id, row, col, aud_id, name, contact_info) " +
+                        "VALUES(" + r.getShow_id() + ", " + r.getRow() + " " + r.getRow() + ";"
                 );
             }
         } catch (SQLException e) {
             throw e;
-        }*/
+        }
     }
+
+
 }
