@@ -9,16 +9,17 @@ import java.awt.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class OverviewFrame
+public class OverviewFrame extends JFrame
 {
     private static BookingViewPanel bvPanel;
     private static SearchViewPanel searchPanel;
     private static ButtonPanel bPanel;
-    private static JFrame frame;
+    private static Container pane;
 
     public static void main (String[] args ) {
     }
     public OverviewFrame () {
+        super();
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -27,16 +28,17 @@ public class OverviewFrame
         bvPanel = new BookingViewPanel();
         bPanel = new ButtonPanel();
         searchPanel = new SearchViewPanel();
-        frame = new JFrame("Booking Overview");
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(1000,1000));
-        frame.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setPreferredSize(new Dimension(1000,1000));
+        this.setVisible(true);
+        pane = this.getContentPane();
 
-        frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-        frame.getContentPane().add(bPanel);
-        frame.getContentPane().add(bvPanel);
-        frame.pack();
+        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+        pane.add(bPanel);
+        pane.add(bvPanel);
+
+        this.pack();
     }
     public BookingViewPanel getBookingPanel() {
         return bvPanel;
@@ -49,8 +51,9 @@ public class OverviewFrame
         return bPanel;
     }
     public void changeToSearch() {
-        frame.remove(bvPanel);
-        frame.add(searchPanel);
+        pane.remove(bvPanel);
+        pane.add(searchPanel);
+        this.pack();
     }
     public void test() {
         System.out.println("hej");
