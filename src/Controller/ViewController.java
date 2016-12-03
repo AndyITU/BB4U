@@ -2,6 +2,7 @@ package Controller;
 
 import View.*;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -60,6 +61,14 @@ public class ViewController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.changeToPanel(bookingViewPanel);
+            }
+        });
+
+        searchPanel.getMovieDropDown().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox jcmbType = (JComboBox) e.getSource();
+                String cmbType = (String) jcmbType.getSelectedItem();
             }
         });
     }

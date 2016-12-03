@@ -35,5 +35,15 @@ public class SearchViewPanel extends JPanel {
         add(new JLabel(""));
         add(selectShow);
     }
+
+    public JComboBox getMovieDropDown() {
+        return movieDropDown;
+    }
+    public JComboBox getDateDropDown() {
+        return dateDropDown;
+    }
+    public JComboBox getAuditoriumDropDown() {
+        return auditoriumDropDown;
+    }
 }
 
