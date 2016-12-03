@@ -91,5 +91,5 @@ public class Seat extends JButton implements MouseListener
         return false;
 
     }
-    }
+}
   

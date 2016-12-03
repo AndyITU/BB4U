@@ -29,4 +29,9 @@ public class BookingViewPanel extends JPanel {
     public InformationPanel getInfoPanel() {
         return iPanel;
     }
+
+    public SeatPanel getSeatPanel() {
+        return sPanel;
+    }
+
 }

@@ -21,7 +21,6 @@ public class ViewController {
         buttonPanel = frame.getButtonPanel();
         setupButtons();
         bookingViewPanel.getInfoPanel().getPanel().startBook();
-
     }
                 /**
                  try {
