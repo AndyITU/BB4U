@@ -12,6 +12,7 @@ import java.awt.*;
 public class OverviewFrame
 {
     private static BookingViewPanel bvPanel;
+    private static SearchViewPanel searchPanel;
     private static ButtonPanel bPanel;
     private static JFrame frame;
 
@@ -19,33 +20,41 @@ public class OverviewFrame
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        System.out.println(args);
-        //sPanel = new SeatPanel(4,10); bPanel = new ButtonPanel(); iPanel = new InformationPanel(sPanel.getSeats()); cPanel = new CanvasPanel();
         bvPanel = new BookingViewPanel();
         bPanel = new ButtonPanel();
+        searchPanel = new SearchViewPanel();
         frame = new JFrame("Booking Overview");
+
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(1000,1000));
         frame.setVisible(true);
-        frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 
+        frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         frame.getContentPane().add(bPanel);
-        /**
-        frame.getContentPane().add(cPanel);
-        frame.getContentPane().add(sPanel);
-        frame.getContentPane().add(iPanel);
-         */
         frame.getContentPane().add(bvPanel);
         frame.pack();
     }
     public OverviewFrame () {
 
     }
-
-    private void setSearchPage() {
-
+    public BookingViewPanel getBookingPanel() {
+        return bvPanel;
     }
-    
+    public SearchViewPanel getSearchPanel() {
+        return searchPanel;
+    }
+
+    public ButtonPanel getButtonPanel() {
+        return bPanel;
+    }
+    public void changeToSearch() {
+        frame.remove(bvPanel);
+        frame.add(searchPanel);
+    }
+    public void test() {
+        System.out.println("hej");
+    }
+
 }

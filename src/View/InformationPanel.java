@@ -33,6 +33,7 @@ public class InformationPanel extends JPanel
             @Override
             public void actionPerformed(ActionEvent e) {
                 bookCount++;
+
                 if (bookCount % 2 == 1)
                 panel.startBook(true);
                 else {

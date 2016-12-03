@@ -16,6 +16,5 @@ public class BookingViewPanel extends JPanel {
         sPanel = new SeatPanel(4,10); iPanel = new InformationPanel(sPanel.getSeatPanel()); cPanel = new CanvasPanel();
         this.add(cPanel); this.add(sPanel); this.add(iPanel);
         this.setVisible(true);
-
     }
 }

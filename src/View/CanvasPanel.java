@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by arha on 11/29/2016.
  */
-// Work in progress
+// Work in progress // Never mind, is now fully functional :D
 public class CanvasPanel extends JPanel {
 
     public CanvasPanel() {
@@ -24,7 +24,7 @@ public class CanvasPanel extends JPanel {
                 5,
                 getWidth()/2,
                 getHeight()-6);
-        g.drawString("Screen", getWidth()/2-16, getHeight()/2+5);
+        g.drawString("Screen", getWidth()/2-20, getHeight()/2+5);
 
     }
 

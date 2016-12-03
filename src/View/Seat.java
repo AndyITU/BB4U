@@ -16,12 +16,10 @@ public class Seat extends JButton implements MouseListener
     private boolean isSelected;
     private boolean isHighlighted;
     private boolean isBooked; // Move this to a controller.
-    private int clickCount;
-    private int booleanCount;
     /**
      * Constructor for objects of class Square
      */
-    Seat() {
+    public Seat() {
         setPreferredSize(new Dimension(10,10));
         this.setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
         this.addMouseListener(this);
@@ -84,11 +82,11 @@ public class Seat extends JButton implements MouseListener
     }
     public void setBooked(Boolean b) {
         if (isSelected) {
-                isBooked = b;
-                isSelected = false;
+            isBooked = b;
+            isSelected = false;
             repaint();
+
         }
     }
-
-}
+    }
   
