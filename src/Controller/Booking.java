@@ -3,13 +3,13 @@ import Model.*;
 import java.sql.SQLException;
 
 public class Booking {
-    private int show_id;
-    private Show show;
+    private static int show_id;
+    private static Show show;
 
 
     /* GETTERS */
 
-    public Show getShow(int id) {
+    public static Show getShow(int id) {
         if(show_id == id)
             return show;
         else {
@@ -19,29 +19,47 @@ public class Booking {
         }
     }
 
-    public static SeatModel[] getSeats(int show_id) {
-        Reservation[] r = Database.getReservations(show_id);
-        SeatModel[] s = new SeatModel[r.length];
+    public static SeatModel[] getReservedSeats(int show_id) {
+        Reservation[] r = Database.getReservations(show_id, true);
+        int amount = 0;
 
         for(int i = 0; i < r.length; i++)
-            s[i] = new SeatModel(r[i].getCol(), r[i].getRow(), r[i].getShow_id(), true);
+            amount += r[i].getSeats().length;
+
+        SeatModel[] s = new SeatModel[amount];
+        amount = 0;
+        for(int i = 0; i < r.length; i++)
+            for(SeatModel s1: r[i].getSeats()) {
+                s[amount] = s1;
+                amount++;
+            }
 
         return s;
+    }
+    static Reservation[] getReservations(int show_id) {
+        return Database.getReservations(show_id, true);
+    }
+    static Reservation[] getReservations() {
+        return getReservations(0);
+    }
+    static Reservation getReservation(int id) {
+        return Database.getReservations(id, false)[0];
     }
 
 
     /* SETTERS */
 
-    public static void bookSeats(Reservation[] reservations) throws SQLException, IllegalArgumentException {
-        for(Reservation r: reservations)
-            if(r.getId() > 0)
-                throw new IllegalArgumentException("One or more of the seats are already booked!");
+    public static void bookSeats(Reservation r) throws SQLException, IllegalArgumentException {
+        if(Database.isReserved(r.getShow_id(), r.getSeats()))
+            throw new IllegalArgumentException("One or more of the seats are already booked!");
 
         try {
-            for(Reservation r: reservations) {
+
+            for(SeatModel s: r.getSeats()) {
                 Database.updateTable(
-                        "INSERT INTO reservations (show_id, row, col, aud_id, name, contact_info) " +
-                        "VALUES(" + r.getShow_id() + ", " + r.getRow() + " " + r.getRow() + ";"
+                        "INSERT INTO reservations (id, show_id, row, col, aud_id, name, contact_info) " +
+                        "VALUES("+r.getId()+", "+r.getShow_id()+", "+s.getRow()+", "+s.getCol()+", " +
+                        r.getAud_id()+", '"+r.getName()+"', '"+r.getContact_info()+"');"
                 );
             }
         } catch (SQLException e) {
