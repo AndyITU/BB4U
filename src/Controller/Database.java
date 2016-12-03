@@ -61,7 +61,7 @@ public class Database {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
 
-            String q = id > 0 ? " WHERE show_id = "+id : "";
+            String q = id > 0 ? " WHERE id = "+id : "";
             ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM shows"+q+";");
             rs.next();
             shows = new Show[rs.getInt("total")];
@@ -90,17 +90,19 @@ public class Database {
         return shows;
     }
 
-    public static Auditorium[] getAuditoriums() {
+    public static Auditorium[] getAuditoriums(int id) {
         Auditorium[] auditoriums;
 
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM auditoriums;");
+
+            String q = id > 0 ? " WHERE id = "+id : "";
+            ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM auditoriums"+q+";");
             rs.next();
             auditoriums = new Auditorium[rs.getInt("total")];
             try {
-                rs = statement.executeQuery("SELECT * FROM auditoriums;");
+                rs = statement.executeQuery("SELECT * FROM auditoriums"+q+";");
                 int i = 0;
                 while (rs.next()) {
                     auditoriums[i] = new Auditorium(rs.getInt("id"), rs.getInt("rows"), rs.getInt("cols"));

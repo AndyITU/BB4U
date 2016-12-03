@@ -3,9 +3,6 @@ package Model;
 import java.sql.Date;
 import java.sql.Time;
 
-/**
- * Created by andy on 11/25/16.
- */
 public class Show {
     private int id, aud_id;
     private String movie;
@@ -20,7 +17,19 @@ public class Show {
         this.duration = duration;
     }
 
+    public int getId() {
+        return id;
+    }
+    public int getAud_id() {
+        return aud_id;
+    }
     public String getMovie() {
         return movie;
+    }
+    public Date getDate() {
+        return date;
+    }
+    public Time getDuration() {
+        return duration;
     }
 }

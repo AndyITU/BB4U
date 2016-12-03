@@ -1,12 +1,10 @@
 package View;
 
-import Model.Auditorium;
 import Model.SeatModel;
+import Model.Show;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Write a description of class View.ButtonPanel here.
@@ -29,7 +27,7 @@ public class InformationPanel extends JPanel
 
 
 
-    public InformationPanel(SeatPanel panel) {
+    public InformationPanel(SeatPanel panel, Show show, int seatsReserved, int seatsTotal) {
         super();
         this.panel = panel;
         setLayout(new GridLayout(2,2));
@@ -37,8 +35,8 @@ public class InformationPanel extends JPanel
         setVisible(true);
         methodButton = new JButton("Method Testing");
         bookButton = new JButton("BOOK SELECTED");
-        add(setFirst());
-        add(setFirst());
+        add(setFirst(show.getMovie(), show.getAud_id(), seatsReserved, seatsTotal));
+        add(new JPanel());
         add(bookButton);
         add(methodButton);
 
@@ -60,21 +58,21 @@ public class InformationPanel extends JPanel
         return panel;
     }
     
-    private JPanel setFirst() {
+    private JPanel setFirst(String movie, int auditorium_id, int seatsReserved, int seatsTotal) {
         JPanel panelOne = new JPanel();
         panelOne.setLayout(new GridLayout(3,2));
 
         movieHeader = new JLabel("Film:");
-        movieName = new JLabel("Ikke Valgt");
+        movieName = new JLabel(movie);
         auditoriumHeader = new JLabel("Sal nr:");
-        auditoriumName = new JLabel("Ikke Valgt");
+        auditoriumName = new JLabel(Integer.toString(auditorium_id));
         
         panelOne.add(movieHeader);
         panelOne.add(movieName);
         panelOne.add(auditoriumHeader);
         panelOne.add(auditoriumName);
         panelOne.add(new JLabel("Ledige sæder:"));
-        panelOne.add(new JLabel("Ikke Valgt"));
+        panelOne.add(new JLabel(seatsReserved+"/"+seatsTotal));
         return panelOne;
     }
 }

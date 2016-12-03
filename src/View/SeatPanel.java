@@ -16,10 +16,10 @@ public class SeatPanel extends JPanel
     private int columnID;
 
 
-    public SeatPanel(int row, int column) {
+    public SeatPanel(int rows, int columns) {
         super(new GridLayout(0,10));
-        rowID = row;
-        columnID = column;
+        rowID = rows;
+        columnID = columns;
         seats = new Seat[rowID][columnID];
         for ( int i = 0; i < rowID; i++)
             for ( int k = 0; k < columnID; k++){
@@ -31,7 +31,7 @@ public class SeatPanel extends JPanel
         setPreferredSize(new Dimension(1000,300));
         setVisible(true);
     }
-    public SeatPanel getSeatPanel() {
+    SeatPanel getSeatPanel() {
         return this;
     }
     public void startBook() {

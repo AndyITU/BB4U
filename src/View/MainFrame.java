@@ -1,5 +1,7 @@
 package View;
 
+import Controller.Booking;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,23 +11,21 @@ import java.awt.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class OverviewFrame extends JFrame
+public class MainFrame extends JFrame
 {
     private static BookingViewPanel bvPanel;
     private static SearchViewPanel searchPanel;
     private static ButtonPanel bPanel;
     private static Container pane;
 
-    public static void main (String[] args ) {
-    }
-    public OverviewFrame () {
+    public MainFrame() {
         super();
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        bvPanel = new BookingViewPanel();
+        bvPanel = new BookingViewPanel(Booking.getShow(1));
         bPanel = new ButtonPanel();
         searchPanel = new SearchViewPanel();
 

@@ -1,23 +1,26 @@
 package Controller;
 import Model.*;
+
 import java.sql.SQLException;
 
 public class Booking {
-    private static int show_id;
     private static Show show;
+    private static Auditorium auditorium;
 
 
     /* GETTERS */
 
     public static Show getShow(int id) {
-        if(show_id == id)
-            return show;
-        else {
-            show_id = id;
+        if(show == null || show.getId() == id)
             show = Database.getShows(id)[0];
-            return show;
-        }
+        return show;
     }
+    public static Auditorium getAuditorium(int id) {
+        if(auditorium == null || auditorium.getId() == id)
+            auditorium = Database.getAuditoriums(id)[0];
+        return auditorium;
+    }
+
 
     public static SeatModel[] getReservedSeats(int show_id) {
         Reservation[] r = Database.getReservations(show_id, true);

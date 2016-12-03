@@ -1,5 +1,9 @@
 package View;
 
+import Controller.Booking;
+import Model.Auditorium;
+import Model.Show;
+
 import javax.swing.*;
 
 /**
@@ -11,10 +15,14 @@ public class BookingViewPanel extends JPanel {
     private InformationPanel iPanel;
     private CanvasPanel cPanel;
 
-    public BookingViewPanel() {
+    public BookingViewPanel(Show show) {
+        Auditorium auditorium = Booking.getAuditorium(show.getAud_id());
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        sPanel = new SeatPanel(4,10); iPanel = new InformationPanel(sPanel.getSeatPanel()); cPanel = new CanvasPanel();
-        add(cPanel); this.add(sPanel); this.add(iPanel);
+        sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols());
+        iPanel = new InformationPanel(sPanel.getSeatPanel(), show, Booking.getReservedSeats(show.getId()).length, auditorium.getCols()*auditorium.getRows());
+        cPanel = new CanvasPanel();
+        add(cPanel); add(sPanel); add(iPanel);
         setVisible(true);
     }
 
