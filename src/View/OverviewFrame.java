@@ -17,6 +17,8 @@ public class OverviewFrame
     private static JFrame frame;
 
     public static void main (String[] args ) {
+    }
+    public OverviewFrame () {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -35,9 +37,6 @@ public class OverviewFrame
         frame.getContentPane().add(bPanel);
         frame.getContentPane().add(bvPanel);
         frame.pack();
-    }
-    public OverviewFrame () {
-
     }
     public BookingViewPanel getBookingPanel() {
         return bvPanel;
