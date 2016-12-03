@@ -31,14 +31,14 @@ public class Seat extends JButton implements MouseListener
     }
     
     private void makeSquare(Graphics g) {
-        if (isSelected) {
+        if (isBooked) {
+            g.setColor(Color.red);
+        }
+            else if (isSelected) {
             g.setColor(Color.pink);
         }
             else if (isHighlighted) {
-            g.setColor(Color.orange);
-        }
-            else if (isBooked) {
-            g.setColor(Color.RED);
+            g.setColor(Color.yellow);
         }
             else {
                 g.setColor(Color.GREEN);
@@ -59,9 +59,10 @@ public class Seat extends JButton implements MouseListener
     }
 
     public void mouseClicked(MouseEvent e) {
+        if (!isBooked) {
         isSelected = !isSelected;
         repaint();
-    }
+    }   }
     public void mouseExited(MouseEvent e) {
         isHighlighted = false;
         repaint();

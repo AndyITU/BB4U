@@ -16,7 +16,6 @@ import java.awt.*;
 public class InformationPanel extends JPanel
 {
     private SeatModel seat;
-    private int bookCount;
     private SeatPanel panel;
     private JLabel movieHeader;
     private JLabel movieName;

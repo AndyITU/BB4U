@@ -20,6 +20,8 @@ public class ViewController {
         searchPanel = frame.getSearchPanel();
         buttonPanel = frame.getButtonPanel();
         setupButtons();
+        bookingViewPanel.getInfoPanel().getPanel().startBook();
+
     }
                 /**
                  try {
@@ -53,7 +55,6 @@ public class ViewController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.changeToPanel(searchPanel);
-
             }
         });
         buttonPanel.getBookingViewButton().addActionListener(new ActionListener() {

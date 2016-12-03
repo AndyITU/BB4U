@@ -34,10 +34,11 @@ public class SeatPanel extends JPanel
     SeatPanel getSeatPanel() {
         return this;
     }
+
     public void startBook() {
         for (int i = 0; i < rowID; i++) {
             for (int k = 0; k < columnID; k++) {
-                seats[i][k].setBooked(!seats[i][k].getBooked());
+                seats[i][k].setBooked(true);
             }
         }
     }
