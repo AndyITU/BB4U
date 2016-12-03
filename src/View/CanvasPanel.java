@@ -14,7 +14,6 @@ public class CanvasPanel extends JPanel {
         this.setLayout(new BorderLayout());
         this.setVisible(true);
         this.add(new JLabel("Big Screen"), BorderLayout.CENTER);
-        this.setMinimumSize(new Dimension(1000, 50));
         this.setMaximumSize(new Dimension(1000, 200));
         this.setPreferredSize(new Dimension(1000, 100 ));
     }

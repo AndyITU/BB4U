@@ -30,7 +30,7 @@ public class SeatPanel extends JPanel
         this.setPreferredSize(new Dimension(1000,300));
         this.setVisible(true);
     }
-    public SeatPanel getSeats() {
+    public SeatPanel getSeatPanel() {
         return this;
     }
     public void startBook(boolean b) {

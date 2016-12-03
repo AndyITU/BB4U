@@ -15,7 +15,7 @@ public class Seat extends JButton implements MouseListener
 {
     private boolean isSelected;
     private boolean isHighlighted;
-    private boolean isBooked;
+    private boolean isBooked; // Move this to a controller.
     private int clickCount;
     private int booleanCount;
     /**
