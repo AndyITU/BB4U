@@ -81,13 +81,15 @@ public class Seat extends JButton implements MouseListener
     public boolean getBooked() {
         return isBooked;
     }
-    public void setBooked(Boolean b) {
+    public boolean setBooked(Boolean b) {
         if (isSelected) {
             isBooked = b;
             isSelected = false;
             repaint();
-
+            return true;
         }
+        return false;
+
     }
     }
   
