@@ -23,7 +23,8 @@ public class CanvasPanel extends JPanel {
                 5,
                 getWidth()/2,
                 getHeight()-6);
-        g.drawString("Screen", getWidth()/2-20, getHeight()/2+5);
+        g.setFont(new Font("Arial", Font.BOLD, 22));
+        g.drawString("Screen", getWidth()/2-38, getHeight()/2+6);
 
     }
 
