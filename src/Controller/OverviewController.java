@@ -17,6 +17,7 @@ public class OverviewController {
     private ButtonPanel buttonPanel;
 
     public OverviewController(OverviewFrame frame) {
+        this.frame = frame;
         bookingViewPanel = frame.getBookingPanel();
         searchPanel = frame.getSearchPanel();
         buttonPanel = frame.getButtonPanel();
