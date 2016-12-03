@@ -10,7 +10,7 @@ import java.awt.*;
 public class SearchViewPanel extends JPanel {
 
     public SearchViewPanel() {
-        setLayout(new GridLayout(2,2));
+        setLayout(new BorderLayout());
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);
         String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
@@ -18,7 +18,7 @@ public class SearchViewPanel extends JPanel {
         petList.addActionListener(petList);
         petList.setPreferredSize(new Dimension(100, 50));
         petList.setMaximumSize(new Dimension(100, 10));
-        add(petList);
+        add(petList, BorderLayout.PAGE_START);
     }
 
 

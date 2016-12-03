@@ -17,4 +17,8 @@ public class BookingViewPanel extends JPanel {
         add(cPanel); this.add(sPanel); this.add(iPanel);
         setVisible(true);
     }
+
+    public InformationPanel getInfoPanel() {
+        return iPanel;
+    }
 }

@@ -18,11 +18,19 @@ public class CanvasPanel extends JPanel {
     }
 
     public void paint (Graphics g) {
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(
+                getWidth()/4,
+                5,
+                getWidth()/2,
+                getHeight()-6);
+        g.setColor(Color.BLACK);
         g.drawRect(
                 getWidth()/4,
                 5,
                 getWidth()/2,
                 getHeight()-6);
+        g.setColor(Color.black);
         g.setFont(new Font("Arial", Font.BOLD, 22));
         g.drawString("Screen", getWidth()/2-38, getHeight()/2+6);
 

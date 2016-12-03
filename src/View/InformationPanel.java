@@ -1,5 +1,6 @@
 package View;
 
+import Model.Auditorium;
 import Model.SeatModel;
 
 import javax.swing.*;
@@ -19,6 +20,13 @@ public class InformationPanel extends JPanel
     private SeatModel seat;
     private int bookCount;
     private SeatPanel panel;
+    private JLabel movieHeader;
+    private JLabel movieName;
+    private JLabel auditoriumHeader;
+    private JLabel auditoriumName;
+    private JButton bookButton;
+    private JButton methodButton;
+
 
 
     public InformationPanel(SeatPanel panel) {
@@ -27,53 +35,46 @@ public class InformationPanel extends JPanel
         setLayout(new GridLayout(2,2));
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);
-        
-        JButton button = new JButton("BOOK SELECTED");
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                bookCount++;
-
-                if (bookCount % 2 == 1)
-                panel.startBook(true);
-                else {
-                    panel.startBook(false);
-                }
-                /**
-                try {
-                        // Set the seat to something plz.. Can't wait to test!
-                        Booking.bookSeats(new Model.SeatModel[]{seat});
-                    } catch(IllegalArgumentException | SQLException err) {
-                        // Make a class for an error-message-window and use it here:
-                        System.out.println(err);
-                    }
-                    */
-
-                }
-            });
+        methodButton = new JButton("Method Testing");
+        bookButton = new JButton("BOOK SELECTED");
         add(setFirst());
         add(setFirst());
-        add(button);
-        setBackground(Color.BLACK);
-        add(new JButton("im here for fun"));
+        add(bookButton);
+        add(methodButton);
+
+    }
+    public void setShowInfo(String movieName, int audNum) {
+        this.movieName.setText(movieName);
+        this.auditoriumName.setText(audNum+"");
+        repaint();
+    }
+    public JButton getBookButton() {
+        return bookButton;
+    }
+
+    public JButton getMethodButton() {
+        return methodButton;
+    }
+
+    public SeatPanel getPanel() {
+        return panel;
     }
     
     private JPanel setFirst() {
         JPanel panelOne = new JPanel();
         panelOne.setLayout(new GridLayout(3,2));
-        int bifID = 3;
+
+        movieHeader = new JLabel("Film:");
+        movieName = new JLabel("Ikke Valgt");
+        auditoriumHeader = new JLabel("Sal nr:");
+        auditoriumName = new JLabel("Ikke Valgt");
         
-        JLabel theaterS = new JLabel("Film:");
-        JLabel theaterLabel = new JLabel("Sal:");
-        JLabel movieS = new JLabel("Biografsal nr:" + bifID + ".   " + "60/70 sæder ledige");
-        JLabel movieLabel = new JLabel("WarZ with Brad Pitt");
-        
-        panelOne.add(theaterS);
-        panelOne.add(movieLabel);
-        panelOne.add(theaterLabel);
-        panelOne.add(movieS);
+        panelOne.add(movieHeader);
+        panelOne.add(movieName);
+        panelOne.add(auditoriumHeader);
+        panelOne.add(auditoriumName);
         panelOne.add(new JLabel("Ledige sæder:"));
-        panelOne.add(new JLabel("100/150"));
+        panelOne.add(new JLabel("Ikke Valgt"));
         return panelOne;
     }
 }
