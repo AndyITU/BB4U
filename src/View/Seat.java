@@ -21,9 +21,9 @@ public class Seat extends JButton implements MouseListener
      */
     public Seat() {
         setPreferredSize(new Dimension(10,10));
-        this.setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
-        this.addMouseListener(this);
-        this.setContentAreaFilled(false);
+        setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
+        addMouseListener(this);
+        setContentAreaFilled(false);
     }
     
     public void paint (Graphics g) {

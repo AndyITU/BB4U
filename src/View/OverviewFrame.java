@@ -29,10 +29,10 @@ public class OverviewFrame extends JFrame
         bPanel = new ButtonPanel();
         searchPanel = new SearchViewPanel();
 
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setPreferredSize(new Dimension(1000,1000));
-        this.setVisible(true);
-        pane = this.getContentPane();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(1000,1000));
+        setVisible(true);
+        pane = getContentPane();
 
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         pane.add(bPanel);
@@ -50,13 +50,12 @@ public class OverviewFrame extends JFrame
     public ButtonPanel getButtonPanel() {
         return bPanel;
     }
-    public void changeToSearch() {
-        pane.remove(bvPanel);
-        pane.add(searchPanel);
-        this.pack();
-    }
-    public void test() {
-        System.out.println("hej");
+    public void changeToPanel (JComponent panel) {
+        pane.removeAll();
+        pane.add(bPanel);
+        pane.add(panel);
+        repaint();
+        pack();
     }
 
 }

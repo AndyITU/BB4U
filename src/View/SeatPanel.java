@@ -28,8 +28,8 @@ public class SeatPanel extends JPanel
                 seats[i][k] = s;
 
             }
-        this.setPreferredSize(new Dimension(1000,300));
-        this.setVisible(true);
+        setPreferredSize(new Dimension(1000,300));
+        setVisible(true);
     }
     public SeatPanel getSeatPanel() {
         return this;

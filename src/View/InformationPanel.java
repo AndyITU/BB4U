@@ -24,9 +24,9 @@ public class InformationPanel extends JPanel
     public InformationPanel(SeatPanel panel) {
         super();
         this.panel = panel;
-        this.setLayout(new GridLayout(2,2));
-        this.setPreferredSize(new Dimension(1000,50));
-        this.setVisible(true);
+        setLayout(new GridLayout(2,2));
+        setPreferredSize(new Dimension(1000,50));
+        setVisible(true);
         
         JButton button = new JButton("BOOK SELECTED");
         button.addActionListener(new ActionListener() {
@@ -51,11 +51,11 @@ public class InformationPanel extends JPanel
 
                 }
             });
-        this.add(setFirst());
-        this.add(setFirst());
-        this.add(button);
-        this.setBackground(Color.BLACK);
-        this.add(new JButton("im here for fun"));
+        add(setFirst());
+        add(setFirst());
+        add(button);
+        setBackground(Color.BLACK);
+        add(new JButton("im here for fun"));
     }
     
     private JPanel setFirst() {

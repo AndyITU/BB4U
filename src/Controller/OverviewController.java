@@ -5,6 +5,7 @@ import View.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 
 /**
  * Created by arha on 12/3/2016.
@@ -23,9 +24,14 @@ public class OverviewController {
         buttonPanel.getSearchButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.changeToSearch();
-                frame.test();
+                frame.changeToPanel(searchPanel);
 
+            }
+        });
+        buttonPanel.getBookingViewButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.changeToPanel(bookingViewPanel);
             }
         });
     }

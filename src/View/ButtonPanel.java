@@ -16,25 +16,24 @@ public class ButtonPanel extends JPanel
     JButton bookingButton;
 
     public ButtonPanel() {
-        super();
-        this.setLayout(new GridLayout(0,3));
-        this.setPreferredSize(new Dimension(1000,100));
-        this.setVisible(true);
-        this.setMaximumSize(new Dimension(1000,250));
+        setLayout(new GridLayout(0,3));
+        setPreferredSize(new Dimension(1000,100));
+        setVisible(true);
+        setMaximumSize(new Dimension(1000,250));
         
         firstPage = new JButton("Not View");
         bookingButton = new JButton("Booking View");
         searchButton = new JButton("Search View");
-        this.add(firstPage);
-        this.add(bookingButton);
-        this.add(searchButton);
+        add(firstPage);
+        add(bookingButton);
+        add(searchButton);
         
     }
 
     public JButton getSearchButton() {
         return searchButton;
     }
-    public JButton getBookingView() {
+    public JButton getBookingViewButton() {
         return bookingButton;
     }
         

@@ -10,12 +10,11 @@ import java.awt.*;
 public class CanvasPanel extends JPanel {
 
     public CanvasPanel() {
-        super();
-        this.setLayout(new BorderLayout());
-        this.setVisible(true);
-        this.add(new JLabel("Big Screen"), BorderLayout.CENTER);
-        this.setMaximumSize(new Dimension(1000, 200));
-        this.setPreferredSize(new Dimension(1000, 100 ));
+        setLayout(new BorderLayout());
+        setVisible(true);
+        add(new JLabel("Big Screen"), BorderLayout.CENTER);
+        setMaximumSize(new Dimension(1000, 200));
+        setPreferredSize(new Dimension(1000, 100 ));
     }
 
     public void paint (Graphics g) {
