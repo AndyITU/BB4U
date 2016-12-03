@@ -142,6 +142,7 @@ public class Database {
             try {
                 rs = statement.executeQuery("SELECT * FROM reservations"+q+";");
                 if(show) {
+                    // Using HashMap to group reservations in database by ID
                     HashMap<Integer, List<SeatModel>> seatsHashMap = new HashMap<>();
                     int[] ids = new int[total], shows = new int[total], auds = new int[total];
                     String[] names = new String[total], contacts = new String[total];

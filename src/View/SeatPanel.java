@@ -1,5 +1,9 @@
 package View;
 
+import Controller.Booking;
+import Model.Reservation;
+import Model.SeatModel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -46,4 +50,9 @@ public class SeatPanel extends JPanel
         }
     }
 
+    public void newBook(SeatModel[] seats) {
+        for (int i = 0; i < seats.length; i++) {
+            this.seats[seats[i].getRow()][seats[i].getRow()].setBooked(true);
+        }
+    }
 }

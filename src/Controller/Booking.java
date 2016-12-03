@@ -9,12 +9,15 @@ public class Booking {
 
 
     /* GETTERS */
-
     public static Show getShow(int id) {
         if(show == null || show.getId() == id)
             show = Database.getShows(id)[0];
         return show;
     }
+    public static Show getShows(){
+        return getShow(0);
+    }
+
     public static Auditorium getAuditorium(int id) {
         if(auditorium == null || auditorium.getId() == id)
             auditorium = Database.getAuditoriums(id)[0];
@@ -69,6 +72,5 @@ public class Booking {
             throw e;
         }
     }
-
 
 }
