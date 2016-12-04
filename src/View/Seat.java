@@ -66,7 +66,7 @@ public class Seat extends JButton implements MouseListener
     private void seatName(int k, int s, Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 18));
         g.drawString("Row:"+k, getWidth()/10,getHeight()-getHeight()/4);
-        g.drawString("Column"+s, getWidth()/10, getHeight()-(getHeight()/4*3));
+        g.drawString("Col:"+s, getWidth()/10, getHeight()-(getHeight()/4*3));
     }
 
     public void mouseClicked(MouseEvent e) {

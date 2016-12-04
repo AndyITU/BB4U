@@ -13,14 +13,15 @@ import java.awt.event.ItemListener;
  * Created by arha on 12/3/2016.
  */
 public class ViewController {
-    private MainFrame frame = new MainFrame(Booking.getShow(1), Booking.getAuditorium(1), Booking.getReservedSeats(1).length);
+    private MainFrame frame;
     private BookingViewPanel bookingViewPanel;
     private SearchViewPanel searchPanel;
     private ButtonPanel buttonPanel;
-    private Show currentShow;
+    private Show currentShow = Booking.getShow(1);
     private Show searchShow;
 
     public ViewController() {
+        frame = new MainFrame(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getAud_id()).length);
         bookingViewPanel = frame.getBookingPanel();
         searchPanel = frame.getSearchPanel();
         buttonPanel = frame.getButtonPanel();
@@ -82,6 +83,8 @@ public class ViewController {
             public void itemStateChanged(ItemEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
                 sendInput.getSelectedItem();
+                System.out.println(sendInput.getSelectedItem());
+
             }
         });
 
@@ -90,6 +93,7 @@ public class ViewController {
             public void itemStateChanged(ItemEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
                 sendInput.getSelectedItem();
+                System.out.println(sendInput.getSelectedItem());
             }
         });
 
