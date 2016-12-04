@@ -1,10 +1,13 @@
 package Controller;
 
+import Model.Show;
 import View.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * Created by arha on 12/3/2016.
@@ -14,6 +17,8 @@ public class ViewController {
     private BookingViewPanel bookingViewPanel;
     private SearchViewPanel searchPanel;
     private ButtonPanel buttonPanel;
+    private Show currentShow;
+    private Show searchShow;
 
     public ViewController(MainFrame frame) {
         this.frame = frame;
@@ -64,11 +69,37 @@ public class ViewController {
             }
         });
 
-        searchPanel.getMovieDropDown().addActionListener(new ActionListener() {
+        // SearchPanel dropdown setup.
+
+        searchPanel.getMovieDropDown().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String s =(String)e.getItem();
+                System.out.println(e.getSource().toString());
+
+                System.out.println(s);
+            }
+        });
+        searchPanel.getDateDropDown().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String k = (String)e.getItem();
+                System.out.println(k);
+            }
+        });
+
+        searchPanel.getAuditoriumDropDown().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String l = (String) e.getItem();
+                System.out.println(l);
+            }
+        });
+
+        searchPanel.getSelectShowButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JComboBox jcmbType = (JComboBox) e.getSource();
-                String cmbType = (String) jcmbType.getSelectedItem();
+
             }
         });
     }

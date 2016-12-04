@@ -12,7 +12,10 @@ public class SearchViewPanel extends JPanel {
     private JComboBox movieDropDown;
     private JComboBox dateDropDown;
     private JComboBox auditoriumDropDown;
-    private String[] hardCodeValues = { "", "Something", "Something", "something"};
+    private JButton selectShow;
+    private String[] hardCodeValues = {"New Movie", "Old movie", "Kinda Old"};
+    private String[] DATE_VALUES = {"27.October"};
+    private Integer[] AUDITORIUM_ID_VALUES = {1,2,3,4};
 
     public SearchViewPanel() {
         setLayout(new GridLayout(8,2));
@@ -24,7 +27,7 @@ public class SearchViewPanel extends JPanel {
         dateDropDown = new JComboBox(hardCodeValues);
         JLabel selectAuditorium = new JLabel ("Select an auditorium from the dropdown list");
         auditoriumDropDown = new JComboBox(hardCodeValues);
-        JButton selectShow = new JButton("Go to selected show");
+        selectShow = new JButton("Go to selected show");
 
         add(selectMovie);
         add(movieDropDown);
@@ -44,6 +47,9 @@ public class SearchViewPanel extends JPanel {
     }
     public JComboBox getAuditoriumDropDown() {
         return auditoriumDropDown;
+    }
+    public JButton getSelectShowButton() {
+        return selectShow;
     }
 }
 
