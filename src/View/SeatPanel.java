@@ -27,7 +27,7 @@ public class SeatPanel extends JPanel
         seats = new Seat[rowID][columnID];
         for ( int i = 0; i < rowID; i++)
             for ( int k = 0; k < columnID; k++){
-            Seat s = new Seat();
+                Seat s = new Seat(i,k);
                 this.add(s);
                 seats[i][k] = s;
 

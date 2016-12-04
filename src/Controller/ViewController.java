@@ -73,32 +73,30 @@ public class ViewController {
         searchPanel.getMovieDropDown().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                String s =(String)e.getItem();
-                System.out.println(e.getSource().toString());
-
-                System.out.println(s);
+                JComboBox sendInput =(JComboBox) e.getSource();
+                sendInput.getSelectedItem();
             }
         });
         searchPanel.getDateDropDown().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                String k = (String)e.getItem();
-                System.out.println(k);
+                JComboBox sendInput =(JComboBox) e.getSource();
+                sendInput.getSelectedItem();
             }
         });
 
         searchPanel.getAuditoriumDropDown().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                String l = (String) e.getItem();
-                System.out.println(l);
+                JComboBox sendInput =(JComboBox) e.getSource();
+                sendInput.getSelectedItem();
             }
         });
 
         searchPanel.getSelectShowButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.changeToPanel(bookingViewPanel);
             }
         });
     }
