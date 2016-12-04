@@ -13,15 +13,14 @@ import java.awt.event.ItemListener;
  * Created by arha on 12/3/2016.
  */
 public class ViewController {
-    private MainFrame frame;
+    private MainFrame frame = new MainFrame(Booking.getShow(1), Booking.getAuditorium(1), Booking.getReservedSeats(1).length);
     private BookingViewPanel bookingViewPanel;
     private SearchViewPanel searchPanel;
     private ButtonPanel buttonPanel;
     private Show currentShow;
     private Show searchShow;
 
-    public ViewController(MainFrame frame) {
-        this.frame = frame;
+    public ViewController() {
         bookingViewPanel = frame.getBookingPanel();
         searchPanel = frame.getSearchPanel();
         buttonPanel = frame.getButtonPanel();

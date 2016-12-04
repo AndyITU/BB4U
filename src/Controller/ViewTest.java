@@ -7,6 +7,6 @@ import View.MainFrame;
  */
 public class ViewTest {
     public static void main (String[] args) {
-        new ViewController(new MainFrame());
+        new ViewController();
     }
 }

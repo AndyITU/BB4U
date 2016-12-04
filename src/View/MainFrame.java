@@ -1,6 +1,7 @@
 package View;
 
-import Controller.Booking;
+import Model.Auditorium;
+import Model.Show;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,14 +19,14 @@ public class MainFrame extends JFrame
     private static ButtonPanel bPanel;
     private static Container pane;
 
-    public MainFrame() {
+    public MainFrame(Show show, Auditorium auditorium, int reservedSeats) {
         super();
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        bvPanel = new BookingViewPanel(Booking.getShow(1));
+        bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
         bPanel = new ButtonPanel();
         searchPanel = new SearchViewPanel();
 
