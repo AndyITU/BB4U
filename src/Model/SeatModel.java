@@ -18,7 +18,7 @@ public class SeatModel {
         return row;
     }
 
-    public boolean isBooked() {
+    public boolean getIsBooked() {
         return isBooked;
     }
 

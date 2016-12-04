@@ -15,7 +15,8 @@ import java.awt.*;
  */
 public class SeatPanel extends JPanel
 {
-    public Seat[][] seats;
+    public Seat[][] viewSeats;
+    private SeatModel[] testingSeats = new SeatModel[3];
     private int rowID;
     private int columnID;
 
@@ -24,16 +25,22 @@ public class SeatPanel extends JPanel
         super(new GridLayout(0,10));
         rowID = rows;
         columnID = columns;
-        seats = new Seat[rowID][columnID];
+        viewSeats = new Seat[rowID][columnID];
         for ( int i = 0; i < rowID; i++)
             for ( int k = 0; k < columnID; k++){
                 Seat s = new Seat(i,k);
                 this.add(s);
-                seats[i][k] = s;
+                viewSeats[i][k] = s;
 
             }
         setPreferredSize(new Dimension(1000,300));
         setVisible(true);
+        testingSeats[0] = new SeatModel(0,0, true);
+        testingSeats[1] = new SeatModel(0,1, true);
+        testingSeats[2] = new SeatModel(2,3, true);
+
+
+        newBook(testingSeats);
     }
     SeatPanel getSeatPanel() {
         return this;
@@ -42,17 +49,17 @@ public class SeatPanel extends JPanel
     public void startBook() {
         for (int i = 0; i < rowID; i++) {
             for (int k = 0; k < columnID; k++) {
-                seats[i][k].setBooked(true);
-                if( seats[i][k].setBooked(true) ) {
+                viewSeats[i][k].setBooked(true);
+                if( viewSeats[i][k].setBooked(true) ) {
 
                 }
             }
         }
     }
 
-    public void newBook(SeatModel[] seats) {
-        for (int i = 0; i < seats.length; i++) {
-            this.seats[seats[i].getRow()][seats[i].getRow()].setBooked(true);
+    public void newBook(SeatModel[] Seats) {
+        for (int i = 0; i < Seats.length; i++) {
+            viewSeats[Seats[i].getRow()][Seats[i].getCol()].setModelBooked(Seats[i].getIsBooked());
         }
     }
 }

@@ -66,7 +66,7 @@ public class Seat extends JButton implements MouseListener
     private void seatName(int k, int s, Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 18));
         g.drawString("Row:"+k, getWidth()/10,getHeight()-getHeight()/4);
-        g.drawString("Col:"+s, getWidth()/10, getHeight()-(getHeight()/4*3));
+        g.drawString("Seat:"+s, getWidth()/10, getHeight()-(getHeight()/4*3));
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -89,9 +89,6 @@ public class Seat extends JButton implements MouseListener
         System.out.println("I got released");
         // Maybe do something?
     }
-    public boolean getBooked() {
-        return isBooked;
-    }
     public boolean setBooked(Boolean b) {
         if (isSelected) {
             isBooked = b;
@@ -100,7 +97,11 @@ public class Seat extends JButton implements MouseListener
             return true;
         }
         return false;
-
+    }
+    public void setModelBooked(Boolean b) {
+        isBooked = b;
+        isSelected = false;
+        repaint();
     }
 }
   
