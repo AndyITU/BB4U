@@ -72,9 +72,16 @@ public class Seat extends JButton implements MouseListener
 
     public void mouseClicked(MouseEvent e) {
         if (!isBooked) {
-        isSelected = !isSelected;
-        repaint();
-    }   }
+            isSelected = !isSelected;
+            repaint();
+        }
+        /** Idea for selecting multiple seats: Holding shift down will select everything
+         if (e.isShiftDown())  {
+            e.getLocation();
+            repaint();
+        }
+         */
+    }
     public void mouseExited(MouseEvent e) {
         isHighlighted = false;
         repaint();
@@ -84,11 +91,8 @@ public class Seat extends JButton implements MouseListener
         repaint();
     }
     public void mousePressed(MouseEvent e) {
-        System.out.println("I got pressed");
     }
     public void mouseReleased(MouseEvent e) {
-        System.out.println("I got released");
-        // Maybe do something?
     }
     public boolean setBooked(Boolean b) {
         if (isSelected) {

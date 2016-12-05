@@ -34,7 +34,7 @@ public class InformationPanel extends JPanel
         setVisible(true);
         methodButton = new JButton("Method Testing");
         bookButton = new JButton("BOOK SELECTED");
-        add(setFirst(show.getMovie(), show.getAud_id(), seatsReserved, seatsTotal));
+        add(createLeftInformationBox(show.getMovie(), show.getAud_id(), seatsReserved, seatsTotal));
         add(new JPanel());
         add(bookButton);
         add(methodButton);
@@ -57,15 +57,13 @@ public class InformationPanel extends JPanel
         return panel;
     }
     
-    private JPanel setFirst(String movie, int auditorium_id, int seatsReserved, int seatsTotal) {
+    private JPanel createLeftInformationBox(String movie, int auditorium_id, int seatsReserved, int seatsTotal) {
         JPanel panelOne = new JPanel();
-        panelOne.setLayout(new GridLayout(3,2));
-
+        panelOne.setLayout(new GridLayout(4,2));
         movieHeader = new JLabel("Film:");
         movieName = new JLabel(movie);
         auditoriumHeader = new JLabel("Sal nr:");
         auditoriumName = new JLabel(Integer.toString(auditorium_id));
-        
         panelOne.add(movieHeader);
         panelOne.add(movieName);
         panelOne.add(auditoriumHeader);
