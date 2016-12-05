@@ -28,7 +28,6 @@ public class SearchViewPanel extends JPanel {
         JLabel selectAuditorium = new JLabel ("Select an auditorium from the dropdown list");
         auditoriumDropDown = new JComboBox(AUDITORIUM_ID_VALUES);
         selectShow = new JButton("Go to selected show");
-
         add(selectMovie);
         add(movieDropDown);
         add(selectDate);

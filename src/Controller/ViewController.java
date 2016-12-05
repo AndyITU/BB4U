@@ -27,6 +27,7 @@ public class ViewController {
         buttonPanel = frame.getButtonPanel();
         setupButtons();
         bookingViewPanel.getInfoPanel().getPanel().startBook();
+        System.out.println(Booking.getShow(2).getMovie());
     }
                 /**
                  try {

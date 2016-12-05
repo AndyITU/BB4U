@@ -28,6 +28,7 @@ public class Seat extends JButton implements MouseListener
         setContentAreaFilled(false);
         rowID = row+1;
         columnID = column+1;
+
     }
     
     public void paint (Graphics g) {

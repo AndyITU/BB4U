@@ -33,7 +33,10 @@ public class Database {
                     "CREATE TABLE reservations (id int NOT NULL, show_id int NOT NULL, row int NOT NULL, col int NOT NULL, aud_id int NOT NULL, name VARCHAR(128) NOT NULL, contact_info VARCHAR(128) NOT NULL);");
             System.out.println("*** SUCCESS ***\nInserting data...");
             statement.executeUpdate(
-                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (1, 'Star Wars IV - A New Hope', '2016-11-27 21:30:00', '2:05');");
+                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (1, 'Star Wars IV - A New Hope', '2016-11-27 21:30:00', '2:01');");
+            statement.executeUpdate(
+                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (2, 'Star Wars V - The Empire Strikes Back', '2016-11-28 22:30:00', '2:04');");
+
             statement.executeUpdate(
                     "INSERT INTO auditoriums (rows, cols) VALUES (5, 10);");
             System.out.println("*** SUCCESS ***\n\nQueries finished successfully\nClosing connection...");
