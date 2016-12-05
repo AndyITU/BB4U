@@ -1,7 +1,5 @@
 package View;
 
-import Controller.Booking;
-import Model.Reservation;
 import Model.SeatModel;
 
 import javax.swing.*;

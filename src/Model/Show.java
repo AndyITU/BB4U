@@ -1,15 +1,14 @@
 package Model;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.time.*;
 
 public class Show {
     private int id, aud_id;
     private String movie;
-    private Date date;
-    private Time duration;
+    private LocalDateTime date;
+    private LocalTime duration;
 
-    public Show(int id, int aud_id, String movie, Date date, Time duration) {
+    public Show(int id, int aud_id, String movie, LocalDateTime date, LocalTime duration) {
         this.id = id;
         this.aud_id = aud_id;
         this.movie = movie;
@@ -26,10 +25,10 @@ public class Show {
     public String getMovie() {
         return movie;
     }
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
-    public Time getDuration() {
+    public LocalTime getDuration() {
         return duration;
     }
 }

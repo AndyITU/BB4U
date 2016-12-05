@@ -69,7 +69,7 @@ public class InformationPanel extends JPanel
         panelOne.add(auditoriumHeader);
         panelOne.add(auditoriumName);
         panelOne.add(new JLabel("Ledige sæder:"));
-        panelOne.add(new JLabel(seatsReserved+"/"+seatsTotal));
+        panelOne.add(new JLabel(seatsTotal-seatsReserved+"/"+seatsTotal));
         return panelOne;
     }
 }

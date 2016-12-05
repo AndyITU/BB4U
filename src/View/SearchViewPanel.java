@@ -22,11 +22,11 @@ public class SearchViewPanel extends JPanel {
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);
         JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
-        movieDropDown = new JComboBox(hardCodeValues);
+        movieDropDown = new JComboBox<>(hardCodeValues);
         JLabel selectDate = new JLabel("Select a date from the dropdown list");
-        dateDropDown = new JComboBox(DATE_VALUES);
+        dateDropDown = new JComboBox<>(DATE_VALUES);
         JLabel selectAuditorium = new JLabel ("Select an auditorium from the dropdown list");
-        auditoriumDropDown = new JComboBox(AUDITORIUM_ID_VALUES);
+        auditoriumDropDown = new JComboBox<>(AUDITORIUM_ID_VALUES);
         selectShow = new JButton("Go to selected show");
         add(selectMovie);
         add(movieDropDown);

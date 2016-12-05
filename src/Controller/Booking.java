@@ -14,8 +14,8 @@ public class Booking {
             show = Database.getShows(id)[0];
         return show;
     }
-    public static Show getShows(){
-        return getShow(0);
+    public static Show[] getShows(){
+        return Database.getShows(0);
     }
 
     public static Auditorium getAuditorium(int id) {
@@ -31,7 +31,7 @@ public class Booking {
 
         for(int i = 0; i < r.length; i++)
             amount += r[i].getSeats().length;
-
+        System.out.println(r.length);
         SeatModel[] s = new SeatModel[amount];
         amount = 0;
         for(int i = 0; i < r.length; i++)

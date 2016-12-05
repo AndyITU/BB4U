@@ -73,7 +73,7 @@ public class Database {
                 int i = 0;
                 while (rs.next()) {
                     shows[i] = new Show(rs.getInt("id"), rs.getInt("aud_id"), rs.getString("movie"),
-                            rs.getDate("date"), rs.getTime("Duration"));
+                            rs.getTimestamp("date").toLocalDateTime(), rs.getTime("Duration").toLocalTime());
                     i++;
                 }
             } catch(SQLException e) {
