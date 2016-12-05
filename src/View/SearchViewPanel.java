@@ -13,9 +13,9 @@ public class SearchViewPanel extends JPanel {
     private JComboBox dateDropDown;
     private JComboBox auditoriumDropDown;
     private JButton selectShow;
-    private String[] hardCodeValues = {"New Movie", "Old movie", "Kinda Old"};
-    private String[] DATE_VALUES = {"27.October"};
-    private Integer[] AUDITORIUM_ID_VALUES = {1,2,3,4};
+    private String[] hardCodeValues = {"","New Movie", "Old movie", "Kinda Old"};
+    private String[] DATE_VALUES = {"","27.October"};
+    private String[] AUDITORIUM_ID_VALUES = {"", "1","2","3","4"};
 
     public SearchViewPanel() {
         setLayout(new GridLayout(8,2));
@@ -36,6 +36,10 @@ public class SearchViewPanel extends JPanel {
         add(auditoriumDropDown);
         add(new JLabel(""));
         add(selectShow);
+        dateDropDown.setEnabled(false);
+        auditoriumDropDown.setEnabled(false);
+        selectShow.setEnabled(false);
+
     }
 
     public JComboBox getMovieDropDown() {
@@ -49,6 +53,10 @@ public class SearchViewPanel extends JPanel {
     }
     public JButton getSelectShowButton() {
         return selectShow;
+    }
+    public void resetSearch() {
+        dateDropDown.setSelectedItem("");
+        auditoriumDropDown.setSelectedItem("");
     }
 }
 

@@ -13,12 +13,16 @@ import java.awt.event.ItemListener;
  * Created by arha on 12/3/2016.
  */
 public class ViewController {
+
     private MainFrame frame;
     private BookingViewPanel bookingViewPanel;
     private SearchViewPanel searchPanel;
     private ButtonPanel buttonPanel;
     private Show currentShow = Booking.getShow(1);
     private Show searchShow;
+    private String movieString = "";
+    private String dateString = "";
+    private String auditoriumID = "";
 
     public ViewController() {
         frame = new MainFrame(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getAud_id()).length);
@@ -27,7 +31,7 @@ public class ViewController {
         buttonPanel = frame.getButtonPanel();
         setupButtons();
         bookingViewPanel.getInfoPanel().getPanel().startBook();
-        System.out.println(Booking.getShow(2).getMovie());
+        System.out.println(Booking.getShow(2));
     }
                 /**
                  try {
@@ -38,10 +42,6 @@ public class ViewController {
                  System.out.println(err);
                  }
                  */
-    public boolean setMovie() {
-        return true;
-    }
-
     private void setupButtons() {
 
         bookingViewPanel.getInfoPanel().getMethodButton().addActionListener(new ActionListener() {
@@ -71,38 +71,70 @@ public class ViewController {
         });
 
         // SearchPanel dropdown setup.
-
-        searchPanel.getMovieDropDown().addItemListener(new ItemListener() {
+        ItemListener movieDropDown = new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
-                sendInput.getSelectedItem();
+                if (movieString != sendInput.getSelectedItem()) {
+                    lockDown();
+                }
+                movieString =(String)sendInput.getSelectedItem();
+                if (movieString != "") {
+                    searchPanel.getDateDropDown().setEnabled(true);
+                }
+                else {
+                    searchPanel.getDateDropDown().setEnabled(false);
+                }
             }
-        });
-        searchPanel.getDateDropDown().addItemListener(new ItemListener() {
+        };
+
+        ItemListener dateDropDown = new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
-                sendInput.getSelectedItem();
+                dateString =(String) sendInput.getSelectedItem();
+                if (dateString != "") {
+                    searchPanel.getAuditoriumDropDown().setEnabled(true);
+                }
+                else {
+                    searchPanel.getAuditoriumDropDown().setEnabled(false);
+                    searchPanel.getSelectShowButton().setEnabled(false);
+                }
+            }
+        };
+
+        ItemListener auditoriumDropDown = new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                JComboBox sendInput =(JComboBox) e.getSource();
+                auditoriumID = (String) sendInput.getSelectedItem();
                 System.out.println(sendInput.getSelectedItem());
-
+                if (auditoriumID !="" ) {
+                    searchPanel.getSelectShowButton().setEnabled(true);
+                }
+                else {
+                    searchPanel.getSelectShowButton().setEnabled(false);
+                }
             }
-        });
-
-        searchPanel.getAuditoriumDropDown().addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                JComboBox sendInput =(JComboBox) e.getSource();
-                sendInput.getSelectedItem();
-                System.out.println(sendInput.getSelectedItem());
-            }
-        });
-
+        };
+        searchPanel.getMovieDropDown().addItemListener(movieDropDown);
+        searchPanel.getDateDropDown().addItemListener(dateDropDown);
+        searchPanel.getAuditoriumDropDown().addItemListener(auditoriumDropDown);
         searchPanel.getSelectShowButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.changeToPanel(bookingViewPanel);
+                lockDown();
             }
         });
+    }
+
+    private void lockDown() {
+        movieString = "";
+        dateString = "";
+        auditoriumID = "";
+        searchPanel.getAuditoriumDropDown().setEnabled(false);
+        searchPanel.getSelectShowButton().setEnabled(false);
+        searchPanel.resetSearch();
     }
 }
