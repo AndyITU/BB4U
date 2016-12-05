@@ -9,7 +9,7 @@ public class Booking {
 
 
     /* GETTERS */
-    public static Show getShow(int id) {
+    static Show getShow(int id) {
         if(show == null || show.getId() == id)
             show = Database.getShows(id)[0];
         return show;
@@ -18,24 +18,24 @@ public class Booking {
         return Database.getShows(0);
     }
 
-    public static Auditorium getAuditorium(int id) {
+    static Auditorium getAuditorium(int id) {
         if(auditorium == null || auditorium.getId() == id)
             auditorium = Database.getAuditoriums(id)[0];
         return auditorium;
     }
 
 
-    public static SeatModel[] getReservedSeats(int show_id) {
+    static SeatModel[] getReservedSeats(int show_id) {
         Reservation[] r = Database.getReservations(show_id, true);
         int amount = 0;
 
-        for(int i = 0; i < r.length; i++)
-            amount += r[i].getSeats().length;
+        for(Reservation res: r)
+            amount += res.getSeats().length;
         System.out.println(r.length);
         SeatModel[] s = new SeatModel[amount];
         amount = 0;
-        for(int i = 0; i < r.length; i++)
-            for(SeatModel s1: r[i].getSeats()) {
+        for(Reservation res: r)
+            for(SeatModel s1: res.getSeats()) {
                 s[amount] = s1;
                 amount++;
             }
