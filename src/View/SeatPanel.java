@@ -20,7 +20,7 @@ public class SeatPanel extends JPanel
 
 
     public SeatPanel(int rows, int columns) {
-        super(new GridLayout(0,10));
+        super(new GridLayout(0,columns));
         rowID = rows;
         columnID = columns;
         viewSeats = new Seat[rowID][columnID];
