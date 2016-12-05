@@ -1,5 +1,6 @@
 package View;
 
+import Controller.ViewController;
 import Model.Auditorium;
 import Model.Show;
 
@@ -28,7 +29,7 @@ public class MainFrame extends JFrame
         }
         bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
         bPanel = new ButtonPanel();
-        searchPanel = new SearchViewPanel();
+        searchPanel = new SearchViewPanel(ViewController.getMovieTitles());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1000,1000));

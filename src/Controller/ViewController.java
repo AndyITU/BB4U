@@ -44,16 +44,13 @@ public class ViewController {
                  */
     private void setupButtons() {
 
-        bookingViewPanel.getInfoPanel().getMethodButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                bookingViewPanel.getInfoPanel().setShowInfo("Something", 4);
-            }
-        });
         bookingViewPanel.getInfoPanel().getBookButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bookingViewPanel.getInfoPanel().getPanel().startBook();
+                //get contact info
+                //get movie info
+                //Booking.reserveseats
             }
         });
 
@@ -127,6 +124,10 @@ public class ViewController {
                 lockDown();
             }
         });
+    }
+
+    public static String[] getMovieTitles() {
+        return Search.getMovies();
     }
 
     private void lockDown() {

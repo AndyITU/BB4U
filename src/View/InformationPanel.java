@@ -28,7 +28,6 @@ public class InformationPanel extends JPanel
     private JLabel dateName;
     private JLabel durationName;
     private JButton bookButton;
-    private JButton methodButton;
     private JTextField contactInfo;
 
 
@@ -39,7 +38,6 @@ public class InformationPanel extends JPanel
         setLayout(new GridLayout(2,2));
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);
-        methodButton = new JButton("Method Testing");
         bookButton = new JButton("BOOK SELECTED");
         contactInfo = new JFormattedTextField();
         contactInfo.setMaximumSize(new Dimension(getWidth(), getHeight()/2));
@@ -61,10 +59,6 @@ public class InformationPanel extends JPanel
     }
     public JButton getBookButton() {
         return bookButton;
-    }
-
-    public JButton getMethodButton() {
-        return methodButton;
     }
 
     public SeatPanel getPanel() {
