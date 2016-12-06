@@ -1,9 +1,12 @@
 package Controller;
 import Model.*;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Database {
     // Very secret credentials
@@ -12,7 +15,8 @@ public class Database {
     private static final String PASS = "progroup41";
 
     private static Connection connection;
-    //private static Statement statement;
+    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
+
 
     public static void main(String[] args) {
         try {
@@ -23,7 +27,6 @@ public class Database {
             System.out.println("Dropping tables...");
             statement.executeUpdate("DROP TABLE auditoriums, reservations, shows;");
             System.out.println("*** SUCCESS ***\nCreating new tables...");
-
 
             statement.executeUpdate(
                     "CREATE TABLE shows (id int AUTO_INCREMENT PRIMARY KEY, aud_id int NOT NULL, movie VARCHAR(128) NOT NULL, date DATETIME NOT NULL, duration TIME NOT NULL);");
@@ -36,9 +39,10 @@ public class Database {
                     "INSERT INTO shows (aud_id, movie, date, duration) VALUES (1, 'Star Wars IV - A New Hope', '2016-11-27 21:30:00', '2:01');");
             statement.executeUpdate(
                     "INSERT INTO shows (aud_id, movie, date, duration) VALUES (2, 'Star Wars V - The Empire Strikes Back', '2016-11-28 22:30:00', '2:04');");
-
             statement.executeUpdate(
                     "INSERT INTO auditoriums (rows, cols) VALUES (5, 10);");
+            statement.executeUpdate(
+                    "INSERT INTO auditoriums (rows, cols) VALUES (6, 8);");
             System.out.println("*** SUCCESS ***\n\nQueries finished successfully\nClosing connection...");
         } catch(SQLException e) {
             System.out.println("*** FAILURE ***");
@@ -57,14 +61,14 @@ public class Database {
 
     /* GETTERS */
 
-    public static Show[] getShows(int id) {
+    static Show[] getShows(int id) {
         Show[] shows;
 
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
 
-            String q = id > 0 ? " WHERE id = "+id : "";
+            String q = id > 0 ? " WHERE id="+id : "";
             ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM shows"+q+";");
             rs.next();
             shows = new Show[rs.getInt("total")];
@@ -91,6 +95,31 @@ public class Database {
         }
 
         return shows;
+    }
+
+    static Show getShowFromSearch(String movie, String aud_id, String date) {
+        Show show = new Show(0, 0, null, null, null);
+
+        try {
+            connection = DriverManager.getConnection(DB, USER, PASS);
+            Statement statement = connection.createStatement();
+
+            String q = "SELECT * FROM shows WHERE aud_id="+aud_id+" AND movie='"+movie+"' AND date='"+Timestamp.valueOf(LocalDateTime.parse(date, format))+"';";
+            ResultSet rs = statement.executeQuery(q);
+            rs.next();
+            show = new Show(rs.getInt("id"), rs.getInt("aud_id"), rs.getString("movie"),
+                    rs.getTimestamp("date").toLocalDateTime(), rs.getTime("Duration").toLocalTime());
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return show;
     }
 
     public static Auditorium[] getAuditoriums(int id) {

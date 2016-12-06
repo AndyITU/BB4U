@@ -2,18 +2,16 @@ package Controller;
 
 import Model.Reservation;
 import Model.Show;
-import View.*;
+import View.BookingViewPanel;
+import View.ButtonPanel;
+import View.MainFrame;
+import View.SearchViewPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.sql.SQLException;
 
-/**
- * Created by arha on 12/3/2016.
- */
 public class ViewController {
 
     private MainFrame frame;
@@ -78,7 +76,7 @@ public class ViewController {
             }
         });
 
-// Seachpanel setup
+// SearchViewPanel setup
 
         ActionListener movieDropDown = new ActionListener() {
             @Override
@@ -141,8 +139,7 @@ public class ViewController {
         searchPanel.getSelectShowButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                searchShow = Booking.getShow(1);
-                System.out.println(searchShow.getMovie()+"1");
+                searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
                 frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
                 frame.changeToPanel(bookingViewPanel);
                 lockDown();
@@ -152,10 +149,6 @@ public class ViewController {
 
     public static String[] getMovieTitles() {
         return Search.getMovies();
-    }
-
-    public static String[] getDateTitles(String movie) {
-        return Search.getDatesByMovie(movie);
     }
 
     private void lockDown() {

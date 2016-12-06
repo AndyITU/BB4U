@@ -10,9 +10,8 @@ public class Booking {
 
     /* GETTERS */
     static Show getShow(int id) {
-        if(show == null || show.getId() == id)
+        if(show == null || show.getId() != id)
             show = Database.getShows(id)[0];
-        System.out.println(show.getId() + " & " + show.getMovie());
         return show;
     }
     public static Show[] getShows(){
@@ -20,7 +19,7 @@ public class Booking {
     }
 
     static Auditorium getAuditorium(int id) {
-        if(auditorium == null || auditorium.getId() == id)
+        if(auditorium == null || auditorium.getId() != id)
             auditorium = Database.getAuditoriums(id)[0];
         return auditorium;
     }
@@ -42,13 +41,13 @@ public class Booking {
 
         return s;
     }
-    static Reservation[] getReservations(int show_id) {
+    public static Reservation[] getReservations(int show_id) {
         return Database.getReservations(show_id, true);
     }
-    static Reservation[] getReservations() {
+    public static Reservation[] getReservations() {
         return getReservations(0);
     }
-    static Reservation getReservation(int id) {
+    public static Reservation getReservation(int id) {
         return Database.getReservations(id, false)[0];
     }
 

@@ -1,8 +1,15 @@
 package Controller;
 import Model.*;
+
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Test {
+//    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
 
     public static void main(String[] args) {
         // Test getReservedSeats
@@ -34,14 +41,17 @@ public class Test {
         }*/
 
         // Test for getShow (by movie)
-        //System.out.println("Movie: " + Booking.getShow(2).getMovie());
+        //System.out.println("Movie: " + Booking.getShow(1).getMovie());
 
         // Test for getMovies
         /*for(String movie: Search.getMovies())
             System.out.println("Movie: " + movie);*/
 
         // Test for getDates
-        for(String date: Search.getDates())
-            System.out.println("Date: " + date);
+        /*for(String date: Search.getDates())
+            System.out.println("Date: " + date);*/
+
+        // Test for formatting and converting Timestamp/LocalDateTime
+        //System.out.println("Test: "+ Timestamp.valueOf(LocalDateTime.parse("27. november - 2016 21:30", format)).toString());
     }
 }
