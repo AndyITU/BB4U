@@ -31,36 +31,22 @@ public class SearchViewPanel extends JPanel {
         add(dateDropDown);
         add(selectAuditorium);
         add(auditoriumDropDown);
-        //add(new JLabel(""));
-        //add(selectShow);
-        dateDropDown.setEnabled(false);
-        auditoriumDropDown.setEnabled(false);
-        selectShow.setEnabled(false);
-    }
-    public void updateSearchPanel() {
-        removeAll();
-        add(selectMovie);
-        add(movieDropDown);
-        add(selectDate);
-        add(dateDropDown);
-        add(selectAuditorium);
-        add(auditoriumDropDown);
         add(new JLabel(""));
         add(selectShow);
         dateDropDown.setEnabled(false);
         auditoriumDropDown.setEnabled(false);
         selectShow.setEnabled(false);
-        revalidate();
-        repaint();
     }
     public void updateAud(String[] auditoriumTitles) {
-        auditoriumDropDown = new JComboBox<>(auditoriumTitles);
+        auditoriumDropDown.removeAll();
+        for (String a : auditoriumTitles) auditoriumDropDown.addItem(a);
+        repaint();
     }
     public void updateDate(String[] dateTitles) {
-        dateDropDown = new JComboBox(dateTitles);
-        updateSearchPanel();
+        dateDropDown.removeAll();
+        for (String d : dateTitles) dateDropDown.addItem(d);
+        repaint();
     }
-
     public JComboBox getMovieDropDown() {
         return movieDropDown;
     }
