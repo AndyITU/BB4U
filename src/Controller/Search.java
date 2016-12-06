@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class Search {
-    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. M - yyyy HH:mm", new Locale("da", "DK"));
+    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
     // Movies
     static String[] getMovies(String aud_id, String date) {
         List<String> uniqueMovies = new ArrayList<>();
