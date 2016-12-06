@@ -39,5 +39,9 @@ public class Test {
         // Test for getMovies
         /*for(String movie: Search.getMovies())
             System.out.println("Movie: " + movie);*/
+
+        // Test for getDates
+        for(String date: Search.getDates())
+            System.out.println("Date: " + date);
     }
 }
