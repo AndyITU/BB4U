@@ -1,14 +1,13 @@
 package Controller;
-import Model.Show;
 
-import java.time.*;
+import Model.Show;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class Search {
-    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MMM-yyyy", new Locale("da", "DK"));
+    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. M - yyyy HH:mm", new Locale("da", "DK"));
     // Movies
     static String[] getMovies(String aud_id, String date) {
         List<String> uniqueMovies = new ArrayList<>();
@@ -55,7 +54,7 @@ public class Search {
 
         for (Show s: Database.getShows(0)) {
             if ((movie.equals("") || movie.equals(s.getMovie())) && (aud_id.equals("") || aud_id.equals(Integer.toString(s.getAud_id()))))
-                uniqueDates.add(s.getDate().toString());
+                uniqueDates.add(s.getDate().format(format));
         }
         return uniqueDates.toArray(new String[0]);
     }
