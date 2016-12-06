@@ -14,8 +14,8 @@ public class SearchViewPanel extends JPanel {
     private JComboBox dateDropDown;
     private JComboBox auditoriumDropDown;
     private JButton selectShow = new JButton("Go to selected show");;
-    JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
-    JLabel selectDate = new JLabel("Select a date from the dropdown list");
+    private JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
+    private JLabel selectDate = new JLabel("Select a date from the dropdown list");
     private JLabel selectAuditorium = new JLabel ("Select an auditorium from the dropdown list");
 
     public SearchViewPanel(String[] movieTitles) {
@@ -38,12 +38,12 @@ public class SearchViewPanel extends JPanel {
         selectShow.setEnabled(false);
     }
     public void updateAud(String[] auditoriumTitles) {
-        auditoriumDropDown.removeAll();
+        auditoriumDropDown.removeAllItems();
         for (String a : auditoriumTitles) auditoriumDropDown.addItem(a);
         repaint();
     }
     public void updateDate(String[] dateTitles) {
-        dateDropDown.removeAll();
+        dateDropDown.removeAllItems();
         for (String d : dateTitles) dateDropDown.addItem(d);
         repaint();
     }

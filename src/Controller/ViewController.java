@@ -81,9 +81,12 @@ public class ViewController {
                 if (movieString != "") {
                     searchPanel.updateDate(Search.getDatesByMovie(movieString));
                     searchPanel.getDateDropDown().setEnabled(true);
+                    searchPanel.getDateDropDown().setSelectedIndex(0);
                 }
                 else {
                     searchPanel.getDateDropDown().setEnabled(false);
+                    searchPanel.getAuditoriumDropDown().setEnabled(false);
+                    searchPanel.getSelectShowButton().setEnabled(false);
                 }
             }
         };
@@ -93,9 +96,11 @@ public class ViewController {
             public void actionPerformed (ActionEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
                 dateString =(String) sendInput.getSelectedItem();
-                if (dateString != "") {
+                if (movieString != "" && movieString != null && dateString != "" && dateString != null) {
+                    System.out.println("Strings: " + movieString + ", " + dateString);
                     searchPanel.updateAud(Search.getAuditoriums(movieString, dateString));
                     searchPanel.getAuditoriumDropDown().setEnabled(true);
+                    searchPanel.getAuditoriumDropDown().setSelectedIndex(0);
                 }
                 else {
                     searchPanel.getAuditoriumDropDown().setEnabled(false);
