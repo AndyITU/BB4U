@@ -12,6 +12,7 @@ public class Booking {
     static Show getShow(int id) {
         if(show == null || show.getId() == id)
             show = Database.getShows(id)[0];
+        System.out.println(show.getId() + " & " + show.getMovie());
         return show;
     }
     public static Show[] getShows(){
@@ -31,7 +32,6 @@ public class Booking {
 
         for(Reservation res: r)
             amount += res.getSeats().length;
-        System.out.println(r.length);
         SeatModel[] s = new SeatModel[amount];
         amount = 0;
         for(Reservation res: r)

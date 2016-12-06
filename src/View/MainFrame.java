@@ -42,6 +42,9 @@ public class MainFrame extends JFrame
 
         this.pack();
     }
+    public void updateMoviePanel(Show show, Auditorium auditorium, int reservedSeats) {
+        bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
+    }
     public BookingViewPanel getBookingPanel() {
         return bvPanel;
     }

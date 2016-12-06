@@ -49,7 +49,6 @@ public class SeatPanel extends JPanel
             for (int k = 0; k < columnID; k++) {
                 viewSeats[i][k].setBooked(true);
                 if( viewSeats[i][k].setBooked(true) ) {
-
                 }
             }
         }

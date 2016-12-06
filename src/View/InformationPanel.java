@@ -22,7 +22,6 @@ public class InformationPanel extends JPanel
     private SeatPanel panel;
     private JLabel movieHeader = new JLabel("Film:");
     private JLabel auditoriumHeader = new JLabel("Sal nr:");
-
     private JLabel movieName;
     private JLabel auditoriumName;
     private JLabel dateName;

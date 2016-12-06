@@ -18,20 +18,19 @@ public class ViewController {
     private BookingViewPanel bookingViewPanel;
     private SearchViewPanel searchPanel;
     private ButtonPanel buttonPanel;
-    private Show currentShow = Booking.getShow(1);
+    private Show currentShow = Booking.getShow(2);
     private Show searchShow;
     private String movieString = "";
     private String dateString = "";
     private String auditoriumID = "";
 
     public ViewController() {
-        frame = new MainFrame(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getAud_id()).length);
+        frame = new MainFrame(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
         bookingViewPanel = frame.getBookingPanel();
         searchPanel = frame.getSearchPanel();
         buttonPanel = frame.getButtonPanel();
         setupButtons();
         bookingViewPanel.getInfoPanel().getPanel().startBook();
-        System.out.println(Booking.getShow(2));
     }
                 /**
                  try {
@@ -74,11 +73,12 @@ public class ViewController {
             public void actionPerformed(ActionEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
                 if (movieString != sendInput.getSelectedItem()) {
-                    lockDown();
+                    System.out.println(movieString);
                 }
                 movieString =(String)sendInput.getSelectedItem();
                 System.out.println(movieString);
                 if (movieString != "") {
+                    System.out.println(movieString);
                     searchPanel.updateDate(Search.getDatesByMovie(movieString));
                     searchPanel.getDateDropDown().setEnabled(true);
                     searchPanel.getDateDropDown().setSelectedIndex(0);
@@ -129,6 +129,9 @@ public class ViewController {
         searchPanel.getSelectShowButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                searchShow = Booking.getShow(1);
+                System.out.println(searchShow.getMovie()+"1");
+                frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
                 frame.changeToPanel(bookingViewPanel);
                 lockDown();
             }
