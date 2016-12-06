@@ -26,7 +26,7 @@ public class Booking {
     }
 
 
-    static SeatModel[] getReservedSeats(int show_id) {
+    public static SeatModel[] getReservedSeats(int show_id) {
         Reservation[] r = Database.getReservations(show_id, true);
         int amount = 0;
 

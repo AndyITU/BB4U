@@ -4,6 +4,7 @@ import Model.SeatModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Write a description of class FramePanel here.
@@ -14,12 +15,11 @@ import java.awt.*;
 public class SeatPanel extends JPanel
 {
     public Seat[][] viewSeats;
-    private SeatModel[] testingSeats = new SeatModel[3];
     private int rowID;
     private int columnID;
 
 
-    public SeatPanel(int rows, int columns) {
+    public SeatPanel(int rows, int columns, SeatModel[] reservatedSeats) {
         super(new GridLayout(0,columns));
         rowID = rows;
         columnID = columns;
@@ -33,30 +33,28 @@ public class SeatPanel extends JPanel
             }
         setPreferredSize(new Dimension(1000,300));
         setVisible(true);
-        testingSeats[0] = new SeatModel(0,0, true);
-        testingSeats[1] = new SeatModel(0,1, true);
-        testingSeats[2] = new SeatModel(2,3, true);
-
-
-        newBook(testingSeats);
+        newBook(reservatedSeats);
     }
     SeatPanel getSeatPanel() {
         return this;
     }
 
-    public void startBook() {
+    public SeatModel[] startBook() {
+        ArrayList<SeatModel> newReservation = new ArrayList<>();
         for (int i = 0; i < rowID; i++) {
             for (int k = 0; k < columnID; k++) {
-                viewSeats[i][k].setBooked(true);
                 if( viewSeats[i][k].setBooked(true) ) {
+                    newReservation.add(new SeatModel(k+1,i+1,true));
                 }
             }
         }
+        System.out.print(newReservation.size());
+        return newReservation.toArray(new SeatModel[0]);
     }
 
     public void newBook(SeatModel[] Seats) {
         for (int i = 0; i < Seats.length; i++) {
-            viewSeats[Seats[i].getRow()][Seats[i].getCol()].setModelBooked(Seats[i].getIsBooked());
+            viewSeats[Seats[i].getRow()-1][Seats[i].getCol()-1].setModelBooked(Seats[i].getIsBooked());
         }
     }
 }

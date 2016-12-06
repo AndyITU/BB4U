@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Reservation;
 import Model.Show;
 import View.*;
 
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
 
 /**
  * Created by arha on 12/3/2016.
@@ -46,10 +48,20 @@ public class ViewController {
         bookingViewPanel.getInfoPanel().getBookButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bookingViewPanel.getInfoPanel().getPanel().startBook();
-                //get contact info
-                //get movie info
-                //Booking.bookSeats(Reservation r)
+                try {
+                    Booking.bookSeats(new Reservation(
+                            Database.getNextReservationID(),
+                            currentShow.getId(),
+                            bookingViewPanel.getInfoPanel().getPanel().startBook(),
+                            currentShow.getAud_id(),
+                            "Mikkel",
+                            "Din mor"));
+                    //get contact info
+                    //get movie info
+                    //Booking.bookSeats(Reservation r)
+                } catch (SQLException | IllegalArgumentException k) {
+                    k.printStackTrace();
+                }
             }
         });
 
