@@ -13,23 +13,32 @@ public class SearchViewPanel extends JPanel {
     private JComboBox movieDropDown;
     private JComboBox dateDropDown;
     private JComboBox auditoriumDropDown;
-    private JButton selectShow;
-    private String[] hardCodeValues = {""};
-    private String[] DATE_VALUES = {""};
-    private String[] AUDITORIUM_ID_VALUES = {"0"};
+    private JButton selectShow = new JButton("Go to selected show");;
+    JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
+    JLabel selectDate = new JLabel("Select a date from the dropdown list");
+    private JLabel selectAuditorium = new JLabel ("Select an auditorium from the dropdown list");
 
     public SearchViewPanel(String[] movieTitles) {
         setLayout(new GridLayout(8,2));
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);
-        JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
         movieDropDown = new JComboBox<>(movieTitles);
-        movieDropDown.insertItemAt(DATE_VALUES, 1);
-        JLabel selectDate = new JLabel("Select a date from the dropdown list");
-        dateDropDown = new JComboBox<>(DATE_VALUES);
-        JLabel selectAuditorium = new JLabel ("Select an auditorium from the dropdown list");
-        auditoriumDropDown = new JComboBox<>(AUDITORIUM_ID_VALUES);
-        selectShow = new JButton("Go to selected show");
+        dateDropDown = new JComboBox<>();
+        auditoriumDropDown = new JComboBox<>();
+        add(selectMovie);
+        add(movieDropDown);
+        add(selectDate);
+        add(dateDropDown);
+        add(selectAuditorium);
+        add(auditoriumDropDown);
+        //add(new JLabel(""));
+        //add(selectShow);
+        dateDropDown.setEnabled(false);
+        auditoriumDropDown.setEnabled(false);
+        selectShow.setEnabled(false);
+    }
+    public void updateSearchPanel() {
+        removeAll();
         add(selectMovie);
         add(movieDropDown);
         add(selectDate);
@@ -41,7 +50,15 @@ public class SearchViewPanel extends JPanel {
         dateDropDown.setEnabled(false);
         auditoriumDropDown.setEnabled(false);
         selectShow.setEnabled(false);
-
+        revalidate();
+        repaint();
+    }
+    public void updateAud(String[] auditoriumTitles) {
+        auditoriumDropDown = new JComboBox<>(auditoriumTitles);
+    }
+    public void updateDate(String[] dateTitles) {
+        dateDropDown = new JComboBox(dateTitles);
+        updateSearchPanel();
     }
 
     public JComboBox getMovieDropDown() {

@@ -67,16 +67,19 @@ public class ViewController {
             }
         });
 
-        // SearchPanel dropdown setup.
-        ItemListener movieDropDown = new ItemListener() {
+// Seachpanel setup
+
+        ActionListener movieDropDown = new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
                 if (movieString != sendInput.getSelectedItem()) {
                     lockDown();
                 }
                 movieString =(String)sendInput.getSelectedItem();
+                System.out.println(movieString);
                 if (movieString != "") {
+                    searchPanel.updateDate(Search.getDatesByMovie(movieString));
                     searchPanel.getDateDropDown().setEnabled(true);
                 }
                 else {
@@ -85,12 +88,13 @@ public class ViewController {
             }
         };
 
-        ItemListener dateDropDown = new ItemListener() {
+        ActionListener dateDropDown = new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed (ActionEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
                 dateString =(String) sendInput.getSelectedItem();
                 if (dateString != "") {
+                    searchPanel.updateAud(Search.getAuditoriums(movieString, dateString));
                     searchPanel.getAuditoriumDropDown().setEnabled(true);
                 }
                 else {
@@ -100,12 +104,11 @@ public class ViewController {
             }
         };
 
-        ItemListener auditoriumDropDown = new ItemListener() {
+        ActionListener auditoriumDropDown = new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed (ActionEvent e) {
                 JComboBox sendInput =(JComboBox) e.getSource();
                 auditoriumID = (String) sendInput.getSelectedItem();
-                System.out.println(sendInput.getSelectedItem());
                 if (auditoriumID !="" ) {
                     searchPanel.getSelectShowButton().setEnabled(true);
                 }
@@ -114,9 +117,10 @@ public class ViewController {
                 }
             }
         };
-        searchPanel.getMovieDropDown().addItemListener(movieDropDown);
-        searchPanel.getDateDropDown().addItemListener(dateDropDown);
-        searchPanel.getAuditoriumDropDown().addItemListener(auditoriumDropDown);
+        searchPanel.getMovieDropDown().addActionListener(movieDropDown);
+        searchPanel.getDateDropDown().addActionListener(dateDropDown);
+        searchPanel.getAuditoriumDropDown().addActionListener(auditoriumDropDown);
+
         searchPanel.getSelectShowButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -128,6 +132,10 @@ public class ViewController {
 
     public static String[] getMovieTitles() {
         return Search.getMovies();
+    }
+
+    public static String[] getDateTitles(String movie) {
+        return Search.getDatesByMovie(movie);
     }
 
     private void lockDown() {
