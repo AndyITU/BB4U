@@ -18,7 +18,7 @@ public class ViewController {
     private BookingViewPanel bookingViewPanel;
     private SearchViewPanel searchPanel;
     private ButtonPanel buttonPanel;
-    private Show currentShow = Booking.getShow(2);
+    private Show currentShow = Booking.getShow(1);
     private Show searchShow;
     private String movieString = "";
     private String dateString = "";
@@ -32,15 +32,6 @@ public class ViewController {
         setupButtons();
         bookingViewPanel.getInfoPanel().getPanel().startBook();
     }
-                /**
-                 try {
-                 // Set the seat to something plz.. Can't wait to test!
-                 Booking.bookSeats(new Model.SeatModel[]{seat});
-                 } catch(IllegalArgumentException | SQLException err) {
-                 // Make a class for an error-message-window and use it here:
-                 System.out.println(err);
-                 }
-                 */
     private void setupButtons() {
 
         bookingViewPanel.getInfoPanel().getBookButton().addActionListener(new ActionListener() {
@@ -55,8 +46,6 @@ public class ViewController {
                             "Mikkel",
                             "Din mor"));
                     //get contact info
-                    //get movie info
-                    //Booking.bookSeats(Reservation r)
                 } catch (SQLException | IllegalArgumentException k) {
                     k.printStackTrace();
                 }
@@ -141,6 +130,7 @@ public class ViewController {
             public void actionPerformed(ActionEvent e) {
                 searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
                 frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
+                setupButtons();
                 frame.changeToPanel(bookingViewPanel);
                 lockDown();
             }
