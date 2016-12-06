@@ -6,8 +6,8 @@ public class Test {
 
     public static void main(String[] args) {
         // Test getReservedSeats
-        for(SeatModel s: Booking.getReservedSeats(1))
-            System.out.println(s.getCol());
+        /*for(SeatModel s: Booking.getReservedSeats(1))
+            System.out.println(s.getCol());*/
 
         // Test for empty table
         //System.out.println(Booking.getReservedSeats(1).length);
@@ -35,5 +35,9 @@ public class Test {
 
         // Test for getShow (by movie)
         //System.out.println("Movie: " + Booking.getShow(2).getMovie());
+
+        // Test for getMovies
+        /*for(String movie: Search.getMovies())
+            System.out.println("Movie: " + movie);*/
     }
 }

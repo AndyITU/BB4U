@@ -1,27 +1,72 @@
 package Controller;
 import Model.Show;
 
-import java.sql.Timestamp;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Search {
-
-    public static String[] getMovies(int aud_id, LocalDateTime date) {
+    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MMM-yyyy", new Locale("da", "DK"));
+    // Movies
+    static String[] getMovies(String aud_id, String date) {
         List<String> uniqueMovies = new ArrayList<>();
 
         for (Show s : Database.getShows(0)) {
-            if (aud_id < 1 || s.getAud_id() == aud_id)
+            if ((aud_id.equals("") || aud_id.equals(Integer.toString(s.getAud_id()))) && (date.equals("") || date.equals(s.getDate().format(format))))
                 uniqueMovies.add(s.getMovie());
         }
         return uniqueMovies.toArray(new String[0]);
     }
-    public static String[] getMovies(int aud_id) {
-        return getMovies(aud_id, LocalDateTime.MIN);
+    static String[] getMoviesByAuditorium(String aud_id) {
+        return getMovies(aud_id, "");
     }
-    public static String[] getMovies() {
-        return getMovies(0);
+    static String[] getMoviesByDate(String date) {
+        return getMovies("", date);
+    }
+    static String[] getMovies() {
+        return getMoviesByAuditorium("");
+    }
+
+    // Auditoriums
+    static String[] getAuditoriums(String movie, String date) {
+        List<String> uniqueAuds = new ArrayList<>();
+
+        for (Show s: Database.getShows(0)) {
+            if ((movie.equals("") || movie.equals(s.getMovie())) && (date.equals("") || date.equals(s.getDate().format(format))))
+                uniqueAuds.add(Integer.toString(s.getAud_id()));
+        }
+        return uniqueAuds.toArray(new String[0]);
+    }
+    static String[] getAuditoriumsByMovie(String movie) {
+        return getAuditoriums(movie, "");
+    }
+    static String[] getAuditoriumsByDate(String date) {
+        return getAuditoriums("", date);
+    }
+    static String[] getAuditoriums() {
+        return getAuditoriumsByMovie("");
+    }
+
+    // Dates
+    static String[] getDates(String movie, String aud_id) {
+        List<String> uniqueDates = new ArrayList<>();
+
+        for (Show s: Database.getShows(0)) {
+            if ((movie.equals("") || movie.equals(s.getMovie())) && (aud_id.equals("") || aud_id.equals(Integer.toString(s.getAud_id()))))
+                uniqueDates.add(s.getDate().toString());
+        }
+        return uniqueDates.toArray(new String[0]);
+    }
+    static String[] getDatesByMovie(String movie) {
+        return getDates(movie, "");
+    }
+    static String[] getDatesByAuditorium(String aud_id) {
+        return getDates("", aud_id);
+    }
+    static String[] getDates() {
+        return getDatesByMovie("");
     }
 
 }

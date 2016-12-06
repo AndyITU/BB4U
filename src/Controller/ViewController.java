@@ -50,7 +50,7 @@ public class ViewController {
                 bookingViewPanel.getInfoPanel().getPanel().startBook();
                 //get contact info
                 //get movie info
-                //Booking.reserveseats
+                //Booking.bookSeats(Reservation r)
             }
         });
 
