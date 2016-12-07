@@ -47,7 +47,6 @@ public class InformationPanel extends JPanel
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
             MaskFormatter nameRule = new MaskFormatter("?????????????????????????????????");
-            nameRule.setValidCharacters(" ASD");
             contactPhone = new JFormattedTextField();
             contactName = new JFormattedTextField();
             nameRule.install(contactName);

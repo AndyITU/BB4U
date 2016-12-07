@@ -11,7 +11,8 @@ import java.awt.event.MouseListener;
 public class ReservationEntry extends JButton implements MouseListener {
 
     public ReservationEntry() {
-        setPreferredSize(new Dimension(1000, 250));
+        setMinimumSize(new Dimension(1000,20));
+        setPreferredSize(new Dimension(1000, 30));
         addMouseListener(this);
         setVisible(true);
     }

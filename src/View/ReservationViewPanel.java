@@ -17,7 +17,6 @@ public class ReservationViewPanel extends JPanel {
     private JFormattedTextField searchReservations;
 
     public ReservationViewPanel(Show show, Auditorium auditorium) {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         //searchReservations = new JFormattedTextField();
         //searchReservations.setColumns(10);
         //add(searchReservations);
