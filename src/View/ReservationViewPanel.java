@@ -12,21 +12,24 @@ import javax.swing.*;
 public class ReservationViewPanel extends JPanel {
 
 
-    private final SeatPanel sPanel;
-    private final InformationPanel iPanel;
-    private final CanvasPanel cPanel;
+    private SeatPanel sPanel;
+    private CanvasPanel cPanel;
+    private JFormattedTextField searchReservations;
 
-    public ReservationViewPanel(Show show, Auditorium auditorium, int reservedSeats) {
+    public ReservationViewPanel(Show show, Auditorium auditorium) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //searchReservations = new JFormattedTextField();
+        //searchReservations.setColumns(10);
+        //add(searchReservations);
+        for (int i = 0; i < 10; i++) {
+            ReservationEntry entry = new ReservationEntry();
+            add(entry);
+        }
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
-        iPanel = new InformationPanel(show, reservedSeats, auditorium.getCols()*auditorium.getRows());
         cPanel = new CanvasPanel();
         add(cPanel);
         add(sPanel);
-        add(iPanel);
         setVisible(true);
-
-
     }
 
 }
