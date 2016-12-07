@@ -35,19 +35,22 @@ public class ViewController {
     private void setupButtons() {
         // Booking Panel book Button functionality
         bookingViewPanel.getInfoPanel().getBookButton().addActionListener(e -> {
-            try {
-                Booking.bookSeats(new Reservation(
-                        Database.getNextReservationID(),
-                        currentShow.getId(),
-                        bookingViewPanel.getSeatPanel().startBook(),
-                        currentShow.getAud_id(),
-                        bookingViewPanel.getInfoPanel().getCustomerName(),
-                        bookingViewPanel.getInfoPanel().getCustomerPhone()));
-                //get contact info
-            } catch (SQLException | IllegalArgumentException x) {
-                x.printStackTrace();
+            if ( !bookingViewPanel.getInfoPanel().getCustomerName().equals("") && !bookingViewPanel.getInfoPanel().getCustomerPhone().equals(""))
+            {
+                try {
+                    Booking.bookSeats(new Reservation(
+                            Database.getNextReservationID(),
+                            currentShow.getId(),
+                            bookingViewPanel.getSeatPanel().startBook(),
+                            currentShow.getAud_id(),
+                            bookingViewPanel.getInfoPanel().getCustomerName(),
+                            bookingViewPanel.getInfoPanel().getCustomerPhone()));
+                    //get contact info
+                } catch (SQLException | IllegalArgumentException x) {
+                    x.printStackTrace();
+                }
+                bookingViewPanel.getInfoPanel().resetCustomerInfo();
             }
-            bookingViewPanel.getInfoPanel().resetCustomerInfo();
         });
         // Button Panels button functionality
         buttonPanel.getSearchButton().addActionListener(e -> frame.changeToPanel(searchPanel));
