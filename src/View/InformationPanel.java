@@ -23,24 +23,21 @@ import java.util.Locale;
 
 public class InformationPanel extends JPanel
 {
-    private final SeatPanel panel;
     private final JLabel movieHeader = new JLabel("Film:");
     private final JLabel auditoriumHeader = new JLabel("Sal nr:");
     private final JButton bookButton;
-    private JTextField contactPhone = new JTextField();
-    private JTextField contactName = new JTextField();
+    private JFormattedTextField contactPhone;
+    private JFormattedTextField contactName;
     private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
 
 
 
-    InformationPanel(SeatPanel panel, Show show, int seatsReserved, int seatsTotal) {
+    InformationPanel(Show show, int seatsReserved, int seatsTotal) {
         super();
-        this.panel = panel;
         setLayout(new GridLayout(2, 2));
         setPreferredSize(new Dimension(1000, 50));
         setVisible(true);
         bookButton = new JButton("BOOK SELECTED");
-        // The website http://www.javalobby.org/java/forums/t48584.html was used to understand this concept.
         JPanel contactBox = new JPanel();
         contactBox.setLayout(new GridLayout(2, 2));
         add(createLeftInformationBox(show.getMovie(), show.getAud_id(), seatsReserved, seatsTotal));
@@ -49,14 +46,16 @@ public class InformationPanel extends JPanel
         add(contactBox);
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
-            MaskFormatter nameRule = new MaskFormatter("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-            contactPhone = new JFormattedTextField(phoneRule);
-            contactName = new JFormattedTextField(nameRule);
+            MaskFormatter nameRule = new MaskFormatter("?????????????????????????????????");
+            nameRule.setValidCharacters(" ASD");
+            contactPhone = new JFormattedTextField();
+            contactName = new JFormattedTextField();
+            nameRule.install(contactName);
+            phoneRule.install(contactPhone);
             contactBox.add(new JLabel("Contact Number:"));
             contactBox.add(contactPhone);
             contactBox.add(new JLabel("Contact Name:"));
             contactBox.add(contactName);
-
         } catch (ParseException e) {
             e.printStackTrace();
         }

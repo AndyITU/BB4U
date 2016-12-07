@@ -14,7 +14,7 @@ public class BookingViewPanel extends JPanel {
     public BookingViewPanel(Show show, Auditorium auditorium, int reservedSeats) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
-        iPanel = new InformationPanel(sPanel.getSeatPanel(), show, reservedSeats, auditorium.getCols()*auditorium.getRows());
+        iPanel = new InformationPanel(show, reservedSeats, auditorium.getCols()*auditorium.getRows());
         cPanel = new CanvasPanel();
         add(cPanel);
         add(sPanel);
@@ -25,7 +25,7 @@ public class BookingViewPanel extends JPanel {
     public void updatePanels(Show show, Auditorium auditorium, int reservedSeats) {
         removeAll();
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
-        iPanel = new InformationPanel(sPanel.getSeatPanel(), show, reservedSeats, auditorium.getCols() * auditorium.getRows());
+        iPanel = new InformationPanel(show, reservedSeats, auditorium.getCols() * auditorium.getRows());
         cPanel = new CanvasPanel();
         add(cPanel);
         add(sPanel);
