@@ -3,10 +3,10 @@ package Model;
 import java.time.*;
 
 public class Show {
-    private int id, aud_id;
-    private String movie;
-    private LocalDateTime date;
-    private LocalTime duration;
+    private final int id, aud_id;
+    private final String movie;
+    private final LocalDateTime date;
+    private final LocalTime duration;
 
     public Show(int id, int aud_id, String movie, LocalDateTime date, LocalTime duration) {
         this.id = id;

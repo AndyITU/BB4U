@@ -1,13 +1,13 @@
 package View;
 
-import Model.SeatModel;
 import Model.Show;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Write a description of class View.ButtonPanel here.
@@ -18,27 +18,22 @@ import java.time.LocalTime;
 
 public class InformationPanel extends JPanel
 {
-    private SeatModel seat;
-    private SeatPanel panel;
-    private JLabel movieHeader = new JLabel("Film:");
-    private JLabel auditoriumHeader = new JLabel("Sal nr:");
-    private JLabel movieName;
-    private JLabel auditoriumName;
-    private JLabel dateName;
-    private JLabel durationName;
-    private JButton bookButton;
-    private JTextField contactInfo;
+    private final SeatPanel panel;
+    private final JLabel movieHeader = new JLabel("Film:");
+    private final JLabel auditoriumHeader = new JLabel("Sal nr:");
+    private final JButton bookButton;
+    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
 
 
 
-    public InformationPanel(SeatPanel panel, Show show, int seatsReserved, int seatsTotal) {
+    InformationPanel(SeatPanel panel, Show show, int seatsReserved, int seatsTotal) {
         super();
         this.panel = panel;
         setLayout(new GridLayout(2,2));
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);
         bookButton = new JButton("BOOK SELECTED");
-        contactInfo = new JFormattedTextField();
+        JTextField contactInfo = new JFormattedTextField();
         contactInfo.setMaximumSize(new Dimension(getWidth(), getHeight()/2));
         add(createLeftInformationBox(show.getMovie(), show.getAud_id(), seatsReserved, seatsTotal));
         add(bookButton);
@@ -51,11 +46,11 @@ public class InformationPanel extends JPanel
         asd.add(new JLabel("Contact Name:"));
         asd.add(new JFormattedTextField());
     }
-    public void setShowInfo(String movieName, int audNum) {
+    /*public void setShowInfo(String movieName, int audNum) {
         this.movieName.setText(movieName);
         this.auditoriumName.setText(audNum+"");
         repaint();
-    }
+    }*/
     public JButton getBookButton() {
         return bookButton;
     }
@@ -67,8 +62,8 @@ public class InformationPanel extends JPanel
     private JPanel createLeftInformationBox(String movie, int auditorium_id, int seatsReserved, int seatsTotal) {
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new GridLayout(3,2));
-        movieName = new JLabel(movie);
-        auditoriumName = new JLabel(Integer.toString(auditorium_id));
+        JLabel movieName = new JLabel(movie);
+        JLabel auditoriumName = new JLabel(Integer.toString(auditorium_id));
         infoPanel.add(movieHeader);
         infoPanel.add(movieName);
         infoPanel.add(auditoriumHeader);
@@ -82,8 +77,8 @@ public class InformationPanel extends JPanel
         JLabel durationHeader = new JLabel("Afspilningstid:");
         JPanel timePanel = new JPanel();
         timePanel.setLayout(new GridLayout(2, 2));
-        dateName = new JLabel(time.getDayOfMonth()+". " + time.getMonth().toString() +" - "+ time.getYear() + " " +  time.getHour() + ":" + time.getMinute());
-        durationName = new JLabel(duration.toString());
+        JLabel dateName = new JLabel(time.format(format));
+        JLabel durationName = new JLabel(duration.toString());
         timePanel.add(dateHeader);
         timePanel.add(dateName);
         timePanel.add(durationHeader);

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class Database {
+class Database {
     // Very secret credentials
     private static final String DB = "jdbc:mysql://mydb.itu.dk/BB4U";
     private static final String USER = "g41admin";
@@ -229,8 +229,8 @@ public class Database {
 
             rs = statement.executeQuery("SELECT * FROM reservations WHERE show_id=" + show_id + ";");
             while (rs.next()) {
-                for (int i = 0; i < seats.length; i++) {
-                    if (rs.getInt("col") == seats[i].getCol() && rs.getInt("row") == seats[i].getRow())
+                for (SeatModel seat: seats) {
+                    if (rs.getInt("col") == seat.getCol() && rs.getInt("row") == seat.getRow())
                         return true;
                 }
             }

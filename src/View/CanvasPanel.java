@@ -3,13 +3,9 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by arha on 11/29/2016.
- */
-// Work in progress // Never mind, is now fully functional :D
-public class CanvasPanel extends JPanel {
+class CanvasPanel extends JPanel {
 
-    public CanvasPanel() {
+    CanvasPanel() {
         setLayout(new BorderLayout());
         setVisible(true);
         add(new JLabel("Big Screen"), BorderLayout.CENTER);

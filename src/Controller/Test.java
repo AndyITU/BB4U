@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class Test {
+@SuppressWarnings("EmptyMethod")
+class Test {
 //    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
 
     public static void main(String[] args) {

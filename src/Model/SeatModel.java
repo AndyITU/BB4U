@@ -1,8 +1,8 @@
 package Model;
 
 public class SeatModel {
-    private int col, row;
-    private boolean isBooked;
+    private final int col, row;
+    private final boolean isBooked;
 
     public SeatModel(int col, int row, boolean isBooked) {
         this.col = col;
@@ -22,8 +22,8 @@ public class SeatModel {
         return isBooked;
     }
 
-    public void setBooked(boolean booked) {
+    /*public void setBooked(boolean booked) {
         if(isBooked != booked)
             isBooked = booked;
-    }
+    }*/
 }

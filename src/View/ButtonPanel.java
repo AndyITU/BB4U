@@ -11,16 +11,16 @@ import java.awt.*;
  */
 public class ButtonPanel extends JPanel
 {
-    JButton searchButton;
-    JButton firstPage;
-    JButton bookingButton;
+    private final JButton searchButton;
+    private final JButton firstPage;
+    private final JButton bookingButton;
 
-    public ButtonPanel() {
+    ButtonPanel() {
         setLayout(new GridLayout(0,3));
         setPreferredSize(new Dimension(1000,100));
         setVisible(true);
         setMaximumSize(new Dimension(1000,250));
-        
+
         firstPage = new JButton("Not View");
         bookingButton = new JButton("Booking View");
         searchButton = new JButton("Search View");

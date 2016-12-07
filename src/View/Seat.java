@@ -5,22 +5,14 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-/**
- * Write a description of class Square here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Seat extends JButton implements MouseListener
 {
     private boolean isSelected;
     private boolean isHighlighted;
-    private boolean isBooked; // Move this to a controller.
-    private int rowID;
-    private int columnID;
-    /**
-     * Constructor for objects of class Square
-     */
+    private boolean isBooked;
+    private final int rowID;
+    private final int columnID;
+
     public Seat(int row, int column) {
         setPreferredSize(new Dimension(10,10));
         setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
@@ -75,7 +67,7 @@ public class Seat extends JButton implements MouseListener
             isSelected = !isSelected;
             repaint();
         }
-        /** Idea for selecting multiple seats: Holding shift down will select everything
+        /* Idea for selecting multiple seats: Holding shift down will select everything
          if (e.isShiftDown())  {
             e.getLocation();
             repaint();

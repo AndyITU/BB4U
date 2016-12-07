@@ -14,12 +14,12 @@ import java.util.ArrayList;
  */
 public class SeatPanel extends JPanel
 {
-    public Seat[][] viewSeats;
-    private int rowID;
-    private int columnID;
+    private final Seat[][] viewSeats;
+    private final int rowID;
+    private final int columnID;
 
 
-    public SeatPanel(int rows, int columns, SeatModel[] reservatedSeats) {
+    public SeatPanel(int rows, int columns, SeatModel[] reservedSeats) {
         super(new GridLayout(0,columns));
         rowID = rows;
         columnID = columns;
@@ -33,7 +33,7 @@ public class SeatPanel extends JPanel
             }
         setPreferredSize(new Dimension(1000,300));
         setVisible(true);
-        newBook(reservatedSeats);
+        newBook(reservedSeats);
     }
     SeatPanel getSeatPanel() {
         return this;
@@ -48,13 +48,12 @@ public class SeatPanel extends JPanel
                 }
             }
         }
-        System.out.print(newReservation.size());
         return newReservation.toArray(new SeatModel[0]);
     }
 
-    public void newBook(SeatModel[] Seats) {
-        for (int i = 0; i < Seats.length; i++) {
-            viewSeats[Seats[i].getRow()-1][Seats[i].getCol()-1].setModelBooked(Seats[i].getIsBooked());
+    private void newBook(SeatModel[] Seats) {
+        for (SeatModel Seat: Seats) {
+            viewSeats[Seat.getRow() - 1][Seat.getCol() - 1].setModelBooked(Seat.getIsBooked());
         }
     }
 }

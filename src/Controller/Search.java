@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class Search {
+class Search {
     private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
     // Movies
-    static String[] getMovies(String aud_id, String date) {
+    private static String[] getMovies(String aud_id, String date) {
         List<String> uniqueMovies = new ArrayList<>();
         uniqueMovies.add("");
 
@@ -19,18 +19,18 @@ public class Search {
         }
         return uniqueMovies.toArray(new String[0]);
     }
-    static String[] getMoviesByAuditorium(String aud_id) {
+    private static String[] getMoviesByAuditorium(String aud_id) {
         return getMovies(aud_id, "");
     }
-    static String[] getMoviesByDate(String date) {
+    /*static String[] getMoviesByDate(String date) {
         return getMovies("", date);
-    }
+    }*/
     static String[] getMovies() {
         return getMoviesByAuditorium("");
     }
 
     // Dates
-    static String[] getDates(String movie, String aud_id) {
+    private static String[] getDates(String movie, String aud_id) {
         List<String> uniqueDates = new ArrayList<>();
         uniqueDates.add("");
 
@@ -43,12 +43,12 @@ public class Search {
     static String[] getDatesByMovie(String movie) {
         return getDates(movie, "");
     }
-    static String[] getDatesByAuditorium(String aud_id) {
+    /*static String[] getDatesByAuditorium(String aud_id) {
         return getDates("", aud_id);
-    }
-    static String[] getDates() {
+    }*/
+    /*static String[] getDates() {
         return getDatesByMovie("");
-    }
+    }*/
 
     // Auditoriums
     static String[] getAuditoriums(String movie, String date) {
@@ -61,14 +61,14 @@ public class Search {
         }
         return uniqueAuds.toArray(new String[0]);
     }
-    static String[] getAuditoriumsByMovie(String movie) {
+    /*static String[] getAuditoriumsByMovie(String movie) {
         return getAuditoriums(movie, "");
-    }
-    static String[] getAuditoriumsByDate(String date) {
+    }*/
+    /*static String[] getAuditoriumsByDate(String date) {
         return getAuditoriums("", date);
-    }
-    static String[] getAuditoriums() {
+    }*/
+    /*static String[] getAuditoriums() {
         return getAuditoriumsByMovie("");
-    }
+    }*/
 
 }

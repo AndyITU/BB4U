@@ -8,16 +8,16 @@ import View.MainFrame;
 import View.SearchViewPanel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class ViewController {
 
-    private MainFrame frame;
-    private BookingViewPanel bookingViewPanel;
-    private SearchViewPanel searchPanel;
-    private ButtonPanel buttonPanel;
+    private final MainFrame frame;
+    private final BookingViewPanel bookingViewPanel;
+    private final SearchViewPanel searchPanel;
+    private final ButtonPanel buttonPanel;
     private Show currentShow = Booking.getShow(1);
     private Show searchShow;
     private String movieString = "";
@@ -34,106 +34,76 @@ public class ViewController {
     }
     private void setupButtons() {
 
-        bookingViewPanel.getInfoPanel().getBookButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Booking.bookSeats(new Reservation(
-                            Database.getNextReservationID(),
-                            currentShow.getId(),
-                            bookingViewPanel.getInfoPanel().getPanel().startBook(),
-                            currentShow.getAud_id(),
-                            "Mikkel",
-                            "Din mor"));
-                    //get contact info
-                } catch (SQLException | IllegalArgumentException k) {
-                    k.printStackTrace();
-                }
+        bookingViewPanel.getInfoPanel().getBookButton().addActionListener(e -> {
+            try {
+                Booking.bookSeats(new Reservation(
+                        Database.getNextReservationID(),
+                        currentShow.getId(),
+                        bookingViewPanel.getInfoPanel().getPanel().startBook(),
+                        currentShow.getAud_id(),
+                        "Mikkel",
+                        "Din mor"));
+                //get contact info
+            } catch (SQLException | IllegalArgumentException x) {
+                x.printStackTrace();
             }
         });
 
-        buttonPanel.getSearchButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.changeToPanel(searchPanel);
-            }
-        });
-        buttonPanel.getBookingViewButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.changeToPanel(bookingViewPanel);
-            }
-        });
+        buttonPanel.getSearchButton().addActionListener(e -> frame.changeToPanel(searchPanel));
+        buttonPanel.getBookingViewButton().addActionListener(e -> frame.changeToPanel(bookingViewPanel));
 
 // SearchViewPanel setup
 
-        ActionListener movieDropDown = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JComboBox sendInput =(JComboBox) e.getSource();
-                if (movieString != sendInput.getSelectedItem()) {
-                    System.out.println(movieString);
-                }
-                movieString =(String)sendInput.getSelectedItem();
-                System.out.println(movieString);
-                if (movieString != "") {
-                    System.out.println(movieString);
-                    searchPanel.updateDate(Search.getDatesByMovie(movieString));
-                    searchPanel.getDateDropDown().setEnabled(true);
-                    searchPanel.getDateDropDown().setSelectedIndex(0);
-                }
-                else {
-                    searchPanel.getDateDropDown().setEnabled(false);
-                    searchPanel.getAuditoriumDropDown().setEnabled(false);
-                    searchPanel.getSelectShowButton().setEnabled(false);
-                }
+        ActionListener movieDropDown = e -> {
+            JComboBox sendInput =(JComboBox) e.getSource();
+            movieString =(String)sendInput.getSelectedItem();
+            if (!Objects.equals(movieString, "")) {
+                searchPanel.updateDate(Search.getDatesByMovie(movieString));
+                searchPanel.getDateDropDown().setEnabled(true);
+                searchPanel.getDateDropDown().setSelectedIndex(0);
+            }
+            else {
+                searchPanel.getDateDropDown().setEnabled(false);
+                searchPanel.getAuditoriumDropDown().setEnabled(false);
+                searchPanel.getSelectShowButton().setEnabled(false);
             }
         };
 
-        ActionListener dateDropDown = new ActionListener() {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                JComboBox sendInput =(JComboBox) e.getSource();
-                dateString =(String) sendInput.getSelectedItem();
-                if (movieString != "" && movieString != null && dateString != "" && dateString != null) {
-                    System.out.println("Strings: " + movieString + ", " + dateString);
-                    searchPanel.updateAud(Search.getAuditoriums(movieString, dateString));
-                    searchPanel.getAuditoriumDropDown().setEnabled(true);
-                    searchPanel.getAuditoriumDropDown().setSelectedIndex(0);
-                }
-                else {
-                    searchPanel.getAuditoriumDropDown().setEnabled(false);
-                    searchPanel.getSelectShowButton().setEnabled(false);
-                }
+        ActionListener dateDropDown = e -> {
+            JComboBox sendInput =(JComboBox) e.getSource();
+            dateString =(String) sendInput.getSelectedItem();
+            if (!Objects.equals(movieString, "") && movieString != null && !Objects.equals(dateString, "") && dateString != null) {
+                searchPanel.updateAud(Search.getAuditoriums(movieString, dateString));
+                searchPanel.getAuditoriumDropDown().setEnabled(true);
+                searchPanel.getAuditoriumDropDown().setSelectedIndex(0);
+            }
+            else {
+                searchPanel.getAuditoriumDropDown().setEnabled(false);
+                searchPanel.getSelectShowButton().setEnabled(false);
             }
         };
 
-        ActionListener auditoriumDropDown = new ActionListener() {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                JComboBox sendInput =(JComboBox) e.getSource();
-                auditoriumID = (String) sendInput.getSelectedItem();
-                if (auditoriumID !="" ) {
-                    searchPanel.getSelectShowButton().setEnabled(true);
-                }
-                else {
-                    searchPanel.getSelectShowButton().setEnabled(false);
-                }
+        ActionListener auditoriumDropDown = e -> {
+            JComboBox sendInput =(JComboBox) e.getSource();
+            auditoriumID = (String) sendInput.getSelectedItem();
+            if (!Objects.equals(auditoriumID, "")) {
+                searchPanel.getSelectShowButton().setEnabled(true);
+            }
+            else {
+                searchPanel.getSelectShowButton().setEnabled(false);
             }
         };
         searchPanel.getMovieDropDown().addActionListener(movieDropDown);
         searchPanel.getDateDropDown().addActionListener(dateDropDown);
         searchPanel.getAuditoriumDropDown().addActionListener(auditoriumDropDown);
 
-        searchPanel.getSelectShowButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
-                frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
-                setupButtons();
-                frame.changeToPanel(bookingViewPanel);
-                lockDown();
-            }
+        searchPanel.getSelectShowButton().addActionListener(e -> {
+            searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
+            currentShow = searchShow;
+            frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
+            setupButtons();
+            frame.changeToPanel(bookingViewPanel);
+            lockDown();
         });
     }
 

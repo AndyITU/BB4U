@@ -1,9 +1,9 @@
 package Model;
 
 public class Reservation {
-    private int id, show_id, aud_id;
-    private String name, contact_info;
-    private SeatModel[] seats;
+    private final int id, show_id, aud_id;
+    private final String name, contact_info;
+    private final SeatModel[] seats;
 
 
     public Reservation(int id, int show_id, SeatModel[] seats, int aud_id, String name, String contact_info) {

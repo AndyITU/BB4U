@@ -2,33 +2,28 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDateTime;
-
-/**
- * Created by arha on 12/2/2016.
- */
 
 public class SearchViewPanel extends JPanel {
 
-    private JComboBox movieDropDown;
-    private JComboBox dateDropDown;
-    private JComboBox auditoriumDropDown;
-    private JButton selectShow = new JButton("Go to selected show");;
-    private JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
-    private JLabel selectDate = new JLabel("Select a date from the dropdown list");
-    private JLabel selectAuditorium = new JLabel ("Select an auditorium from the dropdown list");
+    private final JComboBox<String> movieDropDown;
+    private final JComboBox<String> dateDropDown;
+    private final JComboBox<String> auditoriumDropDown;
+    private final JButton selectShow = new JButton("Go to selected show");
 
-    public SearchViewPanel(String[] movieTitles) {
+    SearchViewPanel(String[] movieTitles) {
         setLayout(new GridLayout(8,2));
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);
         movieDropDown = new JComboBox<>(movieTitles);
         dateDropDown = new JComboBox<>();
         auditoriumDropDown = new JComboBox<>();
+        JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
         add(selectMovie);
         add(movieDropDown);
+        JLabel selectDate = new JLabel("Select a date from the dropdown list");
         add(selectDate);
         add(dateDropDown);
+        JLabel selectAuditorium = new JLabel("Select an auditorium from the dropdown list");
         add(selectAuditorium);
         add(auditoriumDropDown);
         add(new JLabel(""));
@@ -47,13 +42,13 @@ public class SearchViewPanel extends JPanel {
         for (String d : dateTitles) dateDropDown.addItem(d);
         repaint();
     }
-    public JComboBox getMovieDropDown() {
+    public JComboBox<String> getMovieDropDown() {
         return movieDropDown;
     }
-    public JComboBox getDateDropDown() {
+    public JComboBox<String> getDateDropDown() {
         return dateDropDown;
     }
-    public JComboBox getAuditoriumDropDown() {
+    public JComboBox<String> getAuditoriumDropDown() {
         return auditoriumDropDown;
     }
     public JButton getSelectShowButton() {

@@ -14,9 +14,9 @@ public class Booking {
             show = Database.getShows(id)[0];
         return show;
     }
-    public static Show[] getShows(){
+    /*public static Show[] getShows(){
         return Database.getShows(0);
-    }
+    }*/
 
     static Auditorium getAuditorium(int id) {
         if(auditorium == null || auditorium.getId() != id)
@@ -44,12 +44,12 @@ public class Booking {
     public static Reservation[] getReservations(int show_id) {
         return Database.getReservations(show_id, true);
     }
-    public static Reservation[] getReservations() {
+    /*public static Reservation[] getReservations() {
         return getReservations(0);
-    }
-    public static Reservation getReservation(int id) {
+    }*/
+    /*public static Reservation getReservation(int id) {
         return Database.getReservations(id, false)[0];
-    }
+    }*/
 
 
     /* SETTERS */

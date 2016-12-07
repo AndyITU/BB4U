@@ -3,13 +3,8 @@ package View;
 import Controller.Booking;
 import Model.Auditorium;
 import Model.Show;
-
 import javax.swing.*;
-import java.time.LocalDateTime;
 
-/**
- * Created by arha on 12/2/2016.
- */
 public class BookingViewPanel extends JPanel {
 
     private SeatPanel sPanel;
