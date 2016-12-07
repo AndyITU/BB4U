@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import java.awt.*;
 import java.text.ParseException;
 
 /**
@@ -12,10 +13,12 @@ public class ReservationSearch extends JPanel{
     private JFormattedTextField contactName;
 
     public ReservationSearch() {
+        setPreferredSize(new Dimension(1000, 50));
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
             MaskFormatter nameRule = new MaskFormatter("?????????????????????????????????");
             contactPhone = new JFormattedTextField();
+            contactPhone.setPreferredSize(new Dimension(getWidth()/3, 50));
             contactName = new JFormattedTextField();
             nameRule.install(contactName);
             phoneRule.install(contactPhone);

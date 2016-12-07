@@ -16,7 +16,7 @@ public class ViewController {
     private final BookingViewPanel bookingViewPanel;
     private final SearchViewPanel searchPanel;
     private final ButtonPanel buttonPanel;
-    private final ReservationViewPanel reservationViewPanel;
+    private final ReservationPanel reservationViewPanel;
     private Show currentShow = Booking.getShow(1);
     private Show searchShow;
     private String movieString = "";
