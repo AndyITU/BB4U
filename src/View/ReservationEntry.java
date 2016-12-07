@@ -5,13 +5,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-/**
- * Created by Mikkel on 07-12-2016.
- */
 public class ReservationEntry extends JButton implements MouseListener {
 
     public ReservationEntry() {
         setSize(new Dimension (1000, 40));
+        setMaximumSize(getSize());
         addMouseListener(this);
         setVisible(true);
     }
