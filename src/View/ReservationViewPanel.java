@@ -20,10 +20,6 @@ public class ReservationViewPanel extends JPanel {
         //searchReservations = new JFormattedTextField();
         //searchReservations.setColumns(10);
         //add(searchReservations);
-        for (int i = 0; i < 10; i++) {
-            ReservationEntry entry = new ReservationEntry();
-            add(entry);
-        }
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
         cPanel = new CanvasPanel();
         add(cPanel);
