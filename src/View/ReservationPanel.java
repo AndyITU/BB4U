@@ -20,6 +20,7 @@ public class ReservationPanel extends JPanel {
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
         cPanel = new CanvasPanel();
         rvPanel = new ReservationView();
+        rvPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rsPanel = new ReservationSearch();
         add(rsPanel);
         add(rvPanel);
