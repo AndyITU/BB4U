@@ -12,7 +12,7 @@ import java.awt.*;
 public class ButtonPanel extends JPanel
 {
     private final JButton searchButton;
-    private final JButton firstPage;
+    private final JButton reservationButton;
     private final JButton bookingButton;
 
     ButtonPanel() {
@@ -21,13 +21,16 @@ public class ButtonPanel extends JPanel
         setVisible(true);
         setMaximumSize(new Dimension(1000,250));
 
-        firstPage = new JButton("Not View");
+        reservationButton = new JButton("Reservation View");
         bookingButton = new JButton("Booking View");
         searchButton = new JButton("Search View");
-        add(firstPage);
+        add(reservationButton);
         add(bookingButton);
         add(searchButton);
         
+    }
+    public JButton getReservationButton() {
+        return reservationButton;
     }
 
     public JButton getSearchButton() {

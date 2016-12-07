@@ -16,6 +16,7 @@ import java.awt.*;
 public class MainFrame extends JFrame
 {
     private static BookingViewPanel bvPanel;
+    private static ReservationViewPanel rPanel;
     private static SearchViewPanel searchPanel;
     private static ButtonPanel bPanel;
     private static Container pane;
@@ -29,6 +30,7 @@ public class MainFrame extends JFrame
         }
         bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
         bPanel = new ButtonPanel();
+        rPanel = new ReservationViewPanel(show, auditorium, reservedSeats);
         searchPanel = new SearchViewPanel(ViewController.getMovieTitles());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -43,9 +45,7 @@ public class MainFrame extends JFrame
         this.pack();
     }
     public void updateMoviePanel(Show show, Auditorium auditorium, int reservedSeats) {
-        pane.remove(bvPanel);
         bvPanel.updatePanels(show, auditorium, reservedSeats);
-        pane.add(bvPanel);
         repaint();
         pack();
     }
@@ -55,9 +55,11 @@ public class MainFrame extends JFrame
     public SearchViewPanel getSearchPanel() {
         return searchPanel;
     }
-
     public ButtonPanel getButtonPanel() {
         return bPanel;
+    }
+    public ReservationViewPanel getReservationPanel() {
+        return rPanel;
     }
     public void changeToPanel (JComponent panel) {
         pane.removeAll();

@@ -2,10 +2,7 @@ package Controller;
 
 import Model.Reservation;
 import Model.Show;
-import View.BookingViewPanel;
-import View.ButtonPanel;
-import View.MainFrame;
-import View.SearchViewPanel;
+import View.*;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -19,6 +16,7 @@ public class ViewController {
     private final BookingViewPanel bookingViewPanel;
     private final SearchViewPanel searchPanel;
     private final ButtonPanel buttonPanel;
+    private final ReservationViewPanel reservationViewPanel;
     private Show currentShow = Booking.getShow(1);
     private Show searchShow;
     private String movieString = "";
@@ -30,11 +28,12 @@ public class ViewController {
         bookingViewPanel = frame.getBookingPanel();
         searchPanel = frame.getSearchPanel();
         buttonPanel = frame.getButtonPanel();
+        reservationViewPanel = frame.getReservationPanel();
         setupButtons();
         bookingViewPanel.getSeatPanel().startBook();
     }
     private void setupButtons() {
-
+        // Booking Panel book Button functionality
         bookingViewPanel.getInfoPanel().getBookButton().addActionListener(e -> {
             try {
                 Booking.bookSeats(new Reservation(
@@ -50,9 +49,10 @@ public class ViewController {
             }
             bookingViewPanel.getInfoPanel().resetCustomerInfo();
         });
-
+        // Button Panels button functionality
         buttonPanel.getSearchButton().addActionListener(e -> frame.changeToPanel(searchPanel));
         buttonPanel.getBookingViewButton().addActionListener(e -> frame.changeToPanel(bookingViewPanel));
+        buttonPanel.getReservationButton().addActionListener(e -> frame.changeToPanel(reservationViewPanel));
 
 // SearchViewPanel setup
 
