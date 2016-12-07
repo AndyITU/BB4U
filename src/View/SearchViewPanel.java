@@ -10,7 +10,7 @@ public class SearchViewPanel extends JPanel {
     private final JComboBox<String> auditoriumDropDown;
     private final JButton selectShow = new JButton("Go to selected show");
 
-    SearchViewPanel(String[] movieTitles) {
+    public SearchViewPanel(String[] movieTitles) {
         setLayout(new GridLayout(8,2));
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);

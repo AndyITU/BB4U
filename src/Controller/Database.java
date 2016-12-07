@@ -104,6 +104,7 @@ class Database {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
 
+            System.out.println("date: " + date + "\n" + Timestamp.valueOf(LocalDateTime.parse(date, format)) + "\n");
             String q = "SELECT * FROM shows WHERE aud_id="+aud_id+" AND movie='"+movie+"' AND date='"+Timestamp.valueOf(LocalDateTime.parse(date, format))+"';";
             ResultSet rs = statement.executeQuery(q);
             rs.next();

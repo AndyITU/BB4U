@@ -7,9 +7,6 @@ import Model.Show;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Mikkel on 07-12-2016.
- */
 public class ReservationPanel extends JPanel {
 
 
