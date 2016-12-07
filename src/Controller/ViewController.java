@@ -10,6 +10,7 @@ import View.SearchViewPanel;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.IllegalFormatException;
 import java.util.Objects;
 
 public class ViewController {
@@ -30,7 +31,7 @@ public class ViewController {
         searchPanel = frame.getSearchPanel();
         buttonPanel = frame.getButtonPanel();
         setupButtons();
-        bookingViewPanel.getInfoPanel().getPanel().startBook();
+        bookingViewPanel.getSeatPanel().startBook();
     }
     private void setupButtons() {
 
@@ -39,14 +40,15 @@ public class ViewController {
                 Booking.bookSeats(new Reservation(
                         Database.getNextReservationID(),
                         currentShow.getId(),
-                        bookingViewPanel.getInfoPanel().getPanel().startBook(),
+                        bookingViewPanel.getSeatPanel().startBook(),
                         currentShow.getAud_id(),
-                        "Mikkel",
-                        "Din mor"));
+                        bookingViewPanel.getInfoPanel().getCustomerName(),
+                        bookingViewPanel.getInfoPanel().getCustomerPhone()));
                 //get contact info
             } catch (SQLException | IllegalArgumentException x) {
                 x.printStackTrace();
             }
+            bookingViewPanel.getInfoPanel().resetCustomerInfo();
         });
 
         buttonPanel.getSearchButton().addActionListener(e -> frame.changeToPanel(searchPanel));
