@@ -25,7 +25,7 @@ public class ReservationPanel extends JPanel {
         rvPanel = new ReservationView();
         rsPanel = new ReservationSearch();
         add(rsPanel);
-        //add(rvPanel);
+        add(rvPanel);
         add(cPanel);
         add(sPanel);
         setVisible(true);

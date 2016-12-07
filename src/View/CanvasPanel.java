@@ -6,7 +6,7 @@ import java.awt.*;
 class CanvasPanel extends JPanel {
 
     CanvasPanel() {
-        setLayout(new BorderLayout());
+        super(new BorderLayout());
         setVisible(true);
         add(new JLabel("Big Screen"), BorderLayout.CENTER);
         setMaximumSize(new Dimension(1000, 200));

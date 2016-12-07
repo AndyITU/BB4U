@@ -33,8 +33,8 @@ public class InformationPanel extends JPanel
 
 
     InformationPanel(Show show, int seatsReserved, int seatsTotal) {
-        super();
-        setLayout(new GridLayout(2, 2));
+        super(new GridLayout(2, 2));
+        //setLayout(new GridLayout(2, 2));
         setPreferredSize(new Dimension(1000, 50));
         setVisible(true);
         bookButton = new JButton("BOOK SELECTED");

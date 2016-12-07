@@ -10,7 +10,7 @@ public class ReservationView extends JPanel{
 
     public ReservationView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setPreferredSize(new Dimension(1000, 200));
+        setPreferredSize(new Dimension(1000, 1000));
         for (int i = 0; i < 2; i++) {
             add(new ReservationEntry());
         }

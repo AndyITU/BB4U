@@ -13,12 +13,13 @@ public class ReservationSearch extends JPanel{
     private JFormattedTextField contactName;
 
     public ReservationSearch() {
+        super(new GridLayout(1,4));
         setPreferredSize(new Dimension(1000, 50));
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
             MaskFormatter nameRule = new MaskFormatter("?????????????????????????????????");
             contactPhone = new JFormattedTextField();
-            contactPhone.setPreferredSize(new Dimension(getWidth()/3, 50));
+            contactPhone.setMaximumSize(new Dimension(getWidth()/3, 5));
             contactName = new JFormattedTextField();
             nameRule.install(contactName);
             phoneRule.install(contactPhone);
