@@ -54,12 +54,13 @@ public class Booking {
 
     /* SETTERS */
 
-    public static void bookSeats(Reservation r) throws SQLException, IllegalArgumentException {
+    static void bookSeats(Reservation r) throws SQLException, IllegalArgumentException {
         if(Database.isReserved(r.getShow_id(), r.getSeats()))
             throw new IllegalArgumentException("One or more of the seats are already booked!");
+        if(r.getName().equals("") || r.getContact_info().equals(""))
+            throw new IllegalArgumentException("One or more of the text fields are empty!");
 
         try {
-
             for(SeatModel s: r.getSeats()) {
                 Database.updateTable(
                         "INSERT INTO reservations (id, show_id, row, col, aud_id, name, contact_info) " +
