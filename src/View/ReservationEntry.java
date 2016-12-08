@@ -7,7 +7,9 @@ import java.awt.event.MouseListener;
 
 public class ReservationEntry extends JButton implements MouseListener {
 
-    JOptionPane selectOptions = new JOptionPane();
+    private String contactName;
+    private String contactNumber;
+
 
     public ReservationEntry() {
         setSize(new Dimension (1000, 100));
@@ -21,7 +23,13 @@ public class ReservationEntry extends JButton implements MouseListener {
         newEntry(g);
     }
     public void mouseClicked(MouseEvent e) {
-        // JOptionPane.showOptionDialog()Dialog(null,"Would you like to edit or remove this reservation?","Reservation edit",JOptionPane.YES_NO_CANCEL_OPTION);
+        // Inspired by http://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+        String[] optionList = {
+                "Edit",
+                "Remove",
+                "Cancel"
+        };
+        JOptionPane.showOptionDialog(null, "Would you like to edit, or remove?", "Reservation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, optionList, optionList[2]);
     }
     public void mouseExited(MouseEvent e) {
 

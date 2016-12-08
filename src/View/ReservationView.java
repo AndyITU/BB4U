@@ -14,9 +14,5 @@ public class ReservationView extends JPanel{
         for (int i = 0; i < 10; i++) {
             add(new ReservationEntry());
         }
-        JScrollPane scrollPane = new JScrollPane(this);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        add(scrollPane);
     }
 }
