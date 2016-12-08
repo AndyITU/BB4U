@@ -7,17 +7,21 @@ import java.awt.event.MouseListener;
 
 public class ReservationEntry extends JButton implements MouseListener {
 
+    JOptionPane selectOptions = new JOptionPane();
+
     public ReservationEntry() {
-        setSize(new Dimension (1000, 40));
+        setSize(new Dimension (1000, 100));
         setMaximumSize(getSize());
+        setMinimumSize(getSize());
         addMouseListener(this);
+        setContentAreaFilled(false);
         setVisible(true);
     }
     public void paint(Graphics g) {
+        newEntry(g);
     }
-
     public void mouseClicked(MouseEvent e) {
-        JOptionPane.showMessageDialog(null,"Would you like to edit or remove this reservation?");
+        // JOptionPane.showOptionDialog()Dialog(null,"Would you like to edit or remove this reservation?","Reservation edit",JOptionPane.YES_NO_CANCEL_OPTION);
     }
     public void mouseExited(MouseEvent e) {
 
@@ -27,6 +31,12 @@ public class ReservationEntry extends JButton implements MouseListener {
     public void mousePressed(MouseEvent e) {
     }
     public void mouseReleased(MouseEvent e) {
+    }
+    public void newEntry(Graphics g) {
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(2,2,getWidth()-4,getHeight()-4);
+        g.setColor(Color.BLACK);
+        g.drawRect(2,2,getWidth()-4,getHeight()-4);
     }
 
 

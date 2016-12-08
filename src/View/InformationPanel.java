@@ -71,7 +71,7 @@ public class InformationPanel extends JPanel
     }
     public void resetCustomerInfo() {
         contactName.getText();
-        contactPhone.getText().replaceAll();
+        //contactPhone.getText().replaceAll();
 
     }
     private JPanel createLeftInformationBox(String movie, int auditorium_id, int seatsReserved, int seatsTotal) {

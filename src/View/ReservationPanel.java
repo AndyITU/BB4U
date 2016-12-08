@@ -3,6 +3,7 @@ package View;
 import Controller.Booking;
 import Model.Auditorium;
 import Model.Show;
+import javafx.scene.control.ListCell;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,8 +23,12 @@ public class ReservationPanel extends JPanel {
         rvPanel = new ReservationView();
         rvPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rsPanel = new ReservationSearch();
+        JScrollPane scrollPane = new JScrollPane(rvPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         add(rsPanel);
-        add(rvPanel);
+        //add(rvPanel);
+        add(scrollPane);
         add(cPanel);
         add(sPanel);
         setVisible(true);
