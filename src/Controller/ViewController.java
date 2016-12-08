@@ -38,7 +38,7 @@ public class ViewController {
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
             customerName.replace(" ","");
             customerPhone.replace(" ","");
-            if ( !customerName.trim().equals("") && !customerPhone.trim().equals(""))
+            if ( !customerName.trim().equals("") && !customerPhone.trim().equals("") )
             {
                 try {
                     Booking.makeReservation(new Reservation(
@@ -56,9 +56,10 @@ public class ViewController {
                 }
                 bookingViewPanel.getInfoPanel().resetCustomerInfo();
                 frame.getReservationPanel().updatePanels(Booking.getReservations());
+                System.out.print(customerPhone.trim().length());
             }
             else {
-                JOptionPane.showMessageDialog(null, "You haven't entered a name or number");
+                JOptionPane.showMessageDialog(null, "There is an error in the customer info");
             }
         });
         // Button Panels button functionality

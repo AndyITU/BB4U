@@ -31,11 +31,11 @@ public class MainFrame extends JFrame
         }
         bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
         bPanel = new ButtonPanel();
-        rPanel = new ReservationPanel(Booking.getReservations());
+        rPanel = new ReservationPanel(Booking.getReservations(), show, auditorium);
         searchPanel = new SearchViewPanel(ViewController.getMovieTitles());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(1000,1000));
+        setPreferredSize(new Dimension(1050,1000));
         setVisible(true);
         pane = getContentPane();
 

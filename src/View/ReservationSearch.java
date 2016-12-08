@@ -15,7 +15,8 @@ public class ReservationSearch extends JPanel{
 
     public ReservationSearch() {
         super(new GridLayout(1,4));
-        setPreferredSize(new Dimension(1000, 50));
+        setPreferredSize(new Dimension(1000, 20));
+        setMaximumSize(new Dimension(1000, 30));
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
             MaskFormatter nameRule = new MaskFormatter("?????????????????????????????????");
