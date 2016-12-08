@@ -1,5 +1,7 @@
 package View;
 
+import Model.Reservation;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,11 +10,11 @@ import java.awt.*;
  */
 public class ReservationView extends JPanel{
 
-    public ReservationView() {
+    public ReservationView(Reservation[] reservations) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(1000, 500));
-        for (int i = 0; i < 10; i++) {
-            add(new ReservationEntry());
+        for (int i = 0; i < reservations.length; i++) {
+            add(new ReservationEntry(reservations[i]));
         }
     }
 }

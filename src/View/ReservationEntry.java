@@ -12,14 +12,14 @@ public class ReservationEntry extends JButton implements MouseListener {
     private Reservation customer;
     private boolean isHighlighted;
 
-    public ReservationEntry() {
-        setSize(new Dimension (1000, 100));
+    public ReservationEntry(Reservation r) {
+        setSize(new Dimension (1000, 120));
         setMaximumSize(getSize());
-        setMinimumSize(getSize());
+        setMinimumSize(new Dimension(1000, 100));
         addMouseListener(this);
         setContentAreaFilled(false);
         setVisible(true);
-        //customer = r;
+        customer = r;
     }
     public void paint(Graphics g) {
         if (isHighlighted) {
@@ -38,6 +38,7 @@ public class ReservationEntry extends JButton implements MouseListener {
                 "Cancel"
         };
         JOptionPane.showOptionDialog(null, "Would you like to edit, or remove?", "Reservation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, optionList, optionList[2]);
+
     }
     public void mouseExited(MouseEvent e) {
         isHighlighted = false;
@@ -56,10 +57,10 @@ public class ReservationEntry extends JButton implements MouseListener {
         g.setColor(Color.BLACK);
         g.drawRect(2,2,getWidth()-4,getHeight()-4);
         g.setColor(Color.WHITE);
-        g.drawString("WilliamWallace", getWidth()/10, (getHeight()/4)+5);
-        g.drawString("81202938", getWidth()/10, (getHeight()*3/4)+5);
-        g.drawString("X-Men", getWidth()/2, (getHeight()/4)+5);
-        g.drawString("27. January", getWidth()/2, (getHeight()*3/4)+5);
+        g.drawString(customer.getName(), getWidth()/10, (getHeight()/4)+5);
+        g.drawString(customer.getContact_info(), getWidth()/10, (getHeight()*3/4)+5);
+        g.drawString(customer.getAud_id()+"", getWidth()/2, (getHeight()/4)+5);
+        g.drawString(customer.getShow_id()+"", getWidth()/2, (getHeight()*3/4)+5);
     }
 
 

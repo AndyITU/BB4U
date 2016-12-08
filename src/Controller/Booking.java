@@ -49,7 +49,7 @@ public class Booking {
     static Reservation[] getReservations(int show_id) {
         return Database.getReservations(show_id);
     }
-    static Reservation[] getReservations() {
+    public static Reservation[] getReservations() {
         return getReservations(0);
     }
 

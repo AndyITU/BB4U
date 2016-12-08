@@ -11,6 +11,7 @@ import java.text.ParseException;
 public class ReservationSearch extends JPanel{
     private JFormattedTextField contactPhone;
     private JFormattedTextField contactName;
+    private JButton searchReservations;
 
     public ReservationSearch() {
         super(new GridLayout(1,4));
@@ -23,12 +24,18 @@ public class ReservationSearch extends JPanel{
             contactName = new JFormattedTextField();
             nameRule.install(contactName);
             phoneRule.install(contactPhone);
-            add(new JLabel("Contact Number:"));
-            add(contactPhone);
-            add(new JLabel("Contact Name:"));
+            add(new JLabel("          Contact Name:"));
             add(contactName);
+            add(new JLabel("          Contact Number:"));
+            add(contactPhone);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        // Needed some help changing the color of this one: http://stackoverflow.com/questions/1065691/how-to-set-the-background-color-of-a-jbutton-on-the-mac-os
+        searchReservations = new JButton("Search!");
+        searchReservations.setBackground(Color.BLACK);
+        searchReservations.setBorderPainted(false);
+        searchReservations.setOpaque(true);
+        add(searchReservations);
     }
 }
