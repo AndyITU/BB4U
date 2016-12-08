@@ -26,7 +26,7 @@ public class Booking {
 
 
     public static SeatModel[] getReservedSeats(int show_id) {
-        Reservation[] r = Database.getReservations(show_id, true);
+        Reservation[] r = Database.getReservations(show_id);
         int amount = 0;
 
         for(Reservation res: r)
@@ -41,15 +41,12 @@ public class Booking {
 
         return s;
     }
-    public static Reservation[] getReservations(int show_id) {
-        return Database.getReservations(show_id, true);
+    static Reservation[] getReservations(int show_id) {
+        return Database.getReservations(show_id);
     }
-    /*public static Reservation[] getReservations() {
+    static Reservation[] getReservations() {
         return getReservations(0);
-    }*/
-    /*public static Reservation getReservation(int id) {
-        return Database.getReservations(id, false)[0];
-    }*/
+    }
 
 
     /* SETTERS */
@@ -59,6 +56,9 @@ public class Booking {
             throw new IllegalArgumentException("One or more of the seats are already booked!");
         if(r.getName().equals("") || r.getContact_info().equals(""))
             throw new IllegalArgumentException("One or more of the text fields are empty!");
+        if(r.getSeats().length == 0) {
+            throw new IllegalArgumentException("You haven't chosen any seats!");
+        }
 
         try {
             for(SeatModel s: r.getSeats()) {

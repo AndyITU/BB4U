@@ -123,7 +123,7 @@ class Database {
         return show;
     }
 
-    public static Auditorium[] getAuditoriums(int id) {
+    static Auditorium[] getAuditoriums(int id) {
         Auditorium[] auditoriums;
 
         try {
@@ -159,7 +159,15 @@ class Database {
         return auditoriums;
     }
 
-    static Reservation[] getReservations(int id, boolean show) {
+    private static Reservation[] getReservations(String[] args) {
+        int id = 0;
+        String name = "", contact_info = "";
+        if(args.length == 1)
+            id = Integer.parseInt(args[0]);
+        else {
+            name = args[0]; contact_info = args[1];
+        }
+
         // If query fails, auditoriums should be returned as an empty array
         Reservation[] reservations = new Reservation[0];
 
@@ -167,45 +175,35 @@ class Database {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
 
-            String q = id > 0 ? show ? " WHERE show_id="+id : " WHERE id="+id : "";
+            String q = args.length == 1 ? id > 0 ? " WHERE show_id="+id : "" : " WHERE name="+name+" AND contact_info="+contact_info;
             ResultSet rs = statement.executeQuery("SELECT count(*) AS total FROM reservations"+q+";");
             rs.next();
             int total = rs.getInt("total");
 
             try {
                 rs = statement.executeQuery("SELECT * FROM reservations"+q+";");
-                if(show) {
-                    // Using HashMap to group reservations in database by ID
-                    HashMap<Integer, List<SeatModel>> seatsHashMap = new HashMap<>();
-                    int[] ids = new int[total], shows = new int[total], auds = new int[total];
-                    String[] names = new String[total], contacts = new String[total];
-                    total = 0;
-                    while(rs.next()) {
-                        if(!seatsHashMap.containsKey(rs.getInt("id"))) {
-                            seatsHashMap.put(rs.getInt("id"), new ArrayList<>());
-                            ids[total] = rs.getInt("id"); auds[total] = rs.getInt("aud_id"); if(id<1) shows[total] = rs.getInt("show_id");
-                            names[total] = rs.getString("name"); contacts[total] = rs.getString("contact_info");
-                            total++;
-                        }
-                        seatsHashMap.get(rs.getInt("id")).add(new SeatModel(rs.getInt("col"), rs.getInt("row"), true));
+
+                // Using HashMap to group reservations in database by ID
+                HashMap<Integer, List<SeatModel>> seatsHashMap = new HashMap<>();
+                int[] ids = new int[total], shows = new int[total], auds = new int[total];
+                String[] names = new String[total], contacts = new String[total];
+                total = 0;
+                while(rs.next()) {
+                    if(!seatsHashMap.containsKey(rs.getInt("id"))) {
+                        seatsHashMap.put(rs.getInt("id"), new ArrayList<>());
+                        ids[total] = rs.getInt("id"); auds[total] = rs.getInt("aud_id"); if(id<1) shows[total] = rs.getInt("show_id");
+                        names[total] = rs.getString("name"); contacts[total] = rs.getString("contact_info");
+                        total++;
                     }
-                    reservations = new Reservation[total];
-                    for(int i = 0; i < total; i++) {
-                        reservations[i] = new Reservation(ids[i], id == 0 ? shows[i] : id,
-                                seatsHashMap.get(ids[i]).toArray(new SeatModel[0]),
-                                auds[i], names[i], contacts[i]);
-                    }
-                } else {
-                    reservations = new Reservation[1];
-                    SeatModel[] s = new SeatModel[total];
-                    int show_id = 0, aud_id = 0;
-                    String name = "", contact_info = "";
-                    for(int i = 0; rs.next(); i++) {
-                        if(i == 0) { show_id = rs.getInt("show_id"); aud_id = rs.getInt("aud_id"); name = rs.getString("name"); contact_info = rs.getString("contact_info");}
-                        s[i] = new SeatModel(rs.getInt("col"), rs.getInt("row"), true);
-                    }
-                    reservations[0] = new Reservation(id, show_id, s, aud_id, name, contact_info);
+                    seatsHashMap.get(rs.getInt("id")).add(new SeatModel(rs.getInt("col"), rs.getInt("row"), true));
                 }
+                reservations = new Reservation[total];
+                for(int i = 0; i < total; i++) {
+                    reservations[i] = new Reservation(ids[i], id == 0 ? shows[i] : id,
+                            seatsHashMap.get(ids[i]).toArray(new SeatModel[0]),
+                            auds[i], names[i], contacts[i]);
+                }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -220,6 +218,12 @@ class Database {
         }
 
         return reservations;
+    }
+    static Reservation[] getReservations(int show_id) {
+        return getReservations(new String[]{Integer.toString(show_id)});
+    }
+    static Reservation[] getReservations(String name, String contact_info) {
+        return getReservations(new String[]{name, contact_info});
     }
 
     static boolean isReserved(int show_id, SeatModel[] seats) {
