@@ -41,7 +41,7 @@ public class ViewController {
             if ( !customerName.trim().equals("") && !customerPhone.trim().equals(""))
             {
                 try {
-                    Booking.bookSeats(new Reservation(
+                    Booking.makeReservation(new Reservation(
                             Database.getNextReservationID(),
                             currentShow.getId(),
                             bookingViewPanel.getSeatPanel().startBook(),
