@@ -42,6 +42,10 @@ public class Booking {
 
         return s;
     }
+
+    static Reservation[] getReservations(String name, String contact_info) {
+        return Database.getReservations(name, contact_info);
+    }
     static Reservation[] getReservations(int show_id) {
         return Database.getReservations(show_id);
     }
