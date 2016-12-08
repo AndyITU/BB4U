@@ -35,7 +35,11 @@ public class ViewController {
     private void setupButtons() {
         // Booking Panel book Button functionality
         bookingViewPanel.getInfoPanel().getBookButton().addActionListener(e -> {
-            if ( !bookingViewPanel.getInfoPanel().getCustomerName().equals("") && !bookingViewPanel.getInfoPanel().getCustomerPhone().equals(""))
+            String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
+            String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
+            customerName.replace(" ","");
+            customerPhone.replace(" ","");
+            if ( !customerName.trim().equals("") && !customerPhone.trim().equals(""))
             {
                 try {
                     Booking.bookSeats(new Reservation(
@@ -43,13 +47,16 @@ public class ViewController {
                             currentShow.getId(),
                             bookingViewPanel.getSeatPanel().startBook(),
                             currentShow.getAud_id(),
-                            bookingViewPanel.getInfoPanel().getCustomerName(),
-                            bookingViewPanel.getInfoPanel().getCustomerPhone()));
+                            customerName,
+                            customerPhone));
                     //get contact info
                 } catch (SQLException | IllegalArgumentException x) {
                     x.printStackTrace();
                 }
                 bookingViewPanel.getInfoPanel().resetCustomerInfo();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "You haven't entered a name or number");
             }
         });
         // Button Panels button functionality

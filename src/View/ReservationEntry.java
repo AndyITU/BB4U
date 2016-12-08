@@ -13,15 +13,16 @@ public class ReservationEntry extends JButton implements MouseListener {
         addMouseListener(this);
         setVisible(true);
     }
+    public void paint(Graphics g) {
+    }
 
     public void mouseClicked(MouseEvent e) {
-
+        JOptionPane.showMessageDialog(null,"Would you like to edit or remove this reservation?");
     }
     public void mouseExited(MouseEvent e) {
 
     }
     public void mouseEntered(MouseEvent e) {
-
     }
     public void mousePressed(MouseEvent e) {
     }

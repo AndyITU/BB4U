@@ -35,9 +35,6 @@ public class SeatPanel extends JPanel
         setVisible(true);
         newBook(reservedSeats);
     }
-    SeatPanel getSeatPanel() {
-        return this;
-    }
 
     public SeatModel[] startBook() {
         ArrayList<SeatModel> newReservation = new ArrayList<>();

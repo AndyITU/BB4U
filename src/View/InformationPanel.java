@@ -70,8 +70,9 @@ public class InformationPanel extends JPanel
         return contactPhone.getText();
     }
     public void resetCustomerInfo() {
-        contactName.setText("");
-        contactPhone.setText("");
+        contactName.getText();
+        contactPhone.getText().replaceAll();
+
     }
     private JPanel createLeftInformationBox(String movie, int auditorium_id, int seatsReserved, int seatsTotal) {
         JPanel infoPanel = new JPanel();
