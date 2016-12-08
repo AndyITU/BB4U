@@ -27,7 +27,6 @@ public class ReservationPanel extends JPanel {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         add(rsPanel);
-        //add(rvPanel);
         add(scrollPane);
         add(cPanel);
         add(sPanel);
