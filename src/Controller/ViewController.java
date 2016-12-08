@@ -50,8 +50,10 @@ public class ViewController {
                             customerName,
                             customerPhone));
                     //get contact info
-                } catch (SQLException | IllegalArgumentException x) {
+                } catch (SQLException x) {
                     x.printStackTrace();
+                } catch (IllegalArgumentException x) {
+                    JOptionPane.showMessageDialog(null, x.getMessage());
                 }
                 bookingViewPanel.getInfoPanel().resetCustomerInfo();
             }

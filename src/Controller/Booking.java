@@ -56,6 +56,9 @@ public class Booking {
             throw new IllegalArgumentException("One or more of the seats are already booked!");
         if(r.getName().equals("") || r.getContact_info().equals(""))
             throw new IllegalArgumentException("One or more of the text fields are empty!");
+        if(r.getSeats().length == 0) {
+            throw new IllegalArgumentException("You haven't chosen any seats!");
+        }
 
         try {
             for(SeatModel s: r.getSeats()) {
