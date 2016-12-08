@@ -56,10 +56,10 @@ public class ReservationEntry extends JButton implements MouseListener {
         g.setColor(Color.BLACK);
         g.drawRect(2,2,getWidth()-4,getHeight()-4);
         g.setColor(Color.WHITE);
-        g.drawString("WilliamWallace", getWidth()/10, getHeight()/4);
-        g.drawString("81202938", getWidth()/10, getHeight()*3/4);
-        g.drawString("X-Men", getWidth()/2, getHeight()/4);
-        g.drawString("27. January", getWidth()/2, getHeight()*3/4);
+        g.drawString("WilliamWallace", getWidth()/10, (getHeight()/4)+5);
+        g.drawString("81202938", getWidth()/10, (getHeight()*3/4)+5);
+        g.drawString("X-Men", getWidth()/2, (getHeight()/4)+5);
+        g.drawString("27. January", getWidth()/2, (getHeight()*3/4)+5);
     }
 
 
