@@ -36,10 +36,10 @@ public class ReservationPanel extends JPanel {
     public ReservationSearch getReservationSearch() {
         return rsPanel;
     }
-    public void updatePanels(Reservation[] reservations) {
+    public void updatePanels(Reservation[] reservations, Show show, Auditorium auditorium) {
         removeAll();
-        //sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
-        //cPanel = new CanvasPanel();
+        sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
+        cPanel = new CanvasPanel();
         rvPanel = new ReservationView(reservations);
         rvPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rsPanel = new ReservationSearch();

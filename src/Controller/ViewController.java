@@ -16,7 +16,7 @@ public class ViewController {
     private final SearchViewPanel searchPanel;
     private final ButtonPanel buttonPanel;
     private final ReservationPanel reservationViewPanel;
-    private Show currentShow = Booking.getShow(1);
+    private static Show currentShow = Booking.getShow(1);
     private Show searchShow;
     private String movieString = "";
     private String dateString = "";
@@ -55,7 +55,7 @@ public class ViewController {
                     JOptionPane.showMessageDialog(null, x.getMessage());
                 }
                 bookingViewPanel.getInfoPanel().resetCustomerInfo();
-                frame.getReservationPanel().updatePanels(Booking.getReservations());
+                frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
                 System.out.print(customerPhone.trim().length());
             }
             else {
@@ -132,7 +132,7 @@ public class ViewController {
         }
             else if (answer == JOptionPane.NO_OPTION) {
                 Booking.removeReservation(r);
-                frame.getReservationPanel().updatePanels(Booking.getReservations());
+                frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
             }
         }
 

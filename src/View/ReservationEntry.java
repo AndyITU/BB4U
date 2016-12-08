@@ -16,6 +16,12 @@ public class ReservationEntry extends JButton implements MouseListener {
 
     private Reservation customer;
     private boolean isHighlighted;
+    private int seats;
+    private int audID;
+    private String date;
+    private String movie;
+    private String contactInfo;
+    private String contactName;
     private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
 
     public ReservationEntry(Reservation res) {
@@ -26,6 +32,13 @@ public class ReservationEntry extends JButton implements MouseListener {
         setContentAreaFilled(false);
         setVisible(true);
         customer = res;
+        Show s = Booking.getShow(customer.getShow_id());
+        seats = customer.getSeats().length;
+        audID = customer.getAud_id();
+        date = s.getDate().format(format);
+        movie = s.getMovie();
+        contactInfo = customer.getContact_info();
+        contactName = customer.getName();
     }
     public void paint(Graphics g) {
         if (isHighlighted) {
@@ -50,9 +63,6 @@ public class ReservationEntry extends JButton implements MouseListener {
         isHighlighted = false;
         repaint();
     }
-    public JButton me () {
-        return this;
-    }
     public void mouseEntered(MouseEvent e) {
         isHighlighted = true;
         repaint();
@@ -62,17 +72,16 @@ public class ReservationEntry extends JButton implements MouseListener {
     public void mouseReleased(MouseEvent e) {
     }
     public void newEntry(Graphics g) {
-        Show s = Booking.getShow(customer.getShow_id());
         g.fillRect(getWidth()/15,getHeight()/15,getWidth()-getWidth()/15*2,getHeight()-getHeight()/15*2);
         g.setColor(Color.BLACK);
         g.drawRect(getWidth()/15,getHeight()/15,getWidth()-getWidth()/15*2,getHeight()-getHeight()/15*2);
         g.setColor(Color.WHITE);
-        g.drawString("Name: " + customer.getName(), getWidth()/10, (getHeight()/4)+5);
-        g.drawString("Contact info: " + customer.getContact_info(), getWidth()/10, (getHeight()*3/4)+5);
-        g.drawString("Movie: " + s.getMovie(), getWidth()/3, (getHeight()/4)+5);
-        g.drawString("Date: " + s.getDate().format(format), getWidth()/3, (getHeight()*3/4)+5);
-        g.drawString("Auditorium: " + customer.getAud_id(), (getWidth()/3)*2, (getHeight()/4)+5);
-        g.drawString("Seats: " + customer.getSeats().length, (getWidth()/3)*2, (getHeight()*3/4)+5);
+        g.drawString("Name: " + contactName, getWidth()/10, (getHeight()/4)+5);
+        g.drawString("Contact info: " + contactInfo, getWidth()/10, (getHeight()*3/4)+5);
+        g.drawString("Movie: " + movie, getWidth()/3, (getHeight()/4)+5);
+        g.drawString("Date: " + date, getWidth()/3, (getHeight()*3/4)+5);
+        g.drawString("Auditorium: " + audID, (getWidth()/3)*2, (getHeight()/4)+5);
+        g.drawString("Seats: " + seats, (getWidth()/3)*2, (getHeight()*3/4)+5);
     }
 
 
