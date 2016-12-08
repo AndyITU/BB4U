@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class ViewController {
 
-    private final MainFrame frame;
+    private static MainFrame frame;
     private final BookingViewPanel bookingViewPanel;
     private final SearchViewPanel searchPanel;
     private final ButtonPanel buttonPanel;
@@ -55,6 +55,7 @@ public class ViewController {
                     JOptionPane.showMessageDialog(null, x.getMessage());
                 }
                 bookingViewPanel.getInfoPanel().resetCustomerInfo();
+                frame.getReservationPanel().updatePanels(Booking.getReservations());
             }
             else {
                 JOptionPane.showMessageDialog(null, "You haven't entered a name or number");
@@ -116,7 +117,7 @@ public class ViewController {
             frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
             setupButtons();
             frame.changeToPanel(bookingViewPanel);
-            lockDown();
+            searchLockDown();
         });
     }
 
@@ -124,7 +125,17 @@ public class ViewController {
         return Search.getMovies();
     }
 
-    private void lockDown() {
+    public static void sendAnswer(int answer, Reservation r) {
+        if (answer == JOptionPane.YES_OPTION) {
+            System.out.println("Edit");
+        }
+            else if (answer == JOptionPane.NO_OPTION) {
+                Booking.removeReservation(r);
+                frame.getReservationPanel().updatePanels(Booking.getReservations());
+            }
+        }
+
+    private void searchLockDown() {
         movieString = "";
         dateString = "";
         auditoriumID = "";

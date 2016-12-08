@@ -37,5 +37,6 @@ public class ReservationSearch extends JPanel{
         searchReservations.setBorderPainted(false);
         searchReservations.setOpaque(true);
         add(searchReservations);
+
     }
 }

@@ -31,7 +31,7 @@ public class MainFrame extends JFrame
         }
         bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
         bPanel = new ButtonPanel();
-        rPanel = new ReservationPanel(show, auditorium, Booking.getReservations());
+        rPanel = new ReservationPanel(Booking.getReservations());
         searchPanel = new SearchViewPanel(ViewController.getMovieTitles());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

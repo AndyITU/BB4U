@@ -16,10 +16,9 @@ public class ReservationPanel extends JPanel {
     private CanvasPanel cPanel;
     private ReservationView rvPanel;
     private ReservationSearch rsPanel;
-    public ReservationPanel(Show show, Auditorium auditorium, Reservation[] reservations) {
+    public ReservationPanel(Reservation[] reservations) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(1000, 200));
-        sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
         cPanel = new CanvasPanel();
         rvPanel = new ReservationView(reservations);
         rvPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -29,9 +28,30 @@ public class ReservationPanel extends JPanel {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         add(rsPanel);
         add(scrollPane);
-        add(cPanel);
-        add(sPanel);
         setVisible(true);
+    }
+    public ReservationView getReservationView() {
+        return rvPanel;
+    }
+    public ReservationSearch getReservationSearch() {
+        return rsPanel;
+    }
+    public void updatePanels(Reservation[] reservations) {
+        removeAll();
+        //sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()));
+        //cPanel = new CanvasPanel();
+        rvPanel = new ReservationView(reservations);
+        rvPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        rsPanel = new ReservationSearch();
+        JScrollPane scrollPane = new JScrollPane(rvPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        add(rsPanel);
+        add(scrollPane);
+        //add(cPanel);
+        //add(sPanel);
+        repaint();
+        revalidate();
     }
 
 }
