@@ -1,5 +1,7 @@
 package View;
 
+import Model.Reservation;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -7,8 +9,7 @@ import java.awt.event.MouseListener;
 
 public class ReservationEntry extends JButton implements MouseListener {
 
-    private String contactName;
-    private String contactNumber;
+    private Reservation customer;
     private boolean isHighlighted;
 
     public ReservationEntry() {
@@ -18,13 +19,14 @@ public class ReservationEntry extends JButton implements MouseListener {
         addMouseListener(this);
         setContentAreaFilled(false);
         setVisible(true);
+        //customer = r;
     }
     public void paint(Graphics g) {
         if (isHighlighted) {
-            g.setColor(Color.blue);
+            g.setColor(Color.black);
         }
         else {
-            g.setColor(Color.CYAN);
+            g.setColor(Color.darkGray);
         }
         newEntry(g);
     }
@@ -53,6 +55,11 @@ public class ReservationEntry extends JButton implements MouseListener {
         g.fillRect(2,2,getWidth()-4,getHeight()-4);
         g.setColor(Color.BLACK);
         g.drawRect(2,2,getWidth()-4,getHeight()-4);
+        g.setColor(Color.WHITE);
+        g.drawString("WilliamWallace", getWidth()/10, getHeight()/4);
+        g.drawString("81202938", getWidth()/10, getHeight()*3/4);
+        g.drawString("X-Men", getWidth()/2, getHeight()/4);
+        g.drawString("27. January", getWidth()/2, getHeight()*3/4);
     }
 
 
