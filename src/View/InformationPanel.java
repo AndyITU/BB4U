@@ -4,6 +4,7 @@ import Model.Show;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -47,7 +48,9 @@ public class InformationPanel extends JPanel
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
             MaskFormatter nameRule = new MaskFormatter("?????????????????????????????????");
-            contactPhone = new JFormattedTextField();
+            NumberFormatter nf = new NumberFormatter();
+            nf.setMinimum(8);
+            contactPhone = new JFormattedTextField(nf);
             contactName = new JFormattedTextField();
             nameRule.install(contactName);
             phoneRule.install(contactPhone);
