@@ -26,7 +26,7 @@ public class Booking {
 
 
     public static SeatModel[] getReservedSeats(int show_id) {
-        Reservation[] r = Database.getReservations(show_id, true);
+        Reservation[] r = Database.getReservations(show_id);
         int amount = 0;
 
         for(Reservation res: r)
@@ -41,15 +41,12 @@ public class Booking {
 
         return s;
     }
-    public static Reservation[] getReservations(int show_id) {
-        return Database.getReservations(show_id, true);
+    static Reservation[] getReservations(int show_id) {
+        return Database.getReservations(show_id);
     }
-    /*public static Reservation[] getReservations() {
+    static Reservation[] getReservations() {
         return getReservations(0);
-    }*/
-    /*public static Reservation getReservation(int id) {
-        return Database.getReservations(id, false)[0];
-    }*/
+    }
 
 
     /* SETTERS */
