@@ -12,14 +12,14 @@ public class ReservationEntry extends JButton implements MouseListener {
     private Reservation customer;
     private boolean isHighlighted;
 
-    public ReservationEntry(Reservation r) {
+    public ReservationEntry(Reservation res) {
         setSize(new Dimension (1000, 120));
         setMaximumSize(getSize());
         setMinimumSize(new Dimension(1000, 100));
         addMouseListener(this);
         setContentAreaFilled(false);
         setVisible(true);
-        customer = r;
+        customer = res;
     }
     public void paint(Graphics g) {
         if (isHighlighted) {
