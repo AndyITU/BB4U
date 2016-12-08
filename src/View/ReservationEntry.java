@@ -1,16 +1,21 @@
 package View;
 
+import Controller.Booking;
 import Model.Reservation;
+import Model.Show;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class ReservationEntry extends JButton implements MouseListener {
 
     private Reservation customer;
     private boolean isHighlighted;
+    private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
 
     public ReservationEntry(Reservation res) {
         setSize(new Dimension (1000, 120));
@@ -53,14 +58,17 @@ public class ReservationEntry extends JButton implements MouseListener {
     public void mouseReleased(MouseEvent e) {
     }
     public void newEntry(Graphics g) {
+        Show s = Booking.getShow(customer.getShow_id());
         g.fillRect(2,2,getWidth()-4,getHeight()-4);
         g.setColor(Color.BLACK);
         g.drawRect(2,2,getWidth()-4,getHeight()-4);
         g.setColor(Color.WHITE);
-        g.drawString(customer.getName(), getWidth()/10, (getHeight()/4)+5);
-        g.drawString(customer.getContact_info(), getWidth()/10, (getHeight()*3/4)+5);
-        g.drawString(customer.getAud_id()+"", getWidth()/2, (getHeight()/4)+5);
-        g.drawString(customer.getShow_id()+"", getWidth()/2, (getHeight()*3/4)+5);
+        g.drawString("Name: " + customer.getName(), getWidth()/10, (getHeight()/4)+5);
+        g.drawString("Contact info: " + customer.getContact_info(), getWidth()/10, (getHeight()*3/4)+5);
+        g.drawString("Movie: " + s.getMovie(), getWidth()/2, (getHeight()/4)+5);
+        g.drawString("Date: " + s.getDate().format(format), getWidth()/2, (getHeight()*3/4)+5);
+        g.drawString("Auditorium: " + customer.getAud_id(), getWidth()/10*9, (getHeight()/4)+5);
+        g.drawString("Seats: " + customer.getSeats().length, getWidth()/10*9, (getHeight()*3/4)+5);
     }
 
 

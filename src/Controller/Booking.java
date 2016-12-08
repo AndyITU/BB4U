@@ -10,7 +10,7 @@ public class Booking {
 
 
     /* GETTERS */
-    static Show getShow(int id) {
+    public static Show getShow(int id) {
         if(show == null || show.getId() != id)
             show = Database.getShows(id)[0];
         return show;
