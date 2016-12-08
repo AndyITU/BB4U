@@ -43,20 +43,20 @@ public class Booking {
         return s;
     }
 
-    static Reservation[] getReservations(String name, String contact_info) {
+    public static Reservation[] getReservations(String name, String contact_info) {
         return Database.getReservations(name, contact_info);
     }
-    static Reservation[] getReservations(int show_id) {
+    /*static Reservation[] getReservations(int show_id) {
         return Database.getReservations(show_id);
-    }
-    static Reservation[] getReservations() {
-        return getReservations(0);
+    }*/
+    public static Reservation[] getReservations() {
+        return Database.getReservations(0);
     }
 
 
     /* SETTERS */
 
-    static void bookSeats(Reservation r) throws SQLException, IllegalArgumentException {
+    static void makeReservation(Reservation r) throws SQLException, IllegalArgumentException {
         if(Database.isReserved(r.getShow_id(), r.getSeats()))
             throw new IllegalArgumentException("One or more of the seats are already booked!");
         if(r.getName().equals("") || r.getContact_info().equals(""))
@@ -91,13 +91,13 @@ public class Booking {
     static void editReservation(Reservation r, Reservation r1) {
         removeReservation(r);
         try {
-            bookSeats(r1);
+            makeReservation(r1);
         } catch(SQLException e) {
             e.printStackTrace();
         } catch(IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             try {
-                bookSeats(r);
+                makeReservation(r);
             } catch(SQLException | IllegalArgumentException x) {
                 x.printStackTrace();
             }

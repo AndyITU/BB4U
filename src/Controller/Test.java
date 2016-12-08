@@ -28,7 +28,7 @@ class Test {
             new SeatModel(4, 3, true)
         };
         try {
-            Booking.bookSeats(new Reservation(Database.getNextReservationID(), 2, s, 1, "Andy", "12345678"));
+            Booking.makeReservation(new Reservation(Database.getNextReservationID(), 2, s, 1, "Andy", "12345678"));
         } catch(SQLException | IllegalArgumentException e) {
             e.printStackTrace();
         }*/
