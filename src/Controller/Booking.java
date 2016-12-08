@@ -1,6 +1,7 @@
 package Controller;
 import Model.*;
 
+import javax.swing.*;
 import java.sql.SQLException;
 
 public class Booking {
@@ -73,4 +74,29 @@ public class Booking {
         }
     }
 
+    static void removeReservation(Reservation r) {
+        try {
+            Database.updateTable(
+                    "DELETE FROM reservations WHERE id="+r.getId()
+            );
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void editReservation(Reservation r, Reservation r1) {
+        removeReservation(r);
+        try {
+            bookSeats(r1);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } catch(IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            try {
+                bookSeats(r);
+            } catch(SQLException | IllegalArgumentException x) {
+                x.printStackTrace();
+            }
+        }
+    }
 }
