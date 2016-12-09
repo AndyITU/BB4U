@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class SeatPanel extends JPanel
+public class SeatPanel extends JPanel implements SeatPanel_Interface
 {
     private final Seat[][] viewSeats;
     private final int rowID;
