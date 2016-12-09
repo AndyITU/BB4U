@@ -53,15 +53,21 @@ public class SeatPanel extends JPanel {
         }
     }
 
-    public void setClickAble(Boolean b) {
+    public void setClickable(Boolean b) {
         for (int i = 0; i < rowID; i++) {
             for (int k = 0; k < columnID; k++) {
                 viewSeats[i][k].setClickable(b);
             }
         }
     }
+    public void setClickable(SeatModel[] seats) {
+        for (SeatModel s: seats) {
+            viewSeats[s.getRow()-1][s.getCol()-1].setClickable(true);
+        }
+    }
     public void setSelectedSeats(SeatModel[] seats) {
         for (SeatModel seat : seats) {
+            viewSeats[seat.getRow()-1][seat.getCol()-1].setBooked(false);
             viewSeats[seat.getRow()-1][seat.getCol()-1].setSelectedSomething(true);
         }
     }

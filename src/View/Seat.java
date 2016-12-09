@@ -19,6 +19,7 @@ public class Seat extends JButton implements MouseListener
         setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
         addMouseListener(this);
         setContentAreaFilled(false);
+        setFocusable(false);
         rowID = row+1;
         columnID = column+1;
         isClickable = b;
@@ -89,7 +90,12 @@ public class Seat extends JButton implements MouseListener
     public void mouseReleased(MouseEvent e) {
     }
     public boolean setBooked(Boolean b) {
-        if (isSelected && isClickable) {
+        if (isSelected && isClickable && b) {
+            isBooked = b;
+            isSelected = false;
+            repaint();
+            return true;
+        } else if(isClickable && !b) {
             isBooked = b;
             isSelected = false;
             repaint();

@@ -5,9 +5,7 @@ import Model.Show;
 import View.*;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -20,6 +18,7 @@ public class ViewController {
     private final ReservationPanel reservationViewPanel;
     private Show currentShow = Booking.getShow(1);
     private Show searchShow;
+    private Reservation editReservation;
     private String movieString = "";
     private String dateString = "";
     private String auditoriumID = "";
@@ -75,32 +74,23 @@ public class ViewController {
                 JOptionPane.showMessageDialog(null, "There is an error in the customer info");
             }
         });
-        // Reservation seat panels functionality
 
-        frame.getReservationPanel().getReservationSeatPanel().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_ENTER){
-                    System.out.println("Enter");
-                }
-                else {
-                    System.out.println("Nothing");
-                }
-            }
+        // Reservation seat panels functionality
+        frame.setFocusable(true);
+        frame.addKeyListener(new KeyListener() {
+            @Override public void keyTyped(KeyEvent e) {}
+            @Override public void keyReleased(KeyEvent e) {}
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-                    System.out.println("Enter");
+                if (e.getKeyChar() == KeyEvent.VK_ENTER && frame.getCurrentPanel() == frame.getReservationPanel() && editReservation != null) {
+                    Reservation r = new Reservation(editReservation.getId(), editReservation.getShow_id(),
+                            reservationViewPanel.getReservationSeatPanel().startBook(), editReservation.getAud_id(),
+                            editReservation.getName(), editReservation.getContact_info()
+                    );
+                    Booking.editReservation(editReservation, r);
+                    editReservation = null;
                 }
-                else {
-                    System.out.println("NothingToo");
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
             }
         });
 
@@ -170,9 +160,10 @@ public class ViewController {
 
     public void sendAnswer(int answer, Reservation r) {
         if (answer == JOptionPane.YES_OPTION) {
-            Booking.removeReservation(r);
+            editReservation = r;
             frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
-            reservationViewPanel.getReservationSeatPanel().setClickAble(true);
+            reservationViewPanel.getReservationSeatPanel().setClickable(true);
+            reservationViewPanel.getReservationSeatPanel().setClickable(r.getSeats());
             reservationViewPanel.getReservationSeatPanel().setSelectedSeats(r.getSeats());
         }
             else if (answer == JOptionPane.NO_OPTION) {
