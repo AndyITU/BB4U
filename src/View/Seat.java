@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Seat extends JButton implements MouseListener
+public class Seat extends JButton implements MouseListener, Seat_Interface
 {
     private boolean isSelected;
     private boolean isHighlighted;
@@ -28,7 +28,7 @@ public class Seat extends JButton implements MouseListener
         seatName(rowID,columnID, g);
     }
     
-    private void makeSquare(Graphics g) {
+    public void makeSquare(Graphics g) {
         if (isBooked) {
             g.setColor(Color.red);
         }
@@ -56,7 +56,7 @@ public class Seat extends JButton implements MouseListener
         getHeight()-getHeight()/5);
     }
 
-    private void seatName(int k, int s, Graphics g) {
+    public void seatName(int k, int s, Graphics g) {
         g.setFont(new Font("Arial", Font.BOLD, 18));
         g.drawString("Row:"+k, getWidth()/10,getHeight()-getHeight()/4);
         g.drawString("Seat:"+s, getWidth()/10, getHeight()-(getHeight()/4*3));
