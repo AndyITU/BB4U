@@ -6,23 +6,27 @@ import View.*;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.util.Objects;
 
 public class ViewController {
 
-    private static MainFrame frame;
+    private final MainFrame frame;
     private final BookingViewPanel bookingViewPanel;
     private final SearchViewPanel searchPanel;
     private final ButtonPanel buttonPanel;
     private final ReservationPanel reservationViewPanel;
-    private static Show currentShow = Booking.getShow(1);
+    private Show currentShow = Booking.getShow(1);
     private Show searchShow;
     private String movieString = "";
     private String dateString = "";
     private String auditoriumID = "";
 
-    public ViewController() {
+    private static ViewController instance = null;
+
+    private ViewController() {
         frame = new MainFrame(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
         bookingViewPanel = frame.getBookingPanel();
         searchPanel = frame.getSearchPanel();
@@ -30,6 +34,15 @@ public class ViewController {
         reservationViewPanel = frame.getReservationPanel();
         setupButtons();
         bookingViewPanel.getSeatPanel().startBook();
+    }
+
+    public static void createInstance() {
+        if (instance == null) {
+            instance = new ViewController();
+        }
+    }
+    public static ViewController getInstance() {
+        return instance;
     }
     private void setupButtons() {
         // Booking Panel book Button functionality
@@ -62,12 +75,41 @@ public class ViewController {
                 JOptionPane.showMessageDialog(null, "There is an error in the customer info");
             }
         });
+        // Reservation seat panels functionality
+
+        frame.getReservationPanel().getReservationSeatPanel().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER){
+                    System.out.println("Enter");
+                }
+                else {
+                    System.out.println("Nothing");
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                    System.out.println("Enter");
+                }
+                else {
+                    System.out.println("NothingToo");
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
         // Button Panels button functionality
         buttonPanel.getSearchButton().addActionListener(e -> frame.changeToPanel(searchPanel));
         buttonPanel.getBookingViewButton().addActionListener(e -> frame.changeToPanel(bookingViewPanel));
         buttonPanel.getReservationButton().addActionListener(e -> frame.changeToPanel(reservationViewPanel));
 
-// SearchViewPanel setup
+        // SearchViewPanel setup
 
         ActionListener movieDropDown = e -> {
             JComboBox sendInput =(JComboBox) e.getSource();
@@ -126,9 +168,12 @@ public class ViewController {
         return Search.getMovies();
     }
 
-    public static void sendAnswer(int answer, Reservation r) {
+    public void sendAnswer(int answer, Reservation r) {
         if (answer == JOptionPane.YES_OPTION) {
-            System.out.println("Edit");
+            Booking.removeReservation(r);
+            frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
+            reservationViewPanel.getReservationSeatPanel().setClickAble(true);
+            reservationViewPanel.getReservationSeatPanel().setSelectedSeats(r.getSeats());
         }
             else if (answer == JOptionPane.NO_OPTION) {
                 Booking.removeReservation(r);

@@ -25,9 +25,9 @@ public class ReservationEntry extends JButton implements MouseListener {
     private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
 
     public ReservationEntry(Reservation res) {
-        setSize(new Dimension (1000, 100));
+        setSize(new Dimension (1000, 70));
         setMaximumSize(getSize());
-        setMinimumSize(new Dimension(1000, 50));
+        setMinimumSize(new Dimension(1000, 10));
         addMouseListener(this);
         setContentAreaFilled(false);
         setVisible(true);
@@ -57,7 +57,7 @@ public class ReservationEntry extends JButton implements MouseListener {
                 "Cancel"
         };
         int answer = JOptionPane.showOptionDialog(null, "Would you like to edit, or remove?", "Reservation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, optionList, optionList[2]);
-        ViewController.sendAnswer(answer, customer);
+        ViewController.getInstance().sendAnswer(answer, customer);
     }
     public void mouseExited(MouseEvent e) {
         isHighlighted = false;

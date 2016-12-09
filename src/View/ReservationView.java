@@ -12,7 +12,7 @@ public class ReservationView extends JPanel{
 
     public ReservationView(Reservation[] reservations) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setPreferredSize(new Dimension(1000, 1000));
+        setPreferredSize(new Dimension(1000, 70*reservations.length));
         setMaximumSize(new Dimension(1000, 2000));
         for (int i = 0; i < reservations.length; i++) {
             add(Box.createRigidArea(new Dimension(0,5)));

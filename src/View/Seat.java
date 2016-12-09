@@ -5,22 +5,23 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Seat extends JButton implements MouseListener, Seat_Interface
+public class Seat extends JButton implements MouseListener
 {
     private boolean isSelected;
     private boolean isHighlighted;
     private boolean isBooked;
+    private boolean isClickable;
     private final int rowID;
     private final int columnID;
 
-    public Seat(int row, int column) {
+    public Seat(int row, int column, Boolean b) {
         setPreferredSize(new Dimension(10,10));
         setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
         addMouseListener(this);
         setContentAreaFilled(false);
         rowID = row+1;
         columnID = column+1;
-
+        isClickable = b;
     }
     
     public void paint (Graphics g) {
@@ -63,7 +64,7 @@ public class Seat extends JButton implements MouseListener, Seat_Interface
     }
 
     public void mouseClicked(MouseEvent e) {
-        if (!isBooked) {
+        if (!isBooked && isClickable) {
             isSelected = !isSelected;
             repaint();
         }
@@ -79,6 +80,7 @@ public class Seat extends JButton implements MouseListener, Seat_Interface
         repaint();
     }
     public void mouseEntered(MouseEvent e) {
+        if (isClickable)
         isHighlighted = true;
         repaint();
     }
@@ -87,13 +89,20 @@ public class Seat extends JButton implements MouseListener, Seat_Interface
     public void mouseReleased(MouseEvent e) {
     }
     public boolean setBooked(Boolean b) {
-        if (isSelected) {
+        if (isSelected && isClickable) {
             isBooked = b;
             isSelected = false;
             repaint();
             return true;
         }
         return false;
+    }
+    public void setClickable(Boolean b) {
+        isClickable = b;
+    }
+    public void setSelectedSomething(Boolean b) {
+        isSelected = true;
+        repaint();
     }
     public void setModelBooked(Boolean b) {
         isBooked = b;

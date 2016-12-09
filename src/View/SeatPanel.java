@@ -12,26 +12,25 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class SeatPanel extends JPanel implements SeatPanel_Interface
-{
+public class SeatPanel extends JPanel {
     private final Seat[][] viewSeats;
     private final int rowID;
     private final int columnID;
 
 
-    public SeatPanel(int rows, int columns, SeatModel[] reservedSeats) {
-        super(new GridLayout(0,columns));
+    public SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
+        super(new GridLayout(0, columns));
         rowID = rows;
         columnID = columns;
         viewSeats = new Seat[rowID][columnID];
-        for ( int i = 0; i < rowID; i++)
-            for ( int k = 0; k < columnID; k++){
-                Seat s = new Seat(i,k);
+        for (int i = 0; i < rowID; i++)
+            for (int k = 0; k < columnID; k++) {
+                Seat s = new Seat(i, k, b);
                 this.add(s);
                 viewSeats[i][k] = s;
 
             }
-        setPreferredSize(new Dimension(1000,300));
+        setPreferredSize(new Dimension(1000, 300));
         setVisible(true);
         newBook(reservedSeats);
     }
@@ -40,17 +39,30 @@ public class SeatPanel extends JPanel implements SeatPanel_Interface
         ArrayList<SeatModel> newReservation = new ArrayList<>();
         for (int i = 0; i < rowID; i++) {
             for (int k = 0; k < columnID; k++) {
-                if( viewSeats[i][k].setBooked(true) ) {
-                    newReservation.add(new SeatModel(k+1,i+1,true));
+                if (viewSeats[i][k].setBooked(true)) {
+                    newReservation.add(new SeatModel(k + 1, i + 1, true));
                 }
             }
         }
         return newReservation.toArray(new SeatModel[0]);
     }
 
-    public void newBook(SeatModel[] Seats) {
-        for (SeatModel Seat: Seats) {
+    public void newBook(SeatModel[] seats) {
+        for (SeatModel Seat : seats) {
             viewSeats[Seat.getRow() - 1][Seat.getCol() - 1].setModelBooked(Seat.getIsBooked());
+        }
+    }
+
+    public void setClickAble(Boolean b) {
+        for (int i = 0; i < rowID; i++) {
+            for (int k = 0; k < columnID; k++) {
+                viewSeats[i][k].setClickable(b);
+            }
+        }
+    }
+    public void setSelectedSeats(SeatModel[] seats) {
+        for (SeatModel seat : seats) {
+            viewSeats[seat.getRow()-1][seat.getCol()-1].setSelectedSomething(true);
         }
     }
 }

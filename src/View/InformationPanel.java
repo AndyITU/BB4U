@@ -47,7 +47,8 @@ public class InformationPanel extends JPanel
         add(contactBox);
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
-            MaskFormatter nameRule = new MaskFormatter("?????????????????????????????????");
+            MaskFormatter nameRule = new MaskFormatter("***************************************************");
+            nameRule.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVXYZWÆØÅabcdefghijklmnopqrstuvxyzwæøå ");
             contactPhone = new JFormattedTextField();
             contactName = new JFormattedTextField();
             nameRule.install(contactName);
