@@ -48,9 +48,7 @@ public class InformationPanel extends JPanel
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
             MaskFormatter nameRule = new MaskFormatter("?????????????????????????????????");
-            NumberFormatter nf = new NumberFormatter();
-            nf.setMinimum(8);
-            contactPhone = new JFormattedTextField(nf);
+            contactPhone = new JFormattedTextField();
             contactName = new JFormattedTextField();
             nameRule.install(contactName);
             phoneRule.install(contactPhone);
