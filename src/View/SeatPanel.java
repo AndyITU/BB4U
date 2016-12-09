@@ -48,7 +48,7 @@ public class SeatPanel extends JPanel
         return newReservation.toArray(new SeatModel[0]);
     }
 
-    private void newBook(SeatModel[] Seats) {
+    public void newBook(SeatModel[] Seats) {
         for (SeatModel Seat: Seats) {
             viewSeats[Seat.getRow() - 1][Seat.getCol() - 1].setModelBooked(Seat.getIsBooked());
         }
