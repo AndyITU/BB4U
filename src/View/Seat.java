@@ -26,9 +26,7 @@ public class Seat extends JButton implements MouseListener
         isClickable = b;
     }
 
-    public void paint (Graphics g) {
-        //makeSquare(g);
-        //seatName(rowID,columnID, g);
+    public void paint (Graphics g) {;
         if (isBooked) {
             g.drawImage(SeatPanel.BOOKED_IMAGE, 0,0, null  );
         }
@@ -41,8 +39,10 @@ public class Seat extends JButton implements MouseListener
         else {
             g.drawImage(SeatPanel.NORMAL_IMAGE, 0,0, null  );
         }
+        seatName(rowID,columnID, g);
     }
-
+// The old method of making squares - Outdated -
+    /**
     public void makeSquare(Graphics g) {
         if (isBooked) {
             g.setColor(Color.red);
@@ -70,11 +70,12 @@ public class Seat extends JButton implements MouseListener
         getWidth()-getWidth()/5,
         getHeight()-getHeight()/5);
     }
+     */
 
     public void seatName(int k, int s, Graphics g) {
-        g.setFont(new Font("Arial", Font.BOLD, 18));
-        g.drawString("Row:"+k, getWidth()/10,getHeight()-getHeight()/4);
-        g.drawString("Seat:"+s, getWidth()/10, getHeight()-(getHeight()/4*3));
+        g.setFont(new Font("Haettenschweiler", Font.PLAIN, 12));
+        g.drawString("R: "+k, getWidth()/10,(getHeight());
+        g.drawString("S: "+s, (getWidth()/2), (getHeight());
     }
 
     public void mouseClicked(MouseEvent e) {
