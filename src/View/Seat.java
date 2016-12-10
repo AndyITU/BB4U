@@ -1,9 +1,13 @@
 package View;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Seat extends JButton implements MouseListener
 {
@@ -13,6 +17,8 @@ public class Seat extends JButton implements MouseListener
     private boolean isClickable;
     private final int rowID;
     private final int columnID;
+    private BufferedImage image;
+
 
     public Seat(int row, int column, boolean b) {
         setPreferredSize(new Dimension(10,10));
@@ -23,13 +29,19 @@ public class Seat extends JButton implements MouseListener
         rowID = row+1;
         columnID = column+1;
         isClickable = b;
+        try {
+            image = ImageIO.read(new File("/src/Untitled-4.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
-    
+
     public void paint (Graphics g) {
-        makeSquare(g);
-        seatName(rowID,columnID, g);
+        //makeSquare(g);
+        //seatName(rowID,columnID, g);
+        g.drawImage(image, 0,0, null  );
     }
-    
+
     public void makeSquare(Graphics g) {
         if (isBooked) {
             g.setColor(Color.red);
