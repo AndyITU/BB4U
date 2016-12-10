@@ -2,17 +2,15 @@ package View;
 
 import Model.Show;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.IllegalFormatException;
 import java.util.Locale;
 
 /**
@@ -38,7 +36,14 @@ public class InformationPanel extends JPanel
         //setLayout(new GridLayout(2, 2));
         setPreferredSize(new Dimension(1000, 50));
         setVisible(true);
-        bookButton = new JButton("BOOK SELECTED");
+        bookButton = new JButton();
+        try {
+            bookButton.setIcon(new ImageIcon(ImageIO.read(Seat.class.getResourceAsStream("images/submit_button.png"))
+                .getScaledInstance(550, 154, Image.SCALE_SMOOTH)));
+        } catch(IOException x) {
+            x.printStackTrace();
+            bookButton.setText("BOOK SELECTED");
+        }
         JPanel contactBox = new JPanel();
         contactBox.setLayout(new GridLayout(2, 2));
         add(createLeftInformationBox(show.getMovie(), show.getAud_id(), seatsReserved, seatsTotal));
