@@ -50,7 +50,7 @@ public class ViewController {
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
             customerName.replace(" ","");
             customerPhone.replace(" ","");
-            if ( !customerName.trim().equals("") && !customerPhone.trim().equals("") && customerPhone.equals(8) )
+            if ( !customerName.trim().equals("") && customerPhone.trim().length() == 8 )
             {
                 try {
                     Booking.makeReservation(new Reservation(
