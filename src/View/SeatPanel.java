@@ -19,8 +19,10 @@ public class SeatPanel extends JPanel {
     private final Seat[][] viewSeats;
     private final int rowID;
     private final int columnID;
-    protected static Image NORMAL_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
-    protected static Image BOOKED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    static Image NORMAL_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    static Image BOOKED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    static Image SELECTED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    static Image HIGHLIGHT_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
 
 
     public SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
@@ -29,8 +31,14 @@ public class SeatPanel extends JPanel {
         columnID = columns;
         viewSeats = new Seat[rowID][columnID];
         try {
-            NORMAL_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/normal_seat.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-            BOOKED_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/booked_seat.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            NORMAL_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/normal_seat.png"))
+                    .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
+            BOOKED_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/booked_seat.png"))
+                    .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
+            SELECTED_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/selected_seat.png"))
+                    .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
+            HIGHLIGHT_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/highlight_seat.png"))
+                    .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -32,12 +32,12 @@ public class Seat extends JButton implements MouseListener
         if (isBooked) {
             g.drawImage(SeatPanel.BOOKED_IMAGE, 0,0, null  );
         }
-        /*else if (isSelected) {
-            g.setColor(Color.pink);
+        else if (isSelected) {
+            g.drawImage(SeatPanel.SELECTED_IMAGE, 0,0, null  );
         }
         else if (isHighlighted) {
-            g.setColor(Color.yellow);
-        }*/
+            g.drawImage(SeatPanel.HIGHLIGHT_IMAGE, 0,0, null  );
+        }
         else {
             g.drawImage(SeatPanel.NORMAL_IMAGE, 0,0, null  );
         }
