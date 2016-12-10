@@ -27,17 +27,18 @@ public class SeatPanel extends JPanel {
 
     public SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
         super(new GridLayout(0, columns));
+        setMinimumSize(new Dimension(1000, 500));
         rowID = rows;
         columnID = columns;
         viewSeats = new Seat[rowID][columnID];
         try {
-            NORMAL_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/normal_seat.png"))
+            NORMAL_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/Green Seat2.png"))
                     .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
             BOOKED_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/booked_seat.png"))
                     .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
-            SELECTED_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/selected_seat.png"))
+            SELECTED_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/Orange Seat.png"))
                     .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
-            HIGHLIGHT_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/highlight_seat.png"))
+            HIGHLIGHT_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/teal_seat.png"))
                     .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
         } catch (IOException ex) {
             ex.printStackTrace();
