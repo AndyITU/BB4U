@@ -39,7 +39,7 @@ public class SeatPanel extends JPanel {
             SELECTED_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/Orange Seat.png"))
                     .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
             HIGHLIGHT_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/teal_seat.png"))
-                    .getScaledInstance(1000/columns, 500/rows, Image.SCALE_SMOOTH);
+                    .getScaledInstance(1000/columns+8, 500/rows+8, Image.SCALE_SMOOTH);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

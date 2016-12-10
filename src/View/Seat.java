@@ -36,7 +36,7 @@ public class Seat extends JButton implements MouseListener
             g.drawImage(SeatPanel.SELECTED_IMAGE, 0,0, null  );
         }
         else if (isHighlighted) {
-            g.drawImage(SeatPanel.HIGHLIGHT_IMAGE, 0,0, null  );
+            g.drawImage(SeatPanel.HIGHLIGHT_IMAGE, -4,-4, null  );
         }
         else {
             g.drawImage(SeatPanel.NORMAL_IMAGE, 0,0, null  );
