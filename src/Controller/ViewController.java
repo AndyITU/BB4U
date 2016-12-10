@@ -67,7 +67,7 @@ public class ViewController {
                     JOptionPane.showMessageDialog(null, x.getMessage());
                 }
                 bookingViewPanel.getInfoPanel().resetCustomerInfo();
-                frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
+                frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
                 System.out.print(customerPhone.trim().length());
             }
             else {
@@ -150,7 +150,7 @@ public class ViewController {
             searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
             currentShow = searchShow;
             frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
-            frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
+            frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
             setupButtons();
             frame.changeToPanel(bookingViewPanel);
             searchLockDown();
@@ -164,18 +164,17 @@ public class ViewController {
     public void sendAnswer(int answer, Reservation r) {
         if (answer == JOptionPane.YES_OPTION) {
             editReservation = r;
-            frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
+            frame.getReservationPanel().updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
             reservationViewPanel.getReservationSeatPanel().setClickable(true);
             reservationViewPanel.getReservationSeatPanel().setClickable(r.getSeats());
             reservationViewPanel.getReservationSeatPanel().setSelectedSeats(r.getSeats());
         }
-            else if (answer == JOptionPane.NO_OPTION) {
-                Booking.removeReservation(r);
-                frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
-                frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
-
+        else if (answer == JOptionPane.NO_OPTION) {
+            Booking.removeReservation(r);
+            frame.getReservationPanel().updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
+            frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
         }
-        }
+    }
 
     private void searchLockDown() {
         movieString = "";

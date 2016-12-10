@@ -14,7 +14,7 @@ public class Seat extends JButton implements MouseListener
     private final int rowID;
     private final int columnID;
 
-    public Seat(int row, int column, Boolean b) {
+    public Seat(int row, int column, boolean b) {
         setPreferredSize(new Dimension(10,10));
         setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
         addMouseListener(this);
