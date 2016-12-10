@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class Seat extends JButton implements MouseListener
@@ -29,17 +28,11 @@ public class Seat extends JButton implements MouseListener
         rowID = row+1;
         columnID = column+1;
         isClickable = b;
-        try {
-            image = ImageIO.read(new File("/src/Untitled-4.png"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public void paint (Graphics g) {
-        //makeSquare(g);
-        //seatName(rowID,columnID, g);
-        g.drawImage(image, 0,0, null  );
+        makeSquare(g);
+        seatName(rowID,columnID, g);
     }
 
     public void makeSquare(Graphics g) {

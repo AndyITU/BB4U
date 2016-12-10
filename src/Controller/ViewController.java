@@ -45,7 +45,7 @@ public class ViewController {
     }
     private void setupButtons() {
         // Booking Panel book Button functionality
-        bookingViewPanel.getInfoPanel().getBookButton().addActionListener(e -> {
+        ActionListener BookingButton = e -> {
             String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
             customerName.replace(" ","");
@@ -73,31 +73,11 @@ public class ViewController {
             else {
                 JOptionPane.showMessageDialog(null, "There is an error in the customer info");
             }
-        });
 
+        };
+        bookingViewPanel.getInfoPanel().getBookButton().addActionListener(BookingButton);
         // Reservation seat panels functionality
         frame.setFocusable(true);
-        frame.addKeyListener(new KeyListener() {
-            @Override public void keyTyped(KeyEvent e) {}
-            @Override public void keyReleased(KeyEvent e) {}
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_ENTER && frame.getCurrentPanel() == frame.getReservationPanel() && editReservation != null) {
-                    Reservation r = new Reservation(editReservation.getId(), editReservation.getShow_id(),
-                            reservationViewPanel.getReservationSeatPanel().startBook(), editReservation.getAud_id(),
-                            editReservation.getName(), editReservation.getContact_info()
-                    );
-                    Booking.editReservation(editReservation, r);
-                    frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
-                    editReservation = null;
-                    reservationViewPanel.getReservationSeatPanel().setClickable(false);
-                    frame.getReservationPanel().getReservationList().updateEntries(Booking.getReservations());
-                    frame.getReservationPanel().revalidate();
-                    frame.getReservationPanel().repaint();
-                }
-            }
-        });
 
         // Button Panels button functionality
         buttonPanel.getSearchButton().addActionListener(e -> frame.changeToPanel(searchPanel));
@@ -157,6 +137,28 @@ public class ViewController {
             setupButtons();
             frame.changeToPanel(bookingViewPanel);
             searchLockDown();
+        });
+        frame.addKeyListener(new KeyListener() {
+            @Override public void keyTyped(KeyEvent e) {}
+            @Override public void keyReleased(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER && frame.getCurrentPanel() == frame.getReservationPanel() && editReservation != null) {
+                    Reservation r = new Reservation(editReservation.getId(), editReservation.getShow_id(),
+                            reservationViewPanel.getReservationSeatPanel().startBook(), editReservation.getAud_id(),
+                            editReservation.getName(), editReservation.getContact_info()
+                    );
+                    Booking.editReservation(editReservation, r);
+                    frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
+                    bookingViewPanel.getInfoPanel().getBookButton().addActionListener(BookingButton);
+                    editReservation = null;
+                    reservationViewPanel.getReservationSeatPanel().setClickable(false);
+                    frame.getReservationPanel().getReservationList().updateEntries(Booking.getReservations());
+                    frame.getReservationPanel().revalidate();
+                    frame.getReservationPanel().repaint();
+                }
+            }
         });
     }
 
