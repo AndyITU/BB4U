@@ -16,7 +16,7 @@ public class Seat extends JButton implements MouseListener
     private boolean isClickable;
     private final int rowID;
     private final int columnID;
-    private BufferedImage image;
+    private Image image;
 
 
     public Seat(int row, int column, boolean b) {
@@ -28,11 +28,18 @@ public class Seat extends JButton implements MouseListener
         rowID = row+1;
         columnID = column+1;
         isClickable = b;
+        try {
+            image = ImageIO.read(Seat.class.getResourceAsStream("Untitled-4.png"));
+            image = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void paint (Graphics g) {
-        makeSquare(g);
-        seatName(rowID,columnID, g);
+        //makeSquare(g);
+        //seatName(rowID,columnID, g);
+        g.drawImage(image, 0,0, null  );
     }
 
     public void makeSquare(Graphics g) {
