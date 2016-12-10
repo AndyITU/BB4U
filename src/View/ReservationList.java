@@ -10,6 +10,8 @@ import java.awt.*;
  */
 public class ReservationList extends JPanel{
 
+
+
     public ReservationList(Reservation[] reservations) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(1000, 70*reservations.length));

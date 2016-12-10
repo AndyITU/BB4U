@@ -150,6 +150,7 @@ public class ViewController {
             searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
             currentShow = searchShow;
             frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
+            frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
             setupButtons();
             frame.changeToPanel(bookingViewPanel);
             searchLockDown();

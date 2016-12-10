@@ -83,6 +83,4 @@ public class ReservationEntry extends JButton implements MouseListener {
         g.drawString("Auditorium: " + audID, (getWidth()/3)*2, (getHeight()/4)+5);
         g.drawString("Seats: " + seats, (getWidth()/3)*2, (getHeight()*3/4)+5);
     }
-
-
 }
