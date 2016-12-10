@@ -35,6 +35,7 @@ public class MainFrame extends JFrame
         rPanel = new ReservationPanel(Booking.getReservations(), show, auditorium);
         searchPanel = new SearchViewPanel(ViewController.getMovieTitles());
 
+        setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1050,1000));
         setVisible(true);
