@@ -92,6 +92,9 @@ public class ViewController {
                     frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
                     editReservation = null;
                     reservationViewPanel.getReservationSeatPanel().setClickable(false);
+                    frame.getReservationPanel().getReservationList().updateEntries(Booking.getReservations());
+                    frame.getReservationPanel().revalidate();
+                    frame.getReservationPanel().repaint();
                 }
             }
         });

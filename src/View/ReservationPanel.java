@@ -36,6 +36,9 @@ public class ReservationPanel extends JPanel {
     public ReservationSearch getReservationSearch() {
         return rsPanel;
     }
+    public ReservationList getReservationList() {
+        return rlPanel;
+    }
     public SeatPanel getReservationSeatPanel() {
         return sPanel;
     }
