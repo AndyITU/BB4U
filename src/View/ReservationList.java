@@ -8,9 +8,9 @@ import java.awt.*;
 /**
  * Created by Mikkel on 07-12-2016.
  */
-public class ReservationView extends JPanel{
+public class ReservationList extends JPanel{
 
-    public ReservationView(Reservation[] reservations) {
+    public ReservationList(Reservation[] reservations) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(1000, 70*reservations.length));
         setMaximumSize(new Dimension(1000, 2000));

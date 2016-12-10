@@ -14,13 +14,13 @@ public class ReservationPanel extends JPanel {
 
     private SeatPanel sPanel;
     private CanvasPanel cPanel;
-    private ReservationView rvPanel;
+    private ReservationList rvPanel;
     private ReservationSearch rsPanel;
     public ReservationPanel(Reservation[] reservations, Show show, Auditorium auditorium) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(1000, 200));
         cPanel = new CanvasPanel();
-        rvPanel = new ReservationView(reservations);
+        rvPanel = new ReservationList(reservations);
         rvPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rsPanel = new ReservationSearch();
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()),false);
@@ -44,7 +44,7 @@ public class ReservationPanel extends JPanel {
         removeAll();
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()),false);
         cPanel = new CanvasPanel();
-        rvPanel = new ReservationView(reservations);
+        rvPanel = new ReservationList(reservations);
         rvPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rsPanel = new ReservationSearch();
         JScrollPane scrollPane = new JScrollPane(rvPanel);
