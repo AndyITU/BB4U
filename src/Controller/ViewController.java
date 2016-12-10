@@ -50,7 +50,7 @@ public class ViewController {
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
             customerName.replace(" ","");
             customerPhone.replace(" ","");
-            if ( !customerName.trim().equals("") && !customerPhone.trim().equals("") )
+            if ( !customerName.trim().equals("") && !customerPhone.trim().equals("") && customerPhone.equals(8) )
             {
                 try {
                     Booking.makeReservation(new Reservation(
@@ -89,7 +89,9 @@ public class ViewController {
                             editReservation.getName(), editReservation.getContact_info()
                     );
                     Booking.editReservation(editReservation, r);
+                    frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
                     editReservation = null;
+                    reservationViewPanel.getReservationSeatPanel().setClickable(false);
                 }
             }
         });
@@ -169,7 +171,9 @@ public class ViewController {
             else if (answer == JOptionPane.NO_OPTION) {
                 Booking.removeReservation(r);
                 frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow, Booking.getAuditorium(currentShow.getId()));
-            }
+                frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
+
+        }
         }
 
     private void searchLockDown() {
