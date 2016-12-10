@@ -13,10 +13,9 @@ public class Seat extends JButton implements MouseListener
     private boolean isClickable;
     private final int rowID;
     private final int columnID;
-    private Image image;
 
 
-    public Seat(int row, int column, boolean b, Image img) {
+    public Seat(int row, int column, boolean b) {
         setPreferredSize(new Dimension(10,10));
         setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
         addMouseListener(this);
@@ -25,13 +24,23 @@ public class Seat extends JButton implements MouseListener
         rowID = row+1;
         columnID = column+1;
         isClickable = b;
-        image = img;
     }
 
     public void paint (Graphics g) {
         //makeSquare(g);
         //seatName(rowID,columnID, g);
-        g.drawImage(image, 0,0, null  );
+        if (isBooked) {
+            g.drawImage(SeatPanel.BOOKED_IMAGE, 0,0, null  );
+        }
+        /*else if (isSelected) {
+            g.setColor(Color.pink);
+        }
+        else if (isHighlighted) {
+            g.setColor(Color.yellow);
+        }*/
+        else {
+            g.drawImage(SeatPanel.NORMAL_IMAGE, 0,0, null  );
+        }
     }
 
     public void makeSquare(Graphics g) {

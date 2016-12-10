@@ -19,6 +19,8 @@ public class SeatPanel extends JPanel {
     private final Seat[][] viewSeats;
     private final int rowID;
     private final int columnID;
+    protected static Image NORMAL_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    protected static Image BOOKED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
 
 
     public SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
@@ -26,16 +28,15 @@ public class SeatPanel extends JPanel {
         rowID = rows;
         columnID = columns;
         viewSeats = new Seat[rowID][columnID];
-        Image img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
         try {
-            img = ImageIO.read(Seat.class.getResourceAsStream("Untitled-4.png"));
-            img = img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            NORMAL_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/normal_seat.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            BOOKED_IMAGE = ImageIO.read(Seat.class.getResourceAsStream("images/booked_seat.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         for (int i = 0; i < rowID; i++)
             for (int k = 0; k < columnID; k++) {
-                Seat s = new Seat(i, k, b, img);
+                Seat s = new Seat(i, k, b);
                 this.add(s);
                 viewSeats[i][k] = s;
 
