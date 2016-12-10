@@ -26,7 +26,7 @@ public class Seat extends JButton implements MouseListener
         isClickable = b;
     }
 
-    public void paint (Graphics g) {;
+    public void paint (Graphics g) {
         if (isBooked) {
             g.drawImage(SeatPanel.BOOKED_IMAGE, 0,0, null  );
         }
@@ -74,8 +74,8 @@ public class Seat extends JButton implements MouseListener
 
     public void seatName(int k, int s, Graphics g) {
         g.setFont(new Font("Haettenschweiler", Font.PLAIN, 12));
-        g.drawString("R: "+k, getWidth()/10,(getHeight());
-        g.drawString("S: "+s, (getWidth()/2), (getHeight());
+        g.drawString("R: "+k, getWidth()/10,(getHeight()));
+        g.drawString("S: "+s, (getWidth()/2), (getHeight()));
     }
 
     public void mouseClicked(MouseEvent e) {
