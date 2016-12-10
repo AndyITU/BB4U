@@ -1,12 +1,9 @@
 package View;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Seat extends JButton implements MouseListener
 {
@@ -19,7 +16,7 @@ public class Seat extends JButton implements MouseListener
     private Image image;
 
 
-    public Seat(int row, int column, boolean b) {
+    public Seat(int row, int column, boolean b, Image img) {
         setPreferredSize(new Dimension(10,10));
         setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
         addMouseListener(this);
@@ -28,12 +25,7 @@ public class Seat extends JButton implements MouseListener
         rowID = row+1;
         columnID = column+1;
         isClickable = b;
-        try {
-            image = ImageIO.read(Seat.class.getResourceAsStream("Untitled-4.png"));
-            image = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        image = img;
     }
 
     public void paint (Graphics g) {

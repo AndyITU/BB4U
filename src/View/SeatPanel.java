@@ -2,8 +2,11 @@ package View;
 
 import Model.SeatModel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -23,9 +26,16 @@ public class SeatPanel extends JPanel {
         rowID = rows;
         columnID = columns;
         viewSeats = new Seat[rowID][columnID];
+        Image img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+        try {
+            img = ImageIO.read(Seat.class.getResourceAsStream("Untitled-4.png"));
+            img = img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         for (int i = 0; i < rowID; i++)
             for (int k = 0; k < columnID; k++) {
-                Seat s = new Seat(i, k, b);
+                Seat s = new Seat(i, k, b, img);
                 this.add(s);
                 viewSeats[i][k] = s;
 
