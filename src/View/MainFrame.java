@@ -16,12 +16,12 @@ import java.awt.*;
  */
 public class MainFrame extends JFrame
 {
-    private static BookingViewPanel bvPanel;
-    private static ReservationPanel rPanel;
-    private static SearchViewPanel searchPanel;
-    private static ButtonPanel bPanel;
-    private static Container pane;
-    private static JComponent currentPanel;
+    private BookingViewPanel bvPanel;
+    private ReservationPanel rPanel;
+    private SearchViewPanel searchPanel;
+    private ButtonPanel bPanel;
+    private Container pane;
+    private JComponent currentPanel;
 
     public MainFrame(Show show, Auditorium auditorium, int reservedSeats) {
         super();

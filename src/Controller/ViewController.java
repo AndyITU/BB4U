@@ -66,9 +66,7 @@ public class ViewController {
                 } catch (IllegalArgumentException x) {
                     JOptionPane.showMessageDialog(null, x.getMessage());
                 }
-                bookingViewPanel.getInfoPanel().resetCustomerInfo();
-                frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
-                System.out.print(customerPhone.trim().length());
+                reservationViewPanel.updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
             }
             else {
                 JOptionPane.showMessageDialog(null, "There is an error in the customer info");
@@ -133,7 +131,7 @@ public class ViewController {
             searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
             currentShow = searchShow;
             frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
-            frame.getReservationPanel().updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
+            reservationViewPanel.updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
             setupButtons();
             frame.changeToPanel(bookingViewPanel);
             searchLockDown();
@@ -144,7 +142,7 @@ public class ViewController {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_ENTER && frame.getCurrentPanel() == frame.getReservationPanel() && editReservation != null) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER && frame.getCurrentPanel() == reservationViewPanel && editReservation != null) {
                     Reservation r = new Reservation(editReservation.getId(), editReservation.getShow_id(),
                             reservationViewPanel.getReservationSeatPanel().startBook(), editReservation.getAud_id(),
                             editReservation.getName(), editReservation.getContact_info()
@@ -154,9 +152,9 @@ public class ViewController {
                     bookingViewPanel.getInfoPanel().getBookButton().addActionListener(BookingButton);
                     editReservation = null;
                     reservationViewPanel.getReservationSeatPanel().setClickable(false);
-                    frame.getReservationPanel().getReservationList().updateEntries(Booking.getReservations());
-                    frame.getReservationPanel().revalidate();
-                    frame.getReservationPanel().repaint();
+                    reservationViewPanel.getReservationList().updateEntries(Booking.getReservations());
+                    reservationViewPanel.revalidate();
+                    reservationViewPanel.repaint();
                 }
             }
         });
@@ -169,14 +167,14 @@ public class ViewController {
     public void sendAnswer(int answer, Reservation r) {
         if (answer == JOptionPane.YES_OPTION) {
             editReservation = r;
-            frame.getReservationPanel().updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
+            reservationViewPanel.updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
             reservationViewPanel.getReservationSeatPanel().setClickable(true);
             reservationViewPanel.getReservationSeatPanel().setClickable(r.getSeats());
             reservationViewPanel.getReservationSeatPanel().setSelectedSeats(r.getSeats());
         }
         else if (answer == JOptionPane.NO_OPTION) {
             Booking.removeReservation(r);
-            frame.getReservationPanel().updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
+            reservationViewPanel.updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
             frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
         }
     }
