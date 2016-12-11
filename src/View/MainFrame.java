@@ -25,6 +25,7 @@ public class MainFrame extends JFrame
 
     public MainFrame(Show show, Auditorium auditorium, int reservedSeats) {
         super();
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -38,6 +39,32 @@ public class MainFrame extends JFrame
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1050,1000));
+
+        // Loading screen
+        final SplashScreen splash = SplashScreen.getSplashScreen();
+        if (splash == null) {
+            return;
+        }
+        Graphics2D g = splash.createGraphics();
+        if (g == null) {
+            return;
+        }
+        for(int i=0; i<100; i++) {
+            final String[] comps = {"foo", "bar", "baz"};
+            g.setComposite(AlphaComposite.Clear);
+            g.fillRect(120,140,200,40);
+            g.setPaintMode();
+            g.setColor(Color.BLACK);
+            g.drawString("Loading "+comps[(i/5)%3]+"...", 120, 150);
+            splash.update();
+            try {
+                Thread.sleep(90);
+            }
+            catch(InterruptedException e) {
+            }
+        }
+        splash.close();
+
         setVisible(true);
         pane = getContentPane();
 

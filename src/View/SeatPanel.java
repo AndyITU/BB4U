@@ -19,10 +19,10 @@ public class SeatPanel extends JPanel {
     private final Seat[][] viewSeats;
     private final int rowID;
     private final int columnID;
-    static Image NORMAL_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
-    static Image BOOKED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
-    static Image SELECTED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
-    static Image HIGHLIGHT_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    Image NORMAL_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    Image BOOKED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    Image SELECTED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+    Image HIGHLIGHT_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
 
 
     public SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
@@ -45,7 +45,7 @@ public class SeatPanel extends JPanel {
         }
         for (int i = 0; i < rowID; i++)
             for (int k = 0; k < columnID; k++) {
-                Seat s = new Seat(i, k, b);
+                Seat s = new Seat(i, k, b, this);
                 this.add(s);
                 viewSeats[i][k] = s;
 

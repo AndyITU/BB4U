@@ -13,9 +13,10 @@ public class Seat extends JButton implements MouseListener
     private boolean isClickable;
     private final int rowID;
     private final int columnID;
+    private final SeatPanel seatPanel;
 
 
-    public Seat(int row, int column, boolean b) {
+    Seat(int row, int column, boolean b, SeatPanel seatPanel) {
         setPreferredSize(new Dimension(10,10));
         setSize(new Dimension(getWidth()-getWidth()/5, getHeight()-getHeight()/5));
         addMouseListener(this);
@@ -24,20 +25,21 @@ public class Seat extends JButton implements MouseListener
         rowID = row+1;
         columnID = column+1;
         isClickable = b;
+        this.seatPanel = seatPanel;
     }
 
     public void paint (Graphics g) {
         if (isBooked) {
-            g.drawImage(SeatPanel.BOOKED_IMAGE, 0,0, null  );
+            g.drawImage(seatPanel.BOOKED_IMAGE, 0,0, null );
         }
         else if (isSelected) {
-            g.drawImage(SeatPanel.SELECTED_IMAGE, 0,0, null  );
+            g.drawImage(seatPanel.SELECTED_IMAGE, 0,0, null );
         }
         else if (isHighlighted) {
-            g.drawImage(SeatPanel.HIGHLIGHT_IMAGE, -4,-4, null  );
+            g.drawImage(seatPanel.HIGHLIGHT_IMAGE, -4,-4, null );
         }
         else {
-            g.drawImage(SeatPanel.NORMAL_IMAGE, 0,0, null  );
+            g.drawImage(seatPanel.NORMAL_IMAGE, 0,0, null );
         }
         seatName(rowID,columnID, g);
     }
@@ -72,7 +74,7 @@ public class Seat extends JButton implements MouseListener
     }
      */
 
-    public void seatName(int k, int s, Graphics g) {
+    void seatName(int k, int s, Graphics g) {
         g.setFont(new Font("Haettenschweiler", Font.PLAIN, 12));
         g.drawString("R: "+k, getWidth()/10,(getHeight()));
         g.drawString("S: "+s, (getWidth()/2), (getHeight()));
@@ -103,7 +105,7 @@ public class Seat extends JButton implements MouseListener
     }
     public void mouseReleased(MouseEvent e) {
     }
-    public boolean setBooked(Boolean b) {
+    boolean setBooked(Boolean b) {
         if (isSelected && isClickable && b) {
             isBooked = b;
             isSelected = false;
@@ -117,14 +119,14 @@ public class Seat extends JButton implements MouseListener
         }
         return false;
     }
-    public void setClickable(Boolean b) {
+    void setClickable(Boolean b) {
         isClickable = b;
     }
-    public void setSelectedSomething(Boolean b) {
+    void setSelectedSomething(Boolean b) {
         isSelected = true;
         repaint();
     }
-    public void setModelBooked(Boolean b) {
+    void setModelBooked(Boolean b) {
         isBooked = b;
         isSelected = false;
         repaint();
