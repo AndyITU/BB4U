@@ -1,7 +1,9 @@
 package View;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Write a description of class View.ButtonPanel here.

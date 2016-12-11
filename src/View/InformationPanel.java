@@ -36,14 +36,7 @@ public class InformationPanel extends JPanel
         //setLayout(new GridLayout(2, 2));
         setPreferredSize(new Dimension(1000, 50));
         setVisible(true);
-        bookButton = new JButton();
-        try {
-            bookButton.setIcon(new ImageIcon(ImageIO.read(Seat.class.getResourceAsStream("images/submit_button.png"))
-                .getScaledInstance(550, 154, Image.SCALE_SMOOTH)));
-        } catch(IOException x) {
-            x.printStackTrace();
-            bookButton.setText("BOOK SELECTED");
-        }
+        bookButton = new JButton("Book");
         JPanel contactBox = new JPanel();
         contactBox.setLayout(new GridLayout(2, 2));
         add(createLeftInformationBox(show.getMovie(), show.getAud_id(), seatsReserved, seatsTotal));
