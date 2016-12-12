@@ -192,7 +192,6 @@ public class ViewController {
             editReservation = r;
             reservationViewPanel.updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
             reservationViewPanel.getReservationSeatPanel().setClickable(true);
-            reservationViewPanel.getReservationSeatPanel().setClickable(r.getSeats());
             reservationViewPanel.getReservationSeatPanel().setSelectedSeats(r.getSeats());
         }
         else if (answer == JOptionPane.NO_OPTION) {

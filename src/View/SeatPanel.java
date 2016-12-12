@@ -55,6 +55,13 @@ public class SeatPanel extends JPanel {
         startBooking(reservedSeats);
     }
 
+    /**
+     * This method is used for when making a new reservation. SeatPanel holds a reference to all the seats that it contains. The way the method works
+     * is by running through all of them, and checking whether the command .setBooked evaluates to true. If it does, that must mean that the seats were selected by the user,
+     * and were not already occupied. It then returns all the seats that have been succesfully booked.
+     *
+     * @return SeatModel[] containing the seats that were succesfully booked.
+     */
     public SeatModel[] newBooking() {
         ArrayList<SeatModel> newReservation = new ArrayList<>();
         for (int i = 0; i < rowID; i++) {
@@ -67,11 +74,22 @@ public class SeatPanel extends JPanel {
         return newReservation.toArray(new SeatModel[0]);
     }
 
+    /**
+     * This method is run in the start of the program, and when doing any sort of updates to SeatPanel.
+     * It takes an array of SeatModels and sets them to be booked in the interface.
+     * @param seats the list of seats that are already booked.
+     */
+
     public void startBooking(SeatModel[] seats) {
         for (SeatModel Seat : seats) {
             viewSeats[Seat.getRow() - 1][Seat.getCol() - 1].setModelBooked(Seat.getIsBooked());
         }
     }
+
+    /**
+     * This method runs through all of the seats and changes whether they are clickable/unclickable.
+     * @param b boolean used to determine if the seat should be clickable/unclickable.
+     */
 
     public void setClickable(Boolean b) {
         for (int i = 0; i < rowID; i++) {
@@ -80,11 +98,12 @@ public class SeatPanel extends JPanel {
             }
         }
     }
-    public void setClickable(SeatModel[] seats) {
-        for (SeatModel s: seats) {
-            viewSeats[s.getRow()-1][s.getCol()-1].setClickable(true);
-        }
-    }
+
+    /**
+     * This method runs through some of the seats, and changes them to be selected.
+     * @param seats SeatModel array that is used to set a certain amount of seats to be selected.
+     */
+
     public void setSelectedSeats(SeatModel[] seats) {
         for (SeatModel seat : seats) {
             viewSeats[seat.getRow()-1][seat.getCol()-1].setBooked(false);

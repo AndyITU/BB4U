@@ -45,12 +45,10 @@ public class MainFrame extends JFrame
 
         setVisible(true);
         pane = getContentPane();
-
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         pane.add(bPanel);
-        pane.add(bvPanel);
-        this.pack();
-        pane.add(new JPanel());
+        pane.add(searchPanel);
+        pack();
     }
     public void updateMoviePanel(Show show, Auditorium auditorium, int reservedSeats) {
         bvPanel.updatePanels(show, auditorium, reservedSeats);
