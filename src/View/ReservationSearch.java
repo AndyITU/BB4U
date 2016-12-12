@@ -6,7 +6,7 @@ import java.awt.*;
 import java.text.ParseException;
 
 /**
- * Write a description of class BookingFrame here.
+ * ReservationSearch
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -39,15 +39,12 @@ public class ReservationSearch extends JPanel{
         searchButton = new JButton("Search");
         add(searchButton);
     }
+
+    /**
+     * This method returns the search button from the search panel.
+     * @return A JButton in SearchPanel.
+     */
     public JButton getSearchButton () {
         return searchButton;
     }
-    public String getCustomerName() {
-        return contactName.getText();
-    }
-    public String getCustomerPhone()    {
-        return contactPhone.getText();
-    }
-
-
 }

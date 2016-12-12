@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Write a description of class BookingFrame here.
+ * SeatPanel is a class that consists of all the seats that are in a given auditorium, hence the rows and columns.
+ * It needs an array of ReservedSeats such that the {@link #startBooking(SeatModel[])} can begin. It also stores all
+ * of the pictures that the individual seat need to use to draw different colors.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -58,7 +60,7 @@ public class SeatPanel extends JPanel {
     /**
      * This method is used for when making a new reservation. SeatPanel holds a reference to all the seats that it contains. The way the method works
      * is by running through all of them, and checking whether the command .setBooked evaluates to true. If it does, that must mean that the seats were selected by the user,
-     * and were not already occupied. It then returns all the seats that have been succesfully booked.
+     * and were not already occupied. It then returns all the seats that have been successfully booked.
      *
      * @return SeatModel[] containing the seats that were succesfully booked.
      */

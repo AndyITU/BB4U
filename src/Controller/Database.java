@@ -45,9 +45,17 @@ class Database {
             statement.executeUpdate(
                     "INSERT INTO shows (aud_id, movie, date, duration) VALUES (2, 'Star Wars V - The Empire Strikes Back', '2016-11-28 22:30:00', '2:04');");
             statement.executeUpdate(
+                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (3, 'The Lord of The Rings: The Fellowship of the Ring 3D', '2016-11-29 23:30:00', '3:48');");
+            statement.executeUpdate(
+                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (4, 'The Lord of The Rings: The Fellowship of the Ring 3D', '2016-11-29 23:30:00', '3:48');");
+            statement.executeUpdate(
                     "INSERT INTO auditoriums (rows, cols) VALUES (5, 10);");
             statement.executeUpdate(
                     "INSERT INTO auditoriums (rows, cols) VALUES (6, 8);");
+            statement.executeUpdate(
+                    "INSERT INTO auditoriums (rows, cols) VALUES (25, 25);");
+            statement.executeUpdate(
+                    "INSERT INTO auditoriums (rows, cols) VALUES (50, 50);");
             System.out.println("*** SUCCESS ***\n\nQueries finished successfully\nClosing connection...");
         } catch(SQLException e) {
             System.out.println("*** FAILURE ***");

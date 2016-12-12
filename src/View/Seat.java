@@ -6,10 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * The "Seat" component works in extension of a JButton. We removed the button layout from java.swing and created our own, initially starting with sqares.
- * This have now been upgraded to fully functional pictures of seats, that works like the original squares did. The JButton does not know very much about its functionality.
- * Instead, it has a list of states. In Seat the boolean states are only used for graphical purposes, but it is vital for SeatPanel to be able of running through the seats to check their state, and act accordingly.
- * Originally, we set out to have Seat itself not create any interactions with other classes in the package, but after some testing it became apparent that making a connection to SeatPanel for pictures was a good solution.
+ * The "Seat" component works in extension of a JButton.
+ * It is supposed to represent a graphical expression of a Seat, and will assist in
+ * creating new reservations for the user. Mainly, it uses states to determine what
+ * sort of image it should draw, which it does by the aid of a MouseListener.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -40,12 +40,8 @@ public class Seat extends JButton implements MouseListener
 
 
     /**
-     * This is the method for drawing the graphical outlines of Seat.
-     * The method makes use of: isSelected, isHighlighted, isBooked.
-     * These booleans are important to SeatPanel, so that they may be shown
-     * correctly from the database, and also booked correctly. See {@link SeatPanel#startBooking(SeatModel[] seats) }
-     *
-     * The method makes use of {@link #seatName(int k, int s, Graphics g)} to draw the seats row and column.
+     * This method draws the graphical display of the Seat. Depending on what state the individual seat is in,
+     * the method will draw a corresponding image.
      */
     public void paint (Graphics g) {
         if (isBooked) {

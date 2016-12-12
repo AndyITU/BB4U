@@ -4,7 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Write a description of class BookingFrame here.
+ * SearchViewPanel is a JPanel consisting of JComboBoxes, and a JButton.
+ *
+ * The JComboBoxes all contribute with a value(date, movie, auditorium) and
+ * the button then registers the final show that was picked.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -39,28 +42,60 @@ public class SearchViewPanel extends JPanel {
         auditoriumDropDown.setEnabled(false);
         selectShow.setEnabled(false);
     }
+    /**
+     * This method receives a list of auditoriums, and inserts them into auditoriumDropDown.
+     * @param auditoriumTitles The list of strings to put inside the dropdown box.
+     */
     public void updateAud(String[] auditoriumTitles) {
         auditoriumDropDown.removeAllItems();
         for (String a : auditoriumTitles) auditoriumDropDown.addItem(a);
         repaint();
     }
+
+    /**
+     * This method receives a list of dates, and inserts them into dateDropDown.
+     * @param dateTitles The list of strings to put inside the dropdown box.
+     */
     public void updateDate(String[] dateTitles) {
         dateDropDown.removeAllItems();
         for (String d : dateTitles) dateDropDown.addItem(d);
         repaint();
     }
+
+    /**
+     * This method returns the dropdown list of movie titles.
+     * @return
+     */
     public JComboBox<String> getMovieDropDown() {
         return movieDropDown;
     }
+
+    /**
+     * @return This method returns the dropdown list of available dates.
+     */
     public JComboBox<String> getDateDropDown() {
         return dateDropDown;
     }
+
+    /**
+     * @return This method returns the dropdown list of auditoriums.
+     */
     public JComboBox<String> getAuditoriumDropDown() {
         return auditoriumDropDown;
     }
+
+    /**
+     * This method gets the button that selects a show from the panel.
+     * @return selectShow
+     */
     public JButton getSelectShowButton() {
         return selectShow;
     }
+
+    /**
+     * This method resets the selected words in the dropdown menus, such that it is not necessary for the user to do that.
+     * The dropdown menus have a built-in empty space.
+     */
     public void resetSearch() {
         dateDropDown.setSelectedItem("");
         auditoriumDropDown.setSelectedItem("");
