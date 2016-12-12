@@ -7,7 +7,12 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
 @SuppressWarnings("EmptyMethod")
 class Test {
 //    private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));

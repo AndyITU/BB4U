@@ -5,6 +5,12 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
 public class Seat extends JButton implements MouseListener
 {
     private boolean isSelected;
@@ -122,7 +128,7 @@ public class Seat extends JButton implements MouseListener
     void setClickable(Boolean b) {
         isClickable = b;
     }
-    void setSelectedSomething(Boolean b) {
+    void isSelected(Boolean b) {
         isSelected = true;
         repaint();
     }

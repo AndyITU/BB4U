@@ -3,6 +3,13 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
+
 public class SearchViewPanel extends JPanel {
 
     private final JComboBox<String> movieDropDown;

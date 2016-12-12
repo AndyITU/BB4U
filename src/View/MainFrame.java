@@ -11,8 +11,8 @@ import java.awt.*;
 /**
  * Write a description of class BookingFrame here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
 public class MainFrame extends JFrame
 {
@@ -49,8 +49,8 @@ public class MainFrame extends JFrame
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         pane.add(bPanel);
         pane.add(bvPanel);
-
         this.pack();
+        pane.add(new JPanel());
     }
     public void updateMoviePanel(Show show, Auditorium auditorium, int reservedSeats) {
         bvPanel.updatePanels(show, auditorium, reservedSeats);

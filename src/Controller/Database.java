@@ -7,7 +7,12 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
 class Database {
     // Very secret credentials
     private static final String DB = "jdbc:mysql://mydb.itu.dk/BB4U";

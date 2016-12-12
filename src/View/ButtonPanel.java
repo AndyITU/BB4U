@@ -6,10 +6,10 @@ import java.awt.*;
 import java.io.IOException;
 
 /**
- * Write a description of class View.ButtonPanel here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
 public class ButtonPanel extends JPanel
 {

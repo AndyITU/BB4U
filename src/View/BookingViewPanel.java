@@ -4,7 +4,12 @@ import Controller.Booking;
 import Model.Auditorium;
 import Model.Show;
 import javax.swing.*;
-
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
 public class BookingViewPanel extends JPanel {
 
     private SeatPanel sPanel;

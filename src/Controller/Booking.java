@@ -3,7 +3,12 @@ import Model.*;
 
 import javax.swing.*;
 import java.sql.SQLException;
-
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
 public class Booking {
     private static Show show;
     private static Auditorium auditorium;

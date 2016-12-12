@@ -11,7 +11,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
 public class ReservationEntry extends JButton implements MouseListener {
 
     private Reservation customer;

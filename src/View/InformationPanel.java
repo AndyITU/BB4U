@@ -14,12 +14,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 /**
- * Write a description of class View.ButtonPanel here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
-
 public class InformationPanel extends JPanel
 {
     private final JLabel movieHeader = new JLabel("Film:");
@@ -76,8 +75,6 @@ public class InformationPanel extends JPanel
     }
     public void resetCustomerInfo() {
         contactName.getText();
-        //contactPhone.getText().replaceAll();
-
     }
     private JPanel createLeftInformationBox(String movie, int auditorium_id) {
         JPanel infoPanel = new JPanel();

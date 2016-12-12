@@ -10,10 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Write a description of class FramePanel here.
+ * Write a description of class BookingFrame here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
 public class SeatPanel extends JPanel {
     private final Seat[][] viewSeats;
@@ -52,10 +52,10 @@ public class SeatPanel extends JPanel {
             }
         setPreferredSize(new Dimension(1000, 300));
         setVisible(true);
-        newBook(reservedSeats);
+        startBooking(reservedSeats);
     }
 
-    public SeatModel[] startBook() {
+    public SeatModel[] newBooking() {
         ArrayList<SeatModel> newReservation = new ArrayList<>();
         for (int i = 0; i < rowID; i++) {
             for (int k = 0; k < columnID; k++) {
@@ -67,7 +67,7 @@ public class SeatPanel extends JPanel {
         return newReservation.toArray(new SeatModel[0]);
     }
 
-    public void newBook(SeatModel[] seats) {
+    public void startBooking(SeatModel[] seats) {
         for (SeatModel Seat : seats) {
             viewSeats[Seat.getRow() - 1][Seat.getCol() - 1].setModelBooked(Seat.getIsBooked());
         }
@@ -88,7 +88,7 @@ public class SeatPanel extends JPanel {
     public void setSelectedSeats(SeatModel[] seats) {
         for (SeatModel seat : seats) {
             viewSeats[seat.getRow()-1][seat.getCol()-1].setBooked(false);
-            viewSeats[seat.getRow()-1][seat.getCol()-1].setSelectedSomething(true);
+            viewSeats[seat.getRow()-1][seat.getCol()-1].isSelected(true);
         }
     }
 }

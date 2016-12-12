@@ -1,5 +1,10 @@
 package Model;
-
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
 public class SeatModel {
     private final int col, row;
     private final boolean isBooked;

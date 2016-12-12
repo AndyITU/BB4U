@@ -8,7 +8,12 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.Objects;
-
+/**
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
+ */
 public class ViewController {
 
     private final MainFrame frame;
@@ -32,7 +37,6 @@ public class ViewController {
         buttonPanel = frame.getButtonPanel();
         reservationViewPanel = frame.getReservationPanel();
         setupButtons();
-        bookingViewPanel.getSeatPanel().startBook();
     }
 
     public static void createInstance() {
@@ -56,7 +60,7 @@ public class ViewController {
                     Booking.makeReservation(new Reservation(
                             Database.getNextReservationID(),
                             currentShow.getId(),
-                            bookingViewPanel.getSeatPanel().startBook(),
+                            bookingViewPanel.getSeatPanel().newBooking(),
                             currentShow.getAud_id(),
                             customerName,
                             customerPhone));
@@ -134,7 +138,12 @@ public class ViewController {
             reservationViewPanel.updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
             setupButtons();
             frame.changeToPanel(bookingViewPanel);
-            searchLockDown();
+            movieString = "";
+            dateString = "";
+            auditoriumID = "";
+            searchPanel.getAuditoriumDropDown().setEnabled(false);
+            searchPanel.getSelectShowButton().setEnabled(false);
+            searchPanel.resetSearch();
         });
         // KeyListener for the Reservation panel
         frame.addKeyListener(new KeyListener() {
@@ -144,7 +153,7 @@ public class ViewController {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_ENTER && frame.getCurrentPanel() == reservationViewPanel && editReservation != null) {
                     Reservation r = new Reservation(editReservation.getId(), editReservation.getShow_id(),
-                            reservationViewPanel.getReservationSeatPanel().startBook(), editReservation.getAud_id(),
+                            reservationViewPanel.getReservationSeatPanel().newBooking(), editReservation.getAud_id(),
                             editReservation.getName(), editReservation.getContact_info()
                     );
                     Booking.editReservation(editReservation, r);
@@ -191,14 +200,5 @@ public class ViewController {
             reservationViewPanel.updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
             frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
         }
-    }
-
-    private void searchLockDown() {
-        movieString = "";
-        dateString = "";
-        auditoriumID = "";
-        searchPanel.getAuditoriumDropDown().setEnabled(false);
-        searchPanel.getSelectShowButton().setEnabled(false);
-        searchPanel.resetSearch();
     }
 }

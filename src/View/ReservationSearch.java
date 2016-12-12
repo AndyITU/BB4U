@@ -6,7 +6,10 @@ import java.awt.*;
 import java.text.ParseException;
 
 /**
- * Created by Mikkel on 07-12-2016.
+ * Write a description of class BookingFrame here.
+ *
+ * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
+ * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
 public class ReservationSearch extends JPanel{
     private JFormattedTextField contactPhone;
