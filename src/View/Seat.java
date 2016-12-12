@@ -6,7 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * Write a description of class BookingFrame here.
+ * The "Seat" component works in extension of a JButton. We removed the button layout from java.swing and created our own, initially starting with sqares.
+ * This have now been upgraded to fully functional pictures of seats, that works like the original squares did. The JButton does not know very much about its functionality.
+ * Instead, it has a list of states. In Seat the boolean states are only used for graphical purposes, but it is vital for SeatPanel to be able of running through the seats to check their state, and act accordingly.
+ * Originally, we set out to have Seat itself not create any interactions with other classes in the package, but after some testing it became apparent that making a connection to SeatPanel for pictures was a good solution.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -34,6 +37,16 @@ public class Seat extends JButton implements MouseListener
         this.seatPanel = seatPanel;
     }
 
+
+
+    /**
+     * This is the method for drawing the graphical outlines of Seat.
+     * The method makes use of: isSelected, isHighlighted, isBooked.
+     * These booleans are important to SeatPanel, so that they may be shown
+     * correctly from the database, and also booked correctly. See {@link SeatPanel#startBooking(SeatModel[] seats) }
+     *
+     * The method makes use of {@link #seatName(int k, int s, Graphics g)} to draw the seats row and column.
+     */
     public void paint (Graphics g) {
         if (isBooked) {
             g.drawImage(seatPanel.BOOKED_IMAGE, 0,0, null );
@@ -47,9 +60,11 @@ public class Seat extends JButton implements MouseListener
         else {
             g.drawImage(seatPanel.NORMAL_IMAGE, 0,0, null );
         }
-        seatName(rowID,columnID, g);
+        g.setFont(new Font("Haettenschweiler", Font.PLAIN, 12));
+        g.drawString("R: "+rowID, getWidth()/10,(getHeight()));
+        g.drawString("S: "+columnID, (getWidth()/2), (getHeight()));
     }
-// The old method of making squares - Outdated -
+    //The old method of making squares - Outdated -
     /**
     public void makeSquare(Graphics g) {
         if (isBooked) {
@@ -79,13 +94,11 @@ public class Seat extends JButton implements MouseListener
         getHeight()-getHeight()/5);
     }
      */
-
-    void seatName(int k, int s, Graphics g) {
-        g.setFont(new Font("Haettenschweiler", Font.PLAIN, 12));
-        g.drawString("R: "+k, getWidth()/10,(getHeight()));
-        g.drawString("S: "+s, (getWidth()/2), (getHeight()));
-    }
-
+    /**
+     * This method initiates the first step of a seat being booked. Once it has been selected, it will be available for booking,
+     * but can still be deselected should the user change his or hers mind.
+     * This method makes use of the MouseListener implementation.
+     */
     public void mouseClicked(MouseEvent e) {
         if (!isBooked && isClickable) {
             isSelected = !isSelected;
@@ -98,19 +111,41 @@ public class Seat extends JButton implements MouseListener
         }
          */
     }
+
+    /**
+     * When hovering over the Seat component with the mouse, Seat will change state, and redraw itself in a new color.
+     * This method makes use of the MouseListener implementation.
+     */
     public void mouseExited(MouseEvent e) {
         isHighlighted = false;
         repaint();
     }
+    /**
+     * After hovering inside the Seat component with the mouse, hovering out will change state of Seat, and it will redraw itself in a new color.
+     * This method makes use of the MouseListener implementation.
+     */
     public void mouseEntered(MouseEvent e) {
         if (isClickable)
         isHighlighted = true;
         repaint();
     }
+
+    /**
+     * Unused method
+     */
     public void mousePressed(MouseEvent e) {
     }
+    /**
+     * Unused method
+     */
     public void mouseReleased(MouseEvent e) {
     }
+
+    /**
+     * This method changes the availability of Seat. If it is booked, it looses most functionality.
+     * @param b , used for selecting whether Seat should be booked, or unbooked.
+     * @return true or false whether the method was a success or not.
+     */
     boolean setBooked(Boolean b) {
         if (isSelected && isClickable && b) {
             isBooked = b;
@@ -125,13 +160,32 @@ public class Seat extends JButton implements MouseListener
         }
         return false;
     }
+
+    /**
+     * This method is used to determine if the Seat is able of changing states.
+     * This is important in ReservationList when editing reservations.
+     * See {@link ReservationList}
+     *
+     * @param b boolean for setting clickable/unclickable.
+     */
     void setClickable(Boolean b) {
         isClickable = b;
     }
+
+    /**
+     * This method is used to change the isSelected state of Seat.
+     * @param b boolean for setting selected/unselected.
+     */
     void isSelected(Boolean b) {
-        isSelected = true;
+        isSelected = b;
         repaint();
     }
+
+    /**
+     * This method is used to change the isBooked state of Seat. It is very similiar to {@link #setBooked}
+     * but it is necessary for drawing the already reserved Seats, that was created before the program was launched.
+     * @param b boolean for setting booked/unbooked.
+     */
     void setModelBooked(Boolean b) {
         isBooked = b;
         isSelected = false;
