@@ -49,7 +49,6 @@ public class ReservationPanel extends JPanel {
         cPanel = new CanvasPanel();
         rlPanel = new ReservationList(reservations);
         rlPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        rsPanel = new ReservationSearch();
         JScrollPane scrollPane = new JScrollPane(rlPanel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);

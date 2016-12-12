@@ -33,6 +33,7 @@ public class MainFrame extends JFrame
         }
         bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
         bPanel = new ButtonPanel();
+        //Maybe just use reserved seats?
         rPanel = new ReservationPanel(Booking.getReservations(), show, auditorium);
         searchPanel = new SearchViewPanel(ViewController.getMovieTitles());
 
@@ -41,29 +42,6 @@ public class MainFrame extends JFrame
         setPreferredSize(new Dimension(1050,1000));
 
         // Loading screen
-        final SplashScreen splash = SplashScreen.getSplashScreen();
-        if (splash == null) {
-            return;
-        }
-        Graphics2D g = splash.createGraphics();
-        if (g == null) {
-            return;
-        }
-        for(int i=0; i<100; i++) {
-            final String[] comps = {"foo", "bar", "baz"};
-            g.setComposite(AlphaComposite.Clear);
-            g.fillRect(120,140,200,40);
-            g.setPaintMode();
-            g.setColor(Color.BLACK);
-            g.drawString("Loading "+comps[(i/5)%3]+"...", 120, 150);
-            splash.update();
-            try {
-                Thread.sleep(90);
-            }
-            catch(InterruptedException e) {
-            }
-        }
-        splash.close();
 
         setVisible(true);
         pane = getContentPane();

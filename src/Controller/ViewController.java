@@ -136,10 +136,10 @@ public class ViewController {
             frame.changeToPanel(bookingViewPanel);
             searchLockDown();
         });
+        // KeyListener for the Reservation panel
         frame.addKeyListener(new KeyListener() {
             @Override public void keyTyped(KeyEvent e) {}
             @Override public void keyReleased(KeyEvent e) {}
-
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_ENTER && frame.getCurrentPanel() == reservationViewPanel && editReservation != null) {
@@ -158,7 +158,21 @@ public class ViewController {
                 }
             }
         });
-    }
+        // Search in reservation action listener
+
+        reservationViewPanel.getReservationSearch().getSearchButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
+                String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
+                customerName.replace(" ","");
+                customerPhone.replace(" ","");
+                reservationViewPanel.getReservationList().updateEntries(Booking.getReservations(
+                        customerName,
+                        customerPhone));
+            }
+        });
+        }
 
     public static String[] getMovieTitles() {
         return Search.getMovies();
