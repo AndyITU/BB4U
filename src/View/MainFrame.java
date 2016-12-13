@@ -9,8 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Write a description of class BookingFrame here.
- * 
+ * MainFrame
+ *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
@@ -40,8 +40,6 @@ public class MainFrame extends JFrame
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1050,1000));
-
-        // Loading screen
 
         setVisible(true);
         pane = getContentPane();
