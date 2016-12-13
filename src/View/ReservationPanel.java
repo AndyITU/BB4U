@@ -21,25 +21,23 @@ public class ReservationPanel extends JPanel {
 
 
     private SeatPanel sPanel;
-    private CanvasPanel cPanel;
+    private CanvasPanel cPanel = new CanvasPanel();
     private ReservationList rlPanel;
-    private ReservationSearch rsPanel;
+    private ReservationSearch rsPanel = new ReservationSearch()
+            ;
+
+
+    /**
+     *
+     * @param reservations
+     * @param show
+     * @param auditorium
+     */
     public ReservationPanel(Reservation[] reservations, Show show, Auditorium auditorium) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(1000, 200));
-        cPanel = new CanvasPanel();
-        rlPanel = new ReservationList(reservations);
-        rlPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        rsPanel = new ReservationSearch();
-        sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()),false);
-        JScrollPane scrollPane = new JScrollPane(rlPanel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        add(rsPanel);
-        add(scrollPane);
+        updatePanels(reservations,show.getId(),auditorium);
         setVisible(true);
-        add(cPanel);
-        add(sPanel);
     }
 
     /**
@@ -74,7 +72,6 @@ public class ReservationPanel extends JPanel {
     public void updatePanels(Reservation[] reservations, int show_id, Auditorium auditorium) {
         removeAll();
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show_id),false);
-        cPanel = new CanvasPanel();
         rlPanel = new ReservationList(reservations);
         rlPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         JScrollPane scrollPane = new JScrollPane(rlPanel);

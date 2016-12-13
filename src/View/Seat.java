@@ -134,7 +134,7 @@ public class Seat extends JButton implements MouseListener
     public void mouseEntered(MouseEvent e) {
         if (isClickable)
         isHighlighted = true;
-        repaint();
+         repaint();
     }
 
     /**

@@ -20,10 +20,7 @@ public class ReservationList extends JPanel{
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(1000, 70*reservations.length));
         setMaximumSize(new Dimension(1000, 2000));
-        for (Reservation r : reservations) {
-            add(Box.createRigidArea(new Dimension(0, 5)));
-            add(new ReservationEntry(r));
-        }
+        updateEntries(reservations);
     }
 
     /**

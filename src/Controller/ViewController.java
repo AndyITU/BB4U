@@ -139,7 +139,7 @@ public class ViewController {
         searchPanel.getSelectShowButton().addActionListener(e -> {
             searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
             currentShow = searchShow;
-            frame.updateMoviePanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
+            frame.updateBookingViewPanel(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
             reservationViewPanel.updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
             setupButtons();
             frame.changeToPanel(bookingViewPanel);
@@ -162,7 +162,7 @@ public class ViewController {
                             editReservation.getName(), editReservation.getContact_info()
                     );
                     Booking.editReservation(editReservation, r);
-                    frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
+                    frame.updateBookingViewPanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
                     bookingViewPanel.getInfoPanel().getBookButton().addActionListener(BookingButton);
                     editReservation = null;
                     reservationViewPanel.getReservationSeatPanel().setClickable(false);
@@ -202,7 +202,7 @@ public class ViewController {
         else if (answer == JOptionPane.NO_OPTION) {
             Booking.removeReservation(r);
             reservationViewPanel.updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
-            frame.updateMoviePanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
+            frame.updateBookingViewPanel(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
         }
     }
 }

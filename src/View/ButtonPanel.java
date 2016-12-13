@@ -22,7 +22,6 @@ public class ButtonPanel extends JPanel
         setPreferredSize(new Dimension(1000,100));
         setVisible(true);
         setMaximumSize(new Dimension(1000,250));
-//asd
         reservationButton = new JButton("Reservation View");
         bookingButton = new JButton("Booking View");
         searchButton = new JButton("Search View");

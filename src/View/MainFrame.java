@@ -48,7 +48,7 @@ public class MainFrame extends JFrame
         pane.add(bvPanel);
         pack();
     }
-    public void updateMoviePanel(Show show, Auditorium auditorium, int reservedSeats) {
+    public void updateBookingViewPanel(Show show, Auditorium auditorium, int reservedSeats) {
         bvPanel.updatePanels(show, auditorium, reservedSeats);
         repaint();
         pack();

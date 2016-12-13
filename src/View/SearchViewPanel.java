@@ -24,8 +24,9 @@ public class SearchViewPanel extends JPanel {
     private final JButton selectShow = new JButton("Go to selected show");
 
     /**
-     * The constructor sets a gridlayout.
-     * @param movieTitles
+     * The constructor sets up the entire search interface. Using a list of strings that are applied to the first JComboBox,
+     * the user is able of selecting a single movie on a specific date and/or in a specific auditorium.
+     * @param movieTitles the list of movies to add to the SearchViewPanel.
      */
 
     public SearchViewPanel(String[] movieTitles) {

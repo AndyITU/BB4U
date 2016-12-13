@@ -119,7 +119,7 @@ public class ReservationEntry extends JButton implements MouseListener {
     }
 
     /**
-     *
+     * This method
      * @param g
      */
     public void newEntry(Graphics g) {
