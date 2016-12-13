@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * SearchViewPanel is a JPanel consisting of JComboBoxes, and a JButton.
+ * SearchViewPanel is an extension of JPanel, consisting of three JComboBoxes, and a JButton.
  *
  * The JComboBoxes contributes with a value(date, movie, auditorium) and
  * the button then registers the final show that was picked.
+ *
+ * It uses a gridlayout with 8 rows to display all of the components on top of eachother at the maximum available size.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -41,6 +43,13 @@ public class SearchViewPanel extends JPanel {
         dateDropDown.setEnabled(false);
         auditoriumDropDown.setEnabled(false);
         selectShow.setEnabled(false);
+    }
+    public void updateMovies(String[] movieTitles) {
+        movieDropDown.removeAllItems();
+        for (String s : movieTitles) {
+            movieDropDown.addItem(s);
+            repaint();
+        }
     }
     /**
      * This method receives a list of auditoriums, and inserts them into auditoriumDropDown.

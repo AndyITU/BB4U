@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * SeatPanel is a class that consists of all the seats that are in a given auditorium, hence the rows and columns.
+ * SeatPanel is an extension of JPanel that consists of all the seats that are in a given auditorium, hence the rows and columns.
  * It needs an array of ReservedSeats such that the {@link #startBooking(SeatModel[])} can begin. It also stores all
  * of the pictures that the individual seat need to use to draw different colors.
  *

@@ -6,7 +6,10 @@ import java.awt.*;
 import java.text.ParseException;
 
 /**
- * ReservationSearch is a JPanel consisting of JFormattedTextField
+ * ReservationSearch is a JPanel consisting of two JFormattedTextFields for typing user input, and a button to search for
+ * reservations after name and contact info in the input.
+ *
+ * ReservationSearch uses gridlayout to display the different components.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -22,12 +25,8 @@ public class ReservationSearch extends JPanel{
         setMaximumSize(new Dimension(1000, 30));
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
-            MaskFormatter nameRule = new MaskFormatter("***************************************************");
-            nameRule.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVXYZWÆØÅabcdefghijklmnopqrstuvxyzwæøå ");
             contactPhone = new JFormattedTextField();
-            contactPhone.setMaximumSize(new Dimension(getWidth()/3, 5));
             contactName = new JFormattedTextField();
-            nameRule.install(contactName);
             phoneRule.install(contactPhone);
             add(new JLabel("          Contact Name:"));
             add(contactName);
