@@ -12,7 +12,9 @@ import java.awt.event.MouseListener;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 /**
- * Write a description of class BookingFrame here.
+ * ReservationEntry is an extension of Button, it consists of all necessary information about a reservation,
+ * and has an implementation of MouseListener.
+ * It represents an already created reservation and its main focus is to aid in altering already existing reservations.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -29,6 +31,10 @@ public class ReservationEntry extends JButton implements MouseListener {
     private String contactName;
     private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
 
+    /**
+     * ReservationEntry needs a Reservation to start creating a graphical outline of the reservation.
+     * @param res the reservation to be displayed, and alterable.
+     */
     public ReservationEntry(Reservation res) {
         setSize(new Dimension (1000, 70));
         setMaximumSize(getSize());

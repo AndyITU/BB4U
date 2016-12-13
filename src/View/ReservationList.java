@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Write a description of class BookingFrame here.
+ * ReservationList is an extension of JPanel.
+ *
+ * It creates a list of reservation entries for the user to interact with.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -24,6 +26,10 @@ public class ReservationList extends JPanel{
         }
     }
 
+    /**
+     * This method replaces all the old reservations with a list of new reservations.
+     * @param reservations the new reservations to be inserted into the list.
+     */
     public void updateEntries(Reservation[] reservations) {
         removeAll();
         setPreferredSize(new Dimension(1000, 70*reservations.length));

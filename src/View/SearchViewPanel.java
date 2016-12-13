@@ -44,13 +44,6 @@ public class SearchViewPanel extends JPanel {
         auditoriumDropDown.setEnabled(false);
         selectShow.setEnabled(false);
     }
-    public void updateMovies(String[] movieTitles) {
-        movieDropDown.removeAllItems();
-        for (String s : movieTitles) {
-            movieDropDown.addItem(s);
-            repaint();
-        }
-    }
     /**
      * This method receives a list of auditoriums, and inserts them into auditoriumDropDown.
      * @param auditoriumTitles The list of strings to put inside the dropdown box.

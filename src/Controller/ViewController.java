@@ -85,7 +85,6 @@ public class ViewController {
         // Button Panels button functionality
         buttonPanel.getSearchButton().addActionListener(e -> {
             frame.changeToPanel(searchPanel);
-            searchPanel.updateMovies(getMovieTitles());
                 }
         );
         buttonPanel.getBookingViewButton().addActionListener(e -> frame.changeToPanel(bookingViewPanel));

@@ -26,7 +26,13 @@ public class SeatPanel extends JPanel {
     Image SELECTED_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
     Image HIGHLIGHT_IMAGE = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
 
-
+    /**
+     * The constructor of SeatPanel creates a list of Seats, and tries to simulate what the auditorium looks like.
+     * @param rows the amount of rows in a given auditorium.
+     * @param columns the amount of columns in a given auditorium.
+     * @param reservedSeats the reserved seats in a given auditorium
+     * @param b whether or not the SeatPanel can be interacted with.
+     */
     public SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
         super(new GridLayout(0, columns));
         setMinimumSize(new Dimension(1000, 500));

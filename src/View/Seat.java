@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * The "Seat" component works in extension of a JButton.
+ * Seat is an extension of JButton, consisting of a list of booleans and an implementation of MouseListener.
  * It is supposed to represent a graphical expression of a Seat, and will assist in
  * creating new reservations for the user. Mainly, it uses states to determine what
  * sort of image it should draw, which it does by the aid of a MouseListener.
@@ -24,6 +24,13 @@ public class Seat extends JButton implements MouseListener
     private final int columnID;
     private final SeatPanel seatPanel;
 
+    /**
+     * The seat tries to represent a single seat in a given auditorium. Row and Column ID works as a 2D array.
+     * @param row the row number of the seat.
+     * @param column the column number of the seat.
+     * @param b whether or not the seat is interactable
+     * @param seatPanel a reference to seatPanel, used to get necessary images of the seat.
+     */
 
     Seat(int row, int column, boolean b, SeatPanel seatPanel) {
         setPreferredSize(new Dimension(10,10));
@@ -91,8 +98,9 @@ public class Seat extends JButton implements MouseListener
     }
      */
     /**
-     * This method initiates the first step of a seat being booked. Once it has been selected, it will be available for booking,
-     * but can still be deselected should the user change his or hers mind.
+     * This method is initiated when the user clicks. It makes the seat selected.
+     * Once it has been selected, it will be available for booking, but can still
+     * be deselected should the user change his or hers mind.
      * This method makes use of the MouseListener implementation.
      */
     public void mouseClicked(MouseEvent e) {
