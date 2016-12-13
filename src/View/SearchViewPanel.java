@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 
 /**
  * SearchViewPanel is an extension of JPanel, consisting of three JComboBoxes, and a JButton.
@@ -44,13 +45,35 @@ public class SearchViewPanel extends JPanel {
         auditoriumDropDown.setEnabled(false);
         selectShow.setEnabled(false);
     }
+
+    public void updateMovies(String[] movieTitles) {
+        movieDropDown.removeAllItems();
+        Set<String> movies = new HashSet<>();
+        for (String m : movieTitles) {
+            movies.add(m);
+        }
+        ArrayList<String> arrayListmovies = new ArrayList<>(movies);
+        Collections.sort(arrayListmovies);
+        for (String m : arrayListmovies) {
+            movieDropDown.addItem(m);
+        }
+    }
     /**
      * This method receives a list of auditoriums, and inserts them into auditoriumDropDown.
      * @param auditoriumTitles The list of strings to put inside the dropdown box.
      */
     public void updateAud(String[] auditoriumTitles) {
         auditoriumDropDown.removeAllItems();
-        for (String a : auditoriumTitles) auditoriumDropDown.addItem(a);
+        Set<String> auditoriums = new HashSet<>();
+        for (String d : auditoriumTitles) {
+            auditoriums.add(d);
+
+        }
+        ArrayList<String> auditoriumArrayList = new ArrayList<>(auditoriums);
+        Collections.sort(auditoriumArrayList);
+        for (String k : auditoriumArrayList) {
+            auditoriumDropDown.addItem(k);
+        }
         repaint();
     }
 
@@ -60,7 +83,14 @@ public class SearchViewPanel extends JPanel {
      */
     public void updateDate(String[] dateTitles) {
         dateDropDown.removeAllItems();
-        for (String d : dateTitles) dateDropDown.addItem(d);
+        Set<String> movieDates = new HashSet<>();
+        for (String d : dateTitles) {
+            movieDates.add(d);
+        }
+        ArrayList<String> dateArrayList = new ArrayList<>(movieDates);
+        Collections.sort(dateArrayList);
+        for (String k : movieDates) {
+            dateDropDown.addItem(k);}
         repaint();
     }
 

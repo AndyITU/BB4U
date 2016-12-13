@@ -98,7 +98,8 @@ public class Seat extends JButton implements MouseListener
     }
      */
     /**
-     * This method is initiated when the user clicks. It makes the seat selected.
+     * This method is initiated when the user clicks within the boundaries of Seat.
+     * The method makes the seat selected.
      * Once it has been selected, it will be available for booking, but can still
      * be deselected should the user change his or hers mind.
      * This method makes use of the MouseListener implementation.
@@ -117,7 +118,8 @@ public class Seat extends JButton implements MouseListener
     }
 
     /**
-     * When hovering over the Seat component with the mouse, Seat will change state, and redraw itself in a new color.
+     * This method is iniatied when the user has hovered inside the component, and then moves outside the component.
+     * Seat's boolean is Highlighted will change state, and Seat will redraw itself in a new color.
      * This method makes use of the MouseListener implementation.
      */
     public void mouseExited(MouseEvent e) {
@@ -125,7 +127,8 @@ public class Seat extends JButton implements MouseListener
         repaint();
     }
     /**
-     * After hovering inside the Seat component with the mouse, hovering out will change state of Seat, and it will redraw itself in a new color.
+     * This method is initiated when the user hovers inside the Seat component with the mouse.
+     * Seat's boolean isHighlighted will change state, and Seat will redraw itself in a new color.
      * This method makes use of the MouseListener implementation.
      */
     public void mouseEntered(MouseEvent e) {

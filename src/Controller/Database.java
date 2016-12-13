@@ -120,9 +120,9 @@ class Database {
         try {
             connection = DriverManager.getConnection(DB, USER, PASS);
             Statement statement = connection.createStatement();
-
-            System.out.println("date: " + date + "\n" + Timestamp.valueOf(LocalDateTime.parse(date, format)) + "\n");
-            String q = "SELECT * FROM shows WHERE aud_id="+aud_id+" AND movie='"+movie+"' AND date='"+Timestamp.valueOf(LocalDateTime.parse(date, format))+"';";
+            System.out.println(date);
+            System.out.println(LocalDateTime.parse(date, format));
+            String q = "SELECT * FROM shows WHERE aud_id="+aud_id+" AND movie='"+movie+"' AND date='"+Timestamp.valueOf(LocalDateTime.parse(date.trim(), format)) +"';";
             ResultSet rs = statement.executeQuery(q);
             rs.next();
             show = new Show(rs.getInt("id"), rs.getInt("aud_id"), rs.getString("movie"),

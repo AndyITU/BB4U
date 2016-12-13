@@ -33,7 +33,7 @@ public class ReservationEntry extends JButton implements MouseListener {
 
     /**
      * ReservationEntry needs a Reservation to start creating a graphical outline of the reservation.
-     * @param res the reservation to be displayed, and alterable.
+     * @param res the reservation to be displayed, and alterable. It makes sure that the movie string displayed, is not longer than 32.
      */
     public ReservationEntry(Reservation res) {
         setSize(new Dimension (1000, 70));
@@ -57,6 +57,9 @@ public class ReservationEntry extends JButton implements MouseListener {
         contactInfo = customer.getContact_info();
         contactName = customer.getName();
     }
+    /**
+     * This method draws the entry, and makes it change color depending on if its highlighted or not.
+     */
     public void paint(Graphics g) {
         if (isHighlighted) {
             g.setColor(Color.black);
@@ -66,6 +69,13 @@ public class ReservationEntry extends JButton implements MouseListener {
         }
         newEntry(g);
     }
+
+    /**
+     * This method is initiated when the user clicks on the entry. It creates a pop-up message, where the user is required
+     * to take action. It then sends this answer to the controller.
+     * This method makes use of the MouseListener implementation.
+     * @param e mouse-click interaction from the user.
+     */
     public void mouseClicked(MouseEvent e) {
         String[] optionList = {
                 "Edit",
@@ -75,18 +85,43 @@ public class ReservationEntry extends JButton implements MouseListener {
         int answer = JOptionPane.showOptionDialog(null, "Would you like to edit, or remove?", "Reservation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, optionList, optionList[2]);
         ViewController.getInstance().sendAnswer(answer, customer);
     }
+
+    /**
+     * This method is initiated when the user has hovered inside the component, and then moves outside the component.
+     * ReservationEntry's boolean isHighlighted will change state, and ReservationEntry will redraw itself in a new color.
+     * This method makes use of the MouseListener implementation.
+     * @param e when the user moves outside the boundaries of the component.
+     */
     public void mouseExited(MouseEvent e) {
         isHighlighted = false;
         repaint();
     }
+
+    /**
+     * This method is initiated when the user hovers inside the Seat component with the mouse.
+     * @param e user moved inside the boundaries of the component.
+     */
     public void mouseEntered(MouseEvent e) {
         isHighlighted = true;
         repaint();
     }
+
+    /**
+     * Unused method.
+     */
     public void mousePressed(MouseEvent e) {
     }
+
+    /**
+     * Unused method.
+     */
     public void mouseReleased(MouseEvent e) {
     }
+
+    /**
+     *
+     * @param g
+     */
     public void newEntry(Graphics g) {
         g.fillRect(getWidth()/15,getHeight()/15,getWidth()-getWidth()/15*2,getHeight()-getHeight()/15*2);
         g.setColor(Color.BLACK);

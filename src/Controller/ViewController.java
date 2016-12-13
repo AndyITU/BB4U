@@ -85,6 +85,7 @@ public class ViewController {
         // Button Panels button functionality
         buttonPanel.getSearchButton().addActionListener(e -> {
             frame.changeToPanel(searchPanel);
+            searchPanel.updateMovies(getMovieTitles());
                 }
         );
         buttonPanel.getBookingViewButton().addActionListener(e -> frame.changeToPanel(bookingViewPanel));
@@ -96,9 +97,10 @@ public class ViewController {
             JComboBox sendInput =(JComboBox) e.getSource();
             movieString =(String)sendInput.getSelectedItem();
             if (!Objects.equals(movieString, "")) {
+                if(movieString != null){
                 searchPanel.updateDate(Search.getDatesByMovie(movieString));
                 searchPanel.getDateDropDown().setEnabled(true);
-                searchPanel.getDateDropDown().setSelectedIndex(0);
+                searchPanel.getDateDropDown().setSelectedIndex(0);}
             }
             else {
                 searchPanel.getDateDropDown().setEnabled(false);
@@ -113,8 +115,7 @@ public class ViewController {
             if (!Objects.equals(movieString, "") && movieString != null && !Objects.equals(dateString, "") && dateString != null) {
                 searchPanel.updateAud(Search.getAuditoriums(movieString, dateString));
                 searchPanel.getAuditoriumDropDown().setEnabled(true);
-                searchPanel.getAuditoriumDropDown().setSelectedIndex(0);
-            }
+                }
             else {
                 searchPanel.getAuditoriumDropDown().setEnabled(false);
                 searchPanel.getSelectShowButton().setEnabled(false);
