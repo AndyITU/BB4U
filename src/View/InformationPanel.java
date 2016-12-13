@@ -115,8 +115,8 @@ public class InformationPanel extends JPanel
         return infoPanel;
     }
 
-    public void updateSeatInfo(int seatsReserved) {
-        availableSeats = availableSeats-seatsReserved;
+    public void updateSeatInfo(int seatsReserved, int alreadyReserved) {
+        availableSeats = availableSeats-(seatsReserved+alreadyReserved);
         overallSeatInfo.setText(availableSeats+ "/" + totalSeats);
         repaint();
     }
