@@ -10,7 +10,7 @@ import java.util.*;
  * The JComboBoxes contributes with a value(date, movie, auditorium) and
  * the button then registers the final show that was picked.
  *
- * It uses a gridlayout with 8 rows to display all of the components on top of eachother at the maximum available size.
+ * It uses a gridlayout with 8 rows to display all of the components on top of each other at the maximum available size.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -23,16 +23,22 @@ public class SearchViewPanel extends JPanel {
     private final JComboBox<String> auditoriumDropDown;
     private final JButton selectShow = new JButton("Go to selected show");
 
+    /**
+     * The constructor sets a gridlayout.
+     * @param movieTitles
+     */
+
     public SearchViewPanel(String[] movieTitles) {
         setLayout(new GridLayout(8,2));
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);
-        movieDropDown = new JComboBox<>(movieTitles);
+        movieDropDown = new JComboBox<>();
         dateDropDown = new JComboBox<>();
         auditoriumDropDown = new JComboBox<>();
         JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
         add(selectMovie);
         add(movieDropDown);
+        updateMovies(movieTitles);
         JLabel selectDate = new JLabel("Select a date from the dropdown list");
         add(selectDate);
         add(dateDropDown);
@@ -45,7 +51,12 @@ public class SearchViewPanel extends JPanel {
         auditoriumDropDown.setEnabled(false);
         selectShow.setEnabled(false);
     }
-
+    /**
+     * This method receives a list of movie titles, and inserts them into movieDropDown. Duplicate strings are removed, and the strings
+     * gets sorted by alphabetic order.
+     *
+     * @param movieTitles The list of strings to put inside the dropdown box.
+     **/
     public void updateMovies(String[] movieTitles) {
         movieDropDown.removeAllItems();
         Set<String> movies = new HashSet<>();
@@ -59,7 +70,8 @@ public class SearchViewPanel extends JPanel {
         }
     }
     /**
-     * This method receives a list of auditoriums, and inserts them into auditoriumDropDown.
+     * This method receives a list of auditoriums, and inserts them into auditoriumDropDown. Duplicate strings are removed, and the strings
+     * gets sorted by alphabetic order
      * @param auditoriumTitles The list of strings to put inside the dropdown box.
      */
     public void updateAud(String[] auditoriumTitles) {
@@ -78,7 +90,8 @@ public class SearchViewPanel extends JPanel {
     }
 
     /**
-     * This method receives a list of dates, and inserts them into dateDropDown.
+     * This method receives a list of dates, and inserts them into dateDropDown. Duplicate strings are removed, and they
+     * are sorted by alphabetic order.
      * @param dateTitles The list of strings to put inside the dropdown box.
      */
     public void updateDate(String[] dateTitles) {
@@ -95,30 +108,32 @@ public class SearchViewPanel extends JPanel {
     }
 
     /**
-     * This method returns the dropdown list of movie titles.
-     * @return
+     * This method returns the JComboBox that consists of movie titles.
+     * @return the element movieDropDown in SearchViewPanel.
      */
     public JComboBox<String> getMovieDropDown() {
         return movieDropDown;
     }
 
     /**
-     * @return This method returns the dropdown list of available dates.
+     * This method returns the JComboBox consisting of available dates.
+     * @return dateDropDown in SearchViewPanel.
      */
     public JComboBox<String> getDateDropDown() {
         return dateDropDown;
     }
 
     /**
-     * @return This method returns the dropdown list of auditoriums.
+     * This method returns the JComboBox consisting of available auditoriums.
+     * @return auditoriumDropDown in SearchViewPanel.
      */
     public JComboBox<String> getAuditoriumDropDown() {
         return auditoriumDropDown;
     }
 
     /**
-     * This method gets the button that selects a show from the panel.
-     * @return selectShow
+     * This method returns the JButton that selects a show from the panel.
+     * @return selectShow JButton in SearchViewPanel.
      */
     public JButton getSelectShowButton() {
         return selectShow;
