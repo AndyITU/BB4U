@@ -119,7 +119,6 @@ public class InformationPanel extends JPanel
         availableSeats = availableSeats-seatsReserved;
         overallSeatInfo.setText(availableSeats+ "/" + totalSeats);
         repaint();
-        revalidate();
     }
 
     private JPanel createTimeInformationBox(LocalDateTime time, LocalTime duration) {

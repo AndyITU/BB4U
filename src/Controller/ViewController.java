@@ -175,6 +175,9 @@ public class ViewController {
                     bookingViewPanel.updatePanels(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
                     bookingViewPanel.getInfoPanel().getBookButton().addActionListener(BookingButton);
                     bookingViewPanel.getInfoPanel().updateSeatInfo(editReservation.getSeats().length);
+                    if (Booking.getShow(editReservation.getShow_id()) == currentShow)  {
+                        bookingViewPanel.getInfoPanel().updateSeatInfo(editReservation.getSeats().length);
+                    }
                     editReservation = null;
                     reservationViewPanel.getReservationSeatPanel().setClickable(false);
                     reservationViewPanel.getReservationList().updateEntries(Booking.getReservations());
