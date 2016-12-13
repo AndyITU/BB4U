@@ -57,13 +57,23 @@ public class ViewController {
             if ( !customerName.trim().equals("") && customerPhone.trim().length() == 8 )
             {
                 try {
-                    Booking.makeReservation(new Reservation(
+                    Reservation r = new Reservation(Database.getNextReservationID(),
+                            currentShow.getId(),
+                            bookingViewPanel.getSeatPanel().newBooking(),
+                            currentShow.getAud_id(),
+                            customerName,
+                            customerPhone);
+                    Booking.makeReservation(r);
+                    /**
+                            new Reservation(
                             Database.getNextReservationID(),
                             currentShow.getId(),
                             bookingViewPanel.getSeatPanel().newBooking(),
                             currentShow.getAud_id(),
                             customerName,
                             customerPhone));
+                     */
+                    bookingViewPanel.getInfoPanel().updateSeatInfo(r.getSeats().length);
                     //get contact info
                 } catch (SQLException x) {
                     x.printStackTrace();
@@ -164,6 +174,7 @@ public class ViewController {
                     Booking.editReservation(editReservation, r);
                     bookingViewPanel.updatePanels(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
                     bookingViewPanel.getInfoPanel().getBookButton().addActionListener(BookingButton);
+                    bookingViewPanel.getInfoPanel().updateSeatInfo(editReservation.getSeats().length);
                     editReservation = null;
                     reservationViewPanel.getReservationSeatPanel().setClickable(false);
                     reservationViewPanel.getReservationList().updateEntries(Booking.getReservations());

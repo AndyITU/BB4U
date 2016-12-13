@@ -87,7 +87,7 @@ public class InformationPanel extends JPanel
         return contactPhone.getText();
     }
     /**
-     * This method invokes a method on both JFormattedTextFields in InformationPanel whenever it is called, which resets them to an empty string.
+     * This method invokes a method on both JFormattedTextFields in InformationPanel, which resets them to an empty string.
      */
     public void resetCustomerInfo() {
         contactPhone.setText("");
@@ -95,8 +95,8 @@ public class InformationPanel extends JPanel
     }
 
     /**
-     * This method returns an object of the type JPanel whenever it is called. It writes information about
-     * @param movie
+     * This method returns an object of the type JPanel. It writes information about the movie in this smaller JPanel.
+     * @param movie the name of the movie
      * @param auditorium_id
      * @return
      */
@@ -115,12 +115,10 @@ public class InformationPanel extends JPanel
         return infoPanel;
     }
 
-    public void updateSeatInfo(int seatsReserved, int seatsTotal) {
-        availableSeats = seatsTotal - seatsReserved;
-        totalSeats = seatsTotal;
-        remove(overallSeatInfo);
-        overallSeatInfo =  new JLabel(availableSeats + "/" + totalSeats);
-        add(overallSeatInfo);
+    public void updateSeatInfo(int seatsReserved) {
+        overallSeatInfo =  new JLabel(availableSeats-seatsReserved + "/" + totalSeats);
+        repaint();
+        revalidate();
     }
 
     private JPanel createTimeInformationBox(LocalDateTime time, LocalTime duration) {
