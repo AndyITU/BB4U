@@ -70,6 +70,7 @@ public class ViewController {
                 } catch (IllegalArgumentException x) {
                     JOptionPane.showMessageDialog(null, x.getMessage());
                 }
+                bookingViewPanel.getInfoPanel().resetCustomerInfo();
                 reservationViewPanel.updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
             }
             else {

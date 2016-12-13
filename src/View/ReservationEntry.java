@@ -24,7 +24,7 @@ public class ReservationEntry extends JButton implements MouseListener {
     private int seats;
     private int audID;
     private String date;
-    private String movie;
+    private String movieLabel;
     private String contactInfo;
     private String contactName;
     private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
@@ -41,7 +41,13 @@ public class ReservationEntry extends JButton implements MouseListener {
         seats = customer.getSeats().length;
         audID = customer.getAud_id();
         date = s.getDate().format(format);
-        movie = s.getMovie();
+        String movie = s.getMovie();
+        if (movie.length() > 32) {
+            movieLabel = movie.substring(0,32)+"...";
+        }
+        else {
+            movieLabel = movie;
+        }
         contactInfo = customer.getContact_info();
         contactName = customer.getName();
     }
@@ -55,7 +61,6 @@ public class ReservationEntry extends JButton implements MouseListener {
         newEntry(g);
     }
     public void mouseClicked(MouseEvent e) {
-        // Inspired by http://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
         String[] optionList = {
                 "Edit",
                 "Remove",
@@ -83,7 +88,7 @@ public class ReservationEntry extends JButton implements MouseListener {
         g.setColor(Color.WHITE);
         g.drawString("Name: " + contactName, getWidth()/10, (getHeight()/4)+5);
         g.drawString("Contact info: " + contactInfo, getWidth()/10, (getHeight()*3/4)+5);
-        g.drawString("Movie: " + movie, getWidth()/3, (getHeight()/4)+5);
+        g.drawString("Movie: " + movieLabel, getWidth()/3, (getHeight()/4)+5);
         g.drawString("Date: " + date, getWidth()/3, (getHeight()*3/4)+5);
         g.drawString("Auditorium: " + audID, (getWidth()/3)*2, (getHeight()/4)+5);
         g.drawString("Seats: " + seats, (getWidth()/3)*2, (getHeight()*3/4)+5);

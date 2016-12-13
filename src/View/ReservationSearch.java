@@ -6,7 +6,7 @@ import java.awt.*;
 import java.text.ParseException;
 
 /**
- * ReservationSearch
+ * ReservationSearch is a JPanel consisting of JFormattedTextField
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.

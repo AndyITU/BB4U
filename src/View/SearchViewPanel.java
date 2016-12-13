@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * SearchViewPanel is a JPanel consisting of JComboBoxes, and a JButton.
  *
- * The JComboBoxes all contribute with a value(date, movie, auditorium) and
+ * The JComboBoxes contributes with a value(date, movie, auditorium) and
  * the button then registers the final show that was picked.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.

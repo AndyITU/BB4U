@@ -47,7 +47,7 @@ public class MainFrame extends JFrame
         pane = getContentPane();
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         pane.add(bPanel);
-        pane.add(searchPanel);
+        pane.add(bvPanel);
         pack();
     }
     public void updateMoviePanel(Show show, Auditorium auditorium, int reservedSeats) {

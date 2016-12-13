@@ -49,11 +49,8 @@ public class InformationPanel extends JPanel
         add(contactBox);
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
-            MaskFormatter nameRule = new MaskFormatter("***************************************************");
-            nameRule.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVXYZWÆØÅabcdefghijklmnopqrstuvxyzwæøå ");
             contactPhone = new JFormattedTextField();
             contactName = new JFormattedTextField();
-            nameRule.install(contactName);
             phoneRule.install(contactPhone);
             contactBox.add(new JLabel("Contact Number:"));
             contactBox.add(contactPhone);
@@ -74,7 +71,8 @@ public class InformationPanel extends JPanel
         return contactPhone.getText();
     }
     public void resetCustomerInfo() {
-        contactName.getText();
+        contactPhone.setText("");
+        contactName.setText("");
     }
     private JPanel createLeftInformationBox(String movie, int auditorium_id) {
         JPanel infoPanel = new JPanel();
