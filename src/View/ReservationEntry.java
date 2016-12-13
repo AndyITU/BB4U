@@ -33,10 +33,11 @@ public class ReservationEntry extends JButton implements MouseListener {
 
     /**
      * ReservationEntry needs a Reservation to start creating a graphical outline of the reservation.
-     * @param res the reservation to be displayed, and alterable. It makes sure that the movie string displayed, is not longer than 32.
+     *
+     * @param res the reservation to be displayed. It makes sure that the movie string displayed is no longer than 32.
      */
     public ReservationEntry(Reservation res) {
-        setSize(new Dimension (1000, 70));
+        setSize(new Dimension(1000, 70));
         setMaximumSize(getSize());
         setMinimumSize(new Dimension(1000, 10));
         addMouseListener(this);
@@ -49,31 +50,40 @@ public class ReservationEntry extends JButton implements MouseListener {
         date = s.getDate().format(format);
         String movie = s.getMovie();
         if (movie.length() > 32) {
-            movieLabel = movie.substring(0,32)+"...";
-        }
-        else {
+            movieLabel = movie.substring(0, 32) + "...";
+        } else {
             movieLabel = movie;
         }
         contactInfo = customer.getContact_info();
         contactName = customer.getName();
     }
+
     /**
-     * This method draws the entry, and makes it change color depending on if its highlighted or not.
+     * This method draws the entry, and makes it change color depending on if its highlighted or not. It also draws all the information about the entry.
      */
     public void paint(Graphics g) {
         if (isHighlighted) {
             g.setColor(Color.black);
-        }
-        else {
+        } else {
             g.setColor(Color.darkGray);
         }
-        newEntry(g);
+        g.fillRect(getWidth() / 15, getHeight() / 15, getWidth() - getWidth() / 15 * 2, getHeight() - getHeight() / 15 * 2);
+        g.setColor(Color.BLACK);
+        g.drawRect(getWidth() / 15, getHeight() / 15, getWidth() - getWidth() / 15 * 2, getHeight() - getHeight() / 15 * 2);
+        g.setColor(Color.WHITE);
+        g.drawString("Name: " + contactName, getWidth() / 10, (getHeight() / 4) + 5);
+        g.drawString("Contact info: " + contactInfo, getWidth() / 10, (getHeight() * 3 / 4) + 5);
+        g.drawString("Movie: " + movieLabel, getWidth() / 3, (getHeight() / 4) + 5);
+        g.drawString("Date: " + date, getWidth() / 3, (getHeight() * 3 / 4) + 5);
+        g.drawString("Auditorium: " + audID, (getWidth() / 3) * 2, (getHeight() / 4) + 5);
+        g.drawString("Seats: " + seats, (getWidth() / 3) * 2, (getHeight() * 3 / 4) + 5);
     }
 
     /**
      * This method is initiated when the user clicks on the entry. It creates a pop-up message, where the user is required
      * to take action. It then sends this answer to the controller.
      * This method makes use of the MouseListener implementation.
+     *
      * @param e mouse-click interaction from the user.
      */
     public void mouseClicked(MouseEvent e) {
@@ -90,6 +100,7 @@ public class ReservationEntry extends JButton implements MouseListener {
      * This method is initiated when the user has hovered inside the component, and then moves outside the component.
      * ReservationEntry's boolean isHighlighted will change state, and ReservationEntry will redraw itself in a new color.
      * This method makes use of the MouseListener implementation.
+     *
      * @param e when the user moves outside the boundaries of the component.
      */
     public void mouseExited(MouseEvent e) {
@@ -99,6 +110,7 @@ public class ReservationEntry extends JButton implements MouseListener {
 
     /**
      * This method is initiated when the user hovers inside the Seat component with the mouse.
+     *
      * @param e user moved inside the boundaries of the component.
      */
     public void mouseEntered(MouseEvent e) {
@@ -116,22 +128,5 @@ public class ReservationEntry extends JButton implements MouseListener {
      * Unused method.
      */
     public void mouseReleased(MouseEvent e) {
-    }
-
-    /**
-     * This method
-     * @param g
-     */
-    public void newEntry(Graphics g) {
-        g.fillRect(getWidth()/15,getHeight()/15,getWidth()-getWidth()/15*2,getHeight()-getHeight()/15*2);
-        g.setColor(Color.BLACK);
-        g.drawRect(getWidth()/15,getHeight()/15,getWidth()-getWidth()/15*2,getHeight()-getHeight()/15*2);
-        g.setColor(Color.WHITE);
-        g.drawString("Name: " + contactName, getWidth()/10, (getHeight()/4)+5);
-        g.drawString("Contact info: " + contactInfo, getWidth()/10, (getHeight()*3/4)+5);
-        g.drawString("Movie: " + movieLabel, getWidth()/3, (getHeight()/4)+5);
-        g.drawString("Date: " + date, getWidth()/3, (getHeight()*3/4)+5);
-        g.drawString("Auditorium: " + audID, (getWidth()/3)*2, (getHeight()/4)+5);
-        g.drawString("Seats: " + seats, (getWidth()/3)*2, (getHeight()*3/4)+5);
     }
 }

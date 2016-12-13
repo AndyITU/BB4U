@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ReservationList is an extension of JPanel.
+ * ReservationList is an extension of JPanel consisting of ReservationEntrys.
  *
  * It creates a list of reservation entries for the user to interact with.
  *

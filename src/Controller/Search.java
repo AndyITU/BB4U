@@ -14,6 +14,7 @@ import java.util.Locale;
 class Search {
     private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
     // Movies
+
     private static String[] getMovies(String aud_id, String date) {
         List<String> uniqueMovies = new ArrayList<>();
         uniqueMovies.add("");
