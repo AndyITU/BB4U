@@ -116,7 +116,8 @@ public class InformationPanel extends JPanel
     }
 
     public void updateSeatInfo(int seatsReserved) {
-        overallSeatInfo =  new JLabel(availableSeats-seatsReserved + "/" + totalSeats);
+        availableSeats = availableSeats-seatsReserved;
+        overallSeatInfo.setText(availableSeats+ "/" + totalSeats);
         repaint();
         revalidate();
     }
