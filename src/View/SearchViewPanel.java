@@ -64,7 +64,7 @@ public class SearchViewPanel extends JPanel {
 
         ArrayList<String> dateArrayList = new ArrayList<>(movieDates);
         Collections.sort(dateArrayList);
-        for (String k : movieDates) {
+        for (String k : dateArrayList) {
             j.addItem(k);
         }
         repaint();

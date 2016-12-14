@@ -132,11 +132,12 @@ class Database {
     }
 
     /**
+     * Searches the Database for the given show information.
      *
-     * @param movie
-     * @param aud_id
-     * @param date
-     * @return
+     * @param movie title of the movie
+     * @param aud_id the auditorium id
+     * @param date the date the movie is playing
+     * @return a show corresponding to the given parameters
      */
     static Show getShowFromSearch(String movie, String aud_id, String date) {
         Show show = new Show(0, 0, null, null, null);
@@ -165,9 +166,12 @@ class Database {
     }
 
     /**
+     * This method returns an array of objects of the type Auditorium.
+     * Given 0 (or anything below) the array contains all auditoriums in the Database.
+     * Otherwise it returns the auditorium with the given id.
      *
-     * @param id
-     * @return
+     * @param id Either an integer less than 1 or the id of an auditorium
+     * @return An array of shows or an array containing a single show
      */
     static Auditorium[] getAuditoriums(int id) {
         Auditorium[] auditoriums;

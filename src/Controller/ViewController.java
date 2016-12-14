@@ -30,6 +30,9 @@ public class ViewController {
 
     private static ViewController instance = null;
 
+    /**
+     * Constructs an instance of the ViewController-class (singleton)
+     */
     private ViewController() {
         frame = new MainFrame(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
         bookingViewPanel = frame.getBookingPanel();
@@ -39,11 +42,19 @@ public class ViewController {
         setupButtons();
     }
 
+    /**
+     * Creates an instance of the ViewController-class if no instance exists already (singleton)
+     */
     static void createInstance() {
         if (instance == null) {
             instance = new ViewController();
         }
     }
+
+    /**
+     *
+     * @return an instance of the ViewController-class (singleton)
+     */
     public static ViewController getInstance() {
         return instance;
     }
@@ -180,8 +191,8 @@ public class ViewController {
         reservationViewPanel.getReservationSearch().getSearchButton().addActionListener(e -> {
             String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
-            customerName.replace(" ","");
-            customerPhone.replace(" ","");
+            customerName = customerName.replace(" ","");
+            customerPhone = customerPhone.replace(" ","");
             reservationViewPanel.getReservationList().updateEntries(Booking.getReservations(
                     customerName,
                     customerPhone));
