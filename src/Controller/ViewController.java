@@ -135,14 +135,12 @@ public class ViewController {
         searchPanel.getMovieDropDown().addActionListener(movieDropDown);
         searchPanel.getDateDropDown().addActionListener(dateDropDown);
         searchPanel.getAuditoriumDropDown().addActionListener(auditoriumDropDown);
-
         searchPanel.getSelectShowButton().addActionListener(e -> {
             System.out.println("Strings: "+movieString+", "+auditoriumID+", "+dateString);
             searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
             currentShow = searchShow;
             bookingViewPanel.updatePanels(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
             reservationViewPanel.updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
-            setupButtons();
             frame.changeToPanel(bookingViewPanel);
             movieString = "";
             dateString = "";

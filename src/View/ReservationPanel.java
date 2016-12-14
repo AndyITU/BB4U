@@ -23,12 +23,10 @@ public class ReservationPanel extends JPanel {
     private SeatPanel sPanel;
     private final CanvasPanel cPanel = new CanvasPanel();
     private ReservationList rlPanel;
-    private final ReservationSearch rsPanel = new ReservationSearch()
-            ;
-
+    private final ReservationSearch rsPanel = new ReservationSearch();
 
     /**
-     *
+     * This method
      * @param reservations
      * @param show
      * @param auditorium
