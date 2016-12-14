@@ -15,22 +15,37 @@ public class Booking {
 
 
     /* GETTERS */
-    public static Show getShow(int id) {
+
+    /**
+     * Returns a single show of the given id from the database.
+     *
+     * @param id An id of a show
+     * @return A show of the given id
+     */
+    static Show getShow(int id) {
         if(show == null || show.getId() != id)
             show = Database.getShows(id)[0];
         return show;
     }
-    /*public static Show[] getShows(){
-        return Database.getShows(0);
-    }*/
 
+    /**
+     * Returns a single auditorium of the given id from the database.
+     *
+     * @param id An id of an auditorium
+     * @return An auditorium of the given id
+     */
     static Auditorium getAuditorium(int id) {
         if(auditorium == null || auditorium.getId() != id)
             auditorium = Database.getAuditoriums(id)[0];
         return auditorium;
     }
 
-
+    /**
+     * Returns an array of the object SeatModel containing all reserved seats from the database.
+     *
+     * @param show_id The id of a valid show
+     * @return An array of reserved seats in the given show
+     */
     public static SeatModel[] getReservedSeats(int show_id) {
         Reservation[] r = Database.getReservations(show_id);
         int amount = 0;
@@ -48,12 +63,20 @@ public class Booking {
         return s;
     }
 
-    public static Reservation[] getReservations(String name, String contact_info) {
+    /**
+     *
+     * @param name
+     * @param contact_info
+     * @return
+     */
+    static Reservation[] getReservations(String name, String contact_info) {
         return Database.getReservations(name, contact_info);
     }
-    /*static Reservation[] getReservations(int show_id) {
-        return Database.getReservations(show_id);
-    }*/
+
+    /**
+     *
+     * @return
+     */
     public static Reservation[] getReservations() {
         return Database.getReservations(0);
     }
@@ -61,6 +84,12 @@ public class Booking {
 
     /* SETTERS */
 
+    /**
+     *
+     * @param r The reservation to be sent to the database
+     * @throws SQLException If there's an error in the query to the database
+     * @throws IllegalArgumentException If given a reservation with no seats, with seats that are already booked or with empty name/contact information
+     */
     static void makeReservation(Reservation r) throws SQLException, IllegalArgumentException {
         if(Database.isReserved(r.getShow_id(), r.getSeats()))
             throw new IllegalArgumentException("One or more of the seats are already booked!");
@@ -83,6 +112,10 @@ public class Booking {
         }
     }
 
+    /**
+     *
+     * @param r
+     */
     static void removeReservation(Reservation r) {
         try {
             Database.updateTable(
@@ -93,6 +126,11 @@ public class Booking {
         }
     }
 
+    /**
+     *
+     * @param r
+     * @param r1
+     */
     static void editReservation(Reservation r, Reservation r1) {
         removeReservation(r);
         try {

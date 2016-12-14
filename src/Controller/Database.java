@@ -131,6 +131,13 @@ class Database {
         return shows;
     }
 
+    /**
+     *
+     * @param movie
+     * @param aud_id
+     * @param date
+     * @return
+     */
     static Show getShowFromSearch(String movie, String aud_id, String date) {
         Show show = new Show(0, 0, null, null, null);
 
@@ -157,6 +164,11 @@ class Database {
         return show;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     static Auditorium[] getAuditoriums(int id) {
         Auditorium[] auditoriums;
 
@@ -256,6 +268,12 @@ class Database {
 
         return reservations;
     }
+
+    /**
+     *
+     * @param show_id
+     * @return
+     */
     static Reservation[] getReservations(int show_id) {
         return getReservations(new String[]{Integer.toString(show_id)});
     }
