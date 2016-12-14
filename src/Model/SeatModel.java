@@ -14,15 +14,24 @@ public class SeatModel {
         this.row = row;
         this.isBooked = isBooked;
     }
-
+    /**
+     * This method returns an object of the type integer whenever it is called.
+     * @return col that is currently in SeatModel.
+     */
     public int getCol() {
         return col;
     }
-
+    /**
+     * This method returns an object of the type integer whenever it is called.
+     * @return isBooked that is currently in SeatModel.
+     */
     public int getRow() {
         return row;
     }
-
+    /**
+     * This method returns an object of the type boolean whenever it is called.
+     * @return isBooked that is currently in SeatModel.
+     */
     public boolean getIsBooked() {
         return isBooked;
     }

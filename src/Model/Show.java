@@ -20,19 +20,38 @@ public class Show {
         this.date = date;
         this.duration = duration;
     }
-
+    /**
+     * This method returns an object of the type integer whenever it is called.
+     * @return id that is currently in Show.
+     */
     public int getId() {
         return id;
     }
+    /**
+     * This method returns an object of the type integer whenever it is called.
+     * @return aud_id that is currently in Show.
+     */
     public int getAud_id() {
         return aud_id;
     }
+    /**
+     * This method returns an object of the type String whenever it is called.
+     * @return movie that is currently in Show.
+     */
     public String getMovie() {
         return movie;
     }
+    /**
+     * This method returns an object of the type LocalDateTime whenever it is called.
+     * @return date that is currently in Show.
+     */
     public LocalDateTime getDate() {
         return date;
     }
+    /**
+     * This method returns an object of the type LocalTime whenever it is called.
+     * @return duration that is currently in Show.
+     */
     public LocalTime getDuration() {
         return duration;
     }
