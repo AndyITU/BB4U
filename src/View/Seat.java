@@ -49,6 +49,8 @@ public class Seat extends JButton implements MouseListener
     /**
      * This method draws the graphical display of the Seat. Depending on what state the individual seat is in,
      * the method will draw a corresponding image.
+     * @param g the graphical component which all drawing methods are called from.
+
      */
     public void paint (Graphics g) {
         if (isBooked) {
@@ -103,6 +105,8 @@ public class Seat extends JButton implements MouseListener
      * Once it has been selected, it will be available for booking, but can still
      * be deselected should the user change his or hers mind.
      * This method makes use of the MouseListener implementation.
+     * @param e the implemented parameter from MouseListener.
+
      */
     public void mouseClicked(MouseEvent e) {
         if (!isBooked && isClickable) {
@@ -121,6 +125,7 @@ public class Seat extends JButton implements MouseListener
      * This method is iniatied when the user has hovered inside the component, and then moves outside the component.
      * Seat's boolean is Highlighted will change state, and Seat will redraw itself in a new color.
      * This method makes use of the MouseListener implementation.
+     * @param e the implemented parameter from MouseListener.
      */
     public void mouseExited(MouseEvent e) {
         isHighlighted = false;
@@ -130,6 +135,7 @@ public class Seat extends JButton implements MouseListener
      * This method is initiated when the user hovers inside the Seat component with the mouse.
      * Seat's boolean isHighlighted will change state, and Seat will redraw itself in a new color.
      * This method makes use of the MouseListener implementation.
+     * @param e the implemented parameter from MouseListener.
      */
     public void mouseEntered(MouseEvent e) {
         if (isClickable)
@@ -139,11 +145,14 @@ public class Seat extends JButton implements MouseListener
 
     /**
      * Unused method
+     * @param e the implemented parameter from MouseListener.
+
      */
     public void mousePressed(MouseEvent e) {
     }
     /**
      * Unused method
+     * @param e the implemented parameter from MouseListener.
      */
     public void mouseReleased(MouseEvent e) {
     }

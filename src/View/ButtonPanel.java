@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.IOException;
 
 /**
- * Write a description of class BookingFrame here.
+ * ButtonPanel is an extension of JPanel. It is the main way of traveling between panels.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -17,6 +17,10 @@ public class ButtonPanel extends JPanel
     private final JButton reservationButton;
     private final JButton bookingButton;
 
+    /**
+     * The constructor of ButtonPanel create and adds three JButtons to itself,
+     * used for travelling between the three different views.
+     */
     ButtonPanel() {
         setLayout(new GridLayout(0,3));
         setPreferredSize(new Dimension(1000,100));
@@ -30,13 +34,24 @@ public class ButtonPanel extends JPanel
         add(searchButton);
         
     }
+    /**
+     * This method returns an object of the type JButton whenever it is called.
+     * @return reservationButton that is currently exist in ButtonPanel.
+     */
     public JButton getReservationButton() {
         return reservationButton;
     }
-
+    /**
+     * This method returns an object of the type JButton whenever it is called.
+     * @return searchButton that is currently in the ButtonPanel
+     */
     public JButton getSearchButton() {
         return searchButton;
     }
+    /**
+     * This method returns an object of the type JButton whenever it is called.
+     * @return bookingButton that is currently in the ButtonPanel
+     */
     public JButton getBookingViewButton() {
         return bookingButton;
     }

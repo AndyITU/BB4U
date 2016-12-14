@@ -51,41 +51,40 @@ public class MainFrame extends JFrame
         setVisible(true);
         pane = getContentPane();
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
-        pane.add(bPanel);
-        pane.add(bvPanel);
+        changeToPanel(bvPanel);
         pack();
     }
 
     /**
-     * This method returns a object of the type BookingViewPanel whenever it is called.
+     * This method returns an object of the type BookingViewPanel whenever it is called.
      * @return bvPanel to the method caller.
      */
     public BookingViewPanel getBookingPanel() {
         return bvPanel;
     }
     /**
-     * This method returns a object of the type SearchPanel whenever it is called.
+     * This method returns an object of the type SearchPanel whenever it is called.
      * @return searchPanel to the method caller.
      */
     public SearchViewPanel getSearchPanel() {
         return searchPanel;
     }
     /**
-     * This method returns a object of the type ButtonPanel whenever it is called.
+     * This method returns an object of the type ButtonPanel whenever it is called.
      * @return bPanel to the method caller.
      */
     public ButtonPanel getButtonPanel() {
         return bPanel;
     }
     /**
-     * This method returns a object of the type ReservationPanel whenever it is called.
+     * This method returns an object of the type ReservationPanel whenever it is called.
      * @return rPanel to the method caller.
      */
     public ReservationPanel getReservationPanel() {
         return rPanel;
     }
     /**
-     * This method returns a object of the type JPanel whenever it is called.
+     * This method returns an object of the type JPanel whenever it is called.
      * @return currentPanel to the method caller.
      */
     public JPanel getCurrentPanel() {

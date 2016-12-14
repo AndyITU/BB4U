@@ -95,10 +95,11 @@ public class InformationPanel extends JPanel
     }
 
     /**
-     * This method returns an object of the type JPanel. It writes information about the movie in this smaller JPanel.
+     * This method returns an object of the type JPanel. It writes information about the movie, auditorium and available seats
+     * in this smaller JPanel.
      * @param movie the name of the movie
-     * @param auditorium_id
-     * @return
+     * @param auditorium_id the ID of the auditorium that the movie is played in
+     * @return a JPanel which has set up every necessary information about the movie.
      */
     private JPanel createMovieInformationBox(String movie, int auditorium_id) {
         JPanel infoPanel = new JPanel();
@@ -115,12 +116,25 @@ public class InformationPanel extends JPanel
         return infoPanel;
     }
 
+    /**
+     * This method updates the text of the JPanel with information about the the number of booked seats. This is run every time
+     * a booking is made.
+     * @param seatsReserved the number of total seats that are in the new reservation.
+     * @param alreadyReserved the number of seats that was already reserved in the new reservation. This is useful to know when the customer is editing seats.
+     */
+
     public void updateSeatInfo(int seatsReserved, int alreadyReserved) {
         availableSeats = availableSeats-(seatsReserved+alreadyReserved);
         overallSeatInfo.setText(availableSeats+ "/" + totalSeats);
         repaint();
     }
-
+    /**
+     * This method returns an object of the type JPanel. It writes information about what date the movie is showing,
+     * and how long time it will last, in this smaller JPanel.
+     * @param time the name of the movie
+     * @param duration the ID of the auditorium that the movie is played in
+     * @return a JPanel which has set up every necessary information about the movie.
+     */
     private JPanel createTimeInformationBox(LocalDateTime time, LocalTime duration) {
         JLabel dateHeader = new JLabel("Tidspunkt:");
         JLabel durationHeader = new JLabel("Afspilningstid:");
