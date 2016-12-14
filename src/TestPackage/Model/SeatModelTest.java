@@ -13,7 +13,7 @@ class SeatModelTest {
     SeatModel test;
     @Before
     public void setUp() {
-        test = new SeatModel(5,3,true);
+        test = new SeatModel(5,3);
     }
 
     @After
@@ -29,11 +29,6 @@ class SeatModelTest {
     @Test
     public void getRow() {
         assertEquals(3, test.getRow());
-    }
-
-    @Test
-    public void getIsBooked() {
-        assertEquals(true,test.getIsBooked());
     }
 
 }

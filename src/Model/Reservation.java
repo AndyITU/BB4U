@@ -21,43 +21,43 @@ public class Reservation {
     }
     /* GETTERS */
     /**
-     * This method returns an object of the type boolean whenever it is called.
-     * @return isBooked that is currently in SeatModel.
+     * This method returns an object of the type integer whenever it is called.
+     * @return id of reservation
      */
     public int getId() {
         return id;
     }
     /**
-     * This method returns an object of the type boolean whenever it is called.
-     * @return isBooked that is currently in.
+     * This method returns an object of the type integer whenever it is called.
+     * @return id of the show that is currently in the reservation.
      */
     public int getShow_id() {
         return show_id;
     }
     /**
      * This method returns an object of the type integer whenever it is called.
-     * @return isBooked that is currently in SeatModel.
+     * @return id of the auditorium that is currently in the reservation.
      */
     public int getAud_id() {
         return aud_id;
     }
     /**
      * This method returns an object of the type String whenever it is called.
-     * @return isBooked that is currently in SeatModel.
+     * @return name of the customer that is currently in the reservation.
      */
     public String getName() {
         return name;
     }
     /**
      * This method returns an object of the type String whenever it is called.
-     * @return contact_info that is currently in SeatModel.
+     * @return contact_info (phone numer of the customer) that is currently in the reservation.
      */
     public String getContact_info() {
         return contact_info;
     }
     /**
-     * This method returns an object of the type String whenever it is called.
-     * @return seats that is currently in SeatModel.
+     * This method returns an array of SeatModels whenever it is called.
+     * @return seats that are currently connected to the reservation.
      */
     public SeatModel[] getSeats() {
         return seats;

@@ -14,13 +14,25 @@ public class Auditorium {
         this.rows = rows;
         this.cols = cols;
     }
-
+    /**
+     * This method returns an object of the type integer whenever it is called.
+     * @return id of the auditorium.
+     */
     public int getId() {
         return id;
     }
+
+    /**
+     * This method returns an object of the type integer whenever it is called.
+     * @return how many rows that are in the auditorium
+     */
     public int getRows() {
         return rows;
     }
+    /**
+     * This method returns an object of the type integer whenever it is called.
+     * @return how many columns that are in the auditorium
+     */
     public int getCols() {
         return cols;
     }
