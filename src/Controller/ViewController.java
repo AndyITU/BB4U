@@ -39,7 +39,7 @@ public class ViewController {
         setupButtons();
     }
 
-    public static void createInstance() {
+    static void createInstance() {
         if (instance == null) {
             instance = new ViewController();
         }
@@ -52,8 +52,8 @@ public class ViewController {
         ActionListener BookingButton = e -> {
             String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
-            customerName.replace(" ","");
-            customerPhone.replace(" ","");
+            customerName = customerName.replace(" ","");
+            customerPhone = customerPhone.replace(" ","");
             if ( !customerName.trim().equals("") && customerPhone.trim().length() == 8 )
             {
                 try {
@@ -93,13 +93,12 @@ public class ViewController {
         buttonPanel.getReservationButton().addActionListener(e -> frame.changeToPanel(reservationViewPanel));
 
         // SearchViewPanel setup
-
         ActionListener movieDropDown = e -> {
             JComboBox sendInput =(JComboBox) e.getSource();
             movieString =(String)sendInput.getSelectedItem();
             if (!Objects.equals(movieString, "")) {
                 if(movieString != null){
-                searchPanel.updateInfo(Search.getDatesByMovie(movieString),searchPanel.getDateDropDown());
+                searchPanel.updateInfo(Search.getDates(movieString),searchPanel.getDateDropDown());
                 searchPanel.getDateDropDown().setEnabled(true);
                 searchPanel.getDateDropDown().setSelectedIndex(0);}
             }
@@ -138,6 +137,7 @@ public class ViewController {
         searchPanel.getAuditoriumDropDown().addActionListener(auditoriumDropDown);
 
         searchPanel.getSelectShowButton().addActionListener(e -> {
+            System.out.println("Strings: "+movieString+", "+auditoriumID+", "+dateString);
             searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
             currentShow = searchShow;
             bookingViewPanel.updatePanels(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
@@ -151,6 +151,7 @@ public class ViewController {
             searchPanel.getSelectShowButton().setEnabled(false);
             searchPanel.resetSearch();
         });
+
         // KeyListener for the Reservation panel
         frame.addKeyListener(new KeyListener() {
             @Override public void keyTyped(KeyEvent e) {}
@@ -176,8 +177,8 @@ public class ViewController {
                 }
             }
         });
-        // Search in reservation action listener
 
+        // Search in reservation action listener
         reservationViewPanel.getReservationSearch().getSearchButton().addActionListener(e -> {
             String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
