@@ -53,13 +53,13 @@ class Database {
             statement.executeUpdate(
                     "INSERT INTO auditoriums (rows, cols) VALUES (5, 10);");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (6, 8);");
+                    "INSERT INTO auditoriums (rows, cols) VALUES (1, 1);");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (25, 25);");
+                    "INSERT INTO auditoriums (rows, cols) VALUES (10, 10);");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (50, 50);");
+                    "INSERT INTO auditoriums (rows, cols) VALUES (4 , 4 );");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (100,100);");
+                    "INSERT INTO auditoriums (rows, cols) VALUES (9,5);");
             System.out.println("*** SUCCESS ***\n\nQueries finished successfully\nClosing connection...");
         } catch(SQLException e) {
             System.out.println("*** FAILURE ***");

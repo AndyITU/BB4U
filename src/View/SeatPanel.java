@@ -34,7 +34,9 @@ public class SeatPanel extends JPanel {
      * @param b whether or not the SeatPanel can be interacted with.
      */
     public SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
-        super(new GridLayout(0, columns));
+        if (rows != 0 && columns != 0) {
+            setLayout(new GridLayout(0, columns));
+        }
         setMinimumSize(new Dimension(1000, 500));
         rowID = rows;
         columnID = columns;
@@ -84,7 +86,7 @@ public class SeatPanel extends JPanel {
 
     /**
      * This method is run in the start of the program, and when doing any sort of updates to SeatPanel.
-     * It takes an array of SeatModels and sets them to be booked in the interface.
+     * It takes an array of SeatModels and sets them to be booked/unbooked in the interface, depending on their actual status.
      * @param seats the list of seats that are already booked.
      */
 
