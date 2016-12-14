@@ -28,7 +28,7 @@ class Seat extends JButton implements MouseListener
      * The seat tries to represent a single seat in a given auditorium. Row and Column ID works as a 2D array.
      * @param row the row number of the seat.
      * @param column the column number of the seat.
-     * @param b whether or not the seat is interactable
+     * @param b whether or not the seat is clickable
      * @param seatPanel a reference to seatPanel, used to get necessary images of the seat.
      */
 
@@ -70,7 +70,7 @@ class Seat extends JButton implements MouseListener
         g.drawString("S: "+columnID, (getWidth()/2), (getHeight()));
     }
     //The old method of making squares - Outdated -
-    /**
+    /*
     public void makeSquare(Graphics g) {
         if (isBooked) {
             g.setColor(Color.red);
@@ -122,7 +122,7 @@ class Seat extends JButton implements MouseListener
     }
 
     /**
-     * This method is iniatied when the user has hovered inside the component, and then moves outside the component.
+     * This method is initiated when the user has hovered inside the component, and then moves outside the component.
      * Seat's boolean is Highlighted will change state, and Seat will redraw itself in a new color.
      * This method makes use of the MouseListener implementation.
      * @param e the implemented parameter from MouseListener.
@@ -182,7 +182,7 @@ class Seat extends JButton implements MouseListener
      * This is important in ReservationList when editing reservations.
      * See {@link ReservationList}
      *
-     * @param b boolean for setting clickable/unclickable.
+     * @param b boolean to determine whether or not the seat is clickable.
      */
     void setClickable(Boolean b) {
         isClickable = b;
@@ -197,7 +197,7 @@ class Seat extends JButton implements MouseListener
     }
 
     /**
-     * This method is used to change the isBooked state of Seat. It is very similiar to {@link #setBooked}
+     * This method is used to change the isBooked state of Seat. It is very similar to {@link #setBooked}
      * but it is necessary for drawing the already reserved Seats, that was created before the program was launched.
      * @param b boolean for setting booked/unbooked.
      */

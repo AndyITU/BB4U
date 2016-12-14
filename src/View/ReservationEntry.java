@@ -35,7 +35,7 @@ class ReservationEntry extends JButton implements MouseListener {
      *
      * @param res the reservation to be displayed. It makes sure that the movie string displayed is no longer than 32.
      */
-    public ReservationEntry(Reservation res) {
+    ReservationEntry(Reservation res) {
         setSize(new Dimension(1000, 70));
         setMaximumSize(getSize());
         setMinimumSize(new Dimension(1000, 10));

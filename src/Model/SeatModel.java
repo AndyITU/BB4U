@@ -7,12 +7,10 @@ package Model;
  */
 public class SeatModel {
     private final int col, row;
-    private final boolean isBooked;
 
-    public SeatModel(int col, int row, boolean isBooked) {
+    public SeatModel(int col, int row) {
         this.col = col;
         this.row = row;
-        this.isBooked = isBooked;
     }
     /**
      * This method returns an object of the type integer whenever it is called.
@@ -28,16 +26,5 @@ public class SeatModel {
     public int getRow() {
         return row;
     }
-    /**
-     * This method returns an object of the type boolean whenever it is called.
-     * @return isBooked that is currently in SeatModel.
-     */
-    public boolean getIsBooked() {
-        return isBooked;
-    }
 
-    /*public void setBooked(boolean booked) {
-        if(isBooked != booked)
-            isBooked = booked;
-    }*/
 }

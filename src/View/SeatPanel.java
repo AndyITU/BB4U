@@ -33,7 +33,7 @@ public class SeatPanel extends JPanel {
      * @param reservedSeats the reserved seats in a given auditorium
      * @param b whether or not the SeatPanel can be interacted with.
      */
-    public SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
+    SeatPanel(int rows, int columns, SeatModel[] reservedSeats, boolean b) {
         if (rows != 0 && columns != 0) {
             setLayout(new GridLayout(0, columns));
         }
@@ -70,14 +70,14 @@ public class SeatPanel extends JPanel {
      * is by running through all of them, and checking whether the command .setBooked evaluates to true. If it does, that must mean that the seats were selected by the user,
      * and were not already occupied. It then returns all the seats that have been successfully booked.
      *
-     * @return SeatModel[] containing the seats that were succesfully booked.
+     * @return SeatModel[] containing the seats that were successfully booked.
      */
     public SeatModel[] newBooking() {
         ArrayList<SeatModel> newReservation = new ArrayList<>();
         for (int i = 0; i < rowID; i++) {
             for (int k = 0; k < columnID; k++) {
                 if (viewSeats[i][k].setBooked(true)) {
-                    newReservation.add(new SeatModel(k + 1, i + 1, true));
+                    newReservation.add(new SeatModel(k + 1, i + 1));
                 }
             }
         }
@@ -89,31 +89,25 @@ public class SeatPanel extends JPanel {
      * It takes an array of SeatModels and sets them to be booked/unbooked in the interface, depending on their actual status.
      * @param seats the list of seats that are already booked.
      */
-
     private void startBooking(SeatModel[] seats) {
-        for (SeatModel Seat : seats) {
-            viewSeats[Seat.getRow() - 1][Seat.getCol() - 1].setModelBooked(Seat.getIsBooked());
-        }
+        for (SeatModel Seat : seats)
+            viewSeats[Seat.getRow() - 1][Seat.getCol() - 1].setModelBooked(true);
     }
 
     /**
-     * This method runs through all of the seats and changes whether they are clickable/unclickable.
-     * @param b boolean used to determine if the seat should be clickable/unclickable.
+     * This method runs through all of the seats in the SeatPanel and changes whether or not the seats should be clickable.
+     * @param b boolean to determine whether or not the seats should be clickable.
      */
-
     public void setClickable(Boolean b) {
-        for (int i = 0; i < rowID; i++) {
-            for (int k = 0; k < columnID; k++) {
+        for (int i = 0; i < rowID; i++)
+            for (int k = 0; k < columnID; k++)
                 viewSeats[i][k].setClickable(b);
-            }
-        }
     }
 
     /**
      * This method runs through some of the seats, and changes them to be selected.
      * @param seats SeatModel array that is used to set a certain amount of seats to be selected.
      */
-
     public void setSelectedSeats(SeatModel[] seats) {
         for (SeatModel seat : seats) {
             viewSeats[seat.getRow()-1][seat.getCol()-1].setBooked(false);
