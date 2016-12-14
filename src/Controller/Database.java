@@ -248,7 +248,7 @@ class Database {
                     names[total] = rs.getString("name"); contacts[total] = rs.getString("contact_info");
                     total++;
                 }
-                seatsHashMap.get(rs.getInt("id")).add(new SeatModel(rs.getInt("col"), rs.getInt("row"), true));
+                seatsHashMap.get(rs.getInt("id")).add(new SeatModel(rs.getInt("col"), rs.getInt("row")));
             }
             reservations = new Reservation[total];
             for(int i = 0; i < total; i++) {
