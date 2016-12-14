@@ -19,29 +19,46 @@ public class Reservation {
         this.name = name;
         this.contact_info = contact_info;
     }
-
-
     /* GETTERS */
+    /**
+     * This method returns an object of the type boolean whenever it is called.
+     * @return isBooked that is currently in SeatModel.
+     */
     public int getId() {
         return id;
     }
-
+    /**
+     * This method returns an object of the type boolean whenever it is called.
+     * @return isBooked that is currently in.
+     */
     public int getShow_id() {
         return show_id;
     }
-
+    /**
+     * This method returns an object of the type integer whenever it is called.
+     * @return isBooked that is currently in SeatModel.
+     */
     public int getAud_id() {
         return aud_id;
     }
-
+    /**
+     * This method returns an object of the type String whenever it is called.
+     * @return isBooked that is currently in SeatModel.
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * This method returns an object of the type String whenever it is called.
+     * @return contact_info that is currently in SeatModel.
+     */
     public String getContact_info() {
         return contact_info;
     }
-
+    /**
+     * This method returns an object of the type String whenever it is called.
+     * @return seats that is currently in SeatModel.
+     */
     public SeatModel[] getSeats() {
         return seats;
     }

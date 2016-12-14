@@ -39,7 +39,7 @@ public class SearchViewPanel extends JPanel {
         JLabel selectMovie = new JLabel("Select a movie from the dropdown list");
         add(selectMovie);
         add(movieDropDown);
-        updateMovies(movieTitles);
+        updateInfo(movieTitles,movieDropDown);
         JLabel selectDate = new JLabel("Select a date from the dropdown list");
         add(selectDate);
         add(dateDropDown);
@@ -53,58 +53,20 @@ public class SearchViewPanel extends JPanel {
         selectShow.setEnabled(false);
     }
     /**
-     * This method receives a list of movie titles, and inserts them into movieDropDown. Duplicate strings are removed, and the strings
-     * gets sorted by alphabetic order.
-     *
-     * @param movieTitles The list of strings to put inside the dropdown box.
-     **/
-    public void updateMovies(String[] movieTitles) {
-        movieDropDown.removeAllItems();
-        Set<String> movies = new HashSet<>();
-        for (String m : movieTitles) {
-            movies.add(m);
-        }
-        ArrayList<String> arrayListmovies = new ArrayList<>(movies);
-        Collections.sort(arrayListmovies);
-        for (String m : arrayListmovies) {
-            movieDropDown.addItem(m);
-        }
-    }
-    /**
-     * This method receives a list of auditoriums, and inserts them into auditoriumDropDown. Duplicate strings are removed, and the strings
-     * gets sorted by alphabetic order
-     * @param auditoriumTitles The list of strings to put inside the dropdown box.
-     */
-    public void updateAud(String[] auditoriumTitles) {
-        auditoriumDropDown.removeAllItems();
-        Set<String> auditoriums = new HashSet<>();
-        for (String d : auditoriumTitles) {
-            auditoriums.add(d);
-
-        }
-        ArrayList<String> auditoriumArrayList = new ArrayList<>(auditoriums);
-        Collections.sort(auditoriumArrayList);
-        for (String k : auditoriumArrayList) {
-            auditoriumDropDown.addItem(k);
-        }
-        repaint();
-    }
-
-    /**
-     * This method receives a list of dates, and inserts them into dateDropDown. Duplicate strings are removed, and they
+     * This method receives a list of info for a specified JComboBox, and inserts them into it. Duplicate strings are removed, and they
      * are sorted by alphabetic order.
-     * @param dateTitles The list of strings to put inside the dropdown box.
+     * @param dropDownTitles The list of strings to put inside the dropdown box.
      */
-    public void updateDate(String[] dateTitles) {
-        dateDropDown.removeAllItems();
+    public void updateInfo(String[] dropDownTitles, JComboBox j) {
+        j.removeAllItems();
         Set<String> movieDates = new HashSet<>();
-        for (String d : dateTitles) {
+        for (String d : dropDownTitles) {
             movieDates.add(d);
         }
         ArrayList<String> dateArrayList = new ArrayList<>(movieDates);
         Collections.sort(dateArrayList);
         for (String k : movieDates) {
-            dateDropDown.addItem(k);}
+            j.addItem(k);}
         repaint();
     }
 

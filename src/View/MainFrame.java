@@ -17,11 +17,11 @@ import java.awt.*;
  */
 public class MainFrame extends JFrame
 {
-    private BookingViewPanel bvPanel;
-    private ReservationPanel rPanel;
-    private SearchViewPanel searchPanel;
-    private ButtonPanel bPanel;
-    private Container pane;
+    private final BookingViewPanel bvPanel;
+    private final ReservationPanel rPanel;
+    private final SearchViewPanel searchPanel;
+    private final ButtonPanel bPanel;
+    private final Container pane;
     private JPanel currentPanel;
 
     /**

@@ -21,9 +21,9 @@ public class ReservationPanel extends JPanel {
 
 
     private SeatPanel sPanel;
-    private CanvasPanel cPanel = new CanvasPanel();
+    private final CanvasPanel cPanel = new CanvasPanel();
     private ReservationList rlPanel;
-    private ReservationSearch rsPanel = new ReservationSearch()
+    private final ReservationSearch rsPanel = new ReservationSearch()
             ;
 
 

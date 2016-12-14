@@ -16,7 +16,6 @@ public class BookingViewPanel extends JPanel {
 
     private SeatPanel sPanel;
     private InformationPanel iPanel;
-    private CanvasPanel cPanel;
 
     /**
      * The constructor of BookingViewPanel creates and adds a CanvasPanel, SeatPanel, and an InformationPanel.
@@ -28,19 +27,17 @@ public class BookingViewPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         updatePanels(show,auditorium,reservedSeats);
     }
-
     /**
      * This method replaces all objects in ReservationPanel with the same type of objects but with new data.
      * @param show the show to be used by the SeatPanel and InformationPanel.
      * @param auditorium the auditorium to be used by SeatPanel and InformationPanel.
      * @param reservedSeats the amount of reserved seats, to be used by InformationPanel.
      */
-
     public void updatePanels(Show show, Auditorium auditorium, int reservedSeats) {
         removeAll();
         sPanel = new SeatPanel(auditorium.getRows(), auditorium.getCols(), Booking.getReservedSeats(show.getId()), true);
         iPanel = new InformationPanel(show, reservedSeats, auditorium.getCols() * auditorium.getRows());
-        cPanel = new CanvasPanel();
+        CanvasPanel cPanel = new CanvasPanel();
         add(cPanel);
         add(sPanel);
         add(iPanel);
@@ -57,7 +54,6 @@ public class BookingViewPanel extends JPanel {
      * This method returns an object of the type JPanel whenever it is called.
      * @return sPanel that is currently in the BookingViewPanel.
      */
-
     public SeatPanel getSeatPanel() {
         return sPanel;
     }

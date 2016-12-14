@@ -86,7 +86,7 @@ public class ViewController {
         // Button Panels button functionality
         buttonPanel.getSearchButton().addActionListener(e -> {
             frame.changeToPanel(searchPanel);
-            searchPanel.updateMovies(getMovieTitles());
+            searchPanel.updateInfo(getMovieTitles(),searchPanel.getMovieDropDown());
                 }
         );
         buttonPanel.getBookingViewButton().addActionListener(e -> frame.changeToPanel(bookingViewPanel));
@@ -99,7 +99,7 @@ public class ViewController {
             movieString =(String)sendInput.getSelectedItem();
             if (!Objects.equals(movieString, "")) {
                 if(movieString != null){
-                searchPanel.updateDate(Search.getDatesByMovie(movieString));
+                searchPanel.updateInfo(Search.getDatesByMovie(movieString),searchPanel.getDateDropDown());
                 searchPanel.getDateDropDown().setEnabled(true);
                 searchPanel.getDateDropDown().setSelectedIndex(0);}
             }
@@ -114,7 +114,7 @@ public class ViewController {
             JComboBox sendInput =(JComboBox) e.getSource();
             dateString =(String) sendInput.getSelectedItem();
             if (!Objects.equals(movieString, "") && movieString != null && !Objects.equals(dateString, "") && dateString != null) {
-                searchPanel.updateAud(Search.getAuditoriums(movieString, dateString));
+                searchPanel.updateInfo(Search.getAuditoriums(movieString, dateString),searchPanel.getAuditoriumDropDown());
                 searchPanel.getAuditoriumDropDown().setEnabled(true);
                 }
             else {
@@ -178,17 +178,14 @@ public class ViewController {
         });
         // Search in reservation action listener
 
-        reservationViewPanel.getReservationSearch().getSearchButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
-                String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
-                customerName.replace(" ","");
-                customerPhone.replace(" ","");
-                reservationViewPanel.getReservationList().updateEntries(Booking.getReservations(
-                        customerName,
-                        customerPhone));
-            }
+        reservationViewPanel.getReservationSearch().getSearchButton().addActionListener(e -> {
+            String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
+            String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
+            customerName.replace(" ","");
+            customerPhone.replace(" ","");
+            reservationViewPanel.getReservationList().updateEntries(Booking.getReservations(
+                    customerName,
+                    customerPhone));
         });
         }
 

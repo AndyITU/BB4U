@@ -90,7 +90,7 @@ public class SeatPanel extends JPanel {
      * @param seats the list of seats that are already booked.
      */
 
-    public void startBooking(SeatModel[] seats) {
+    private void startBooking(SeatModel[] seats) {
         for (SeatModel Seat : seats) {
             viewSeats[Seat.getRow() - 1][Seat.getCol() - 1].setModelBooked(Seat.getIsBooked());
         }
@@ -117,7 +117,7 @@ public class SeatPanel extends JPanel {
     public void setSelectedSeats(SeatModel[] seats) {
         for (SeatModel seat : seats) {
             viewSeats[seat.getRow()-1][seat.getCol()-1].setBooked(false);
-            viewSeats[seat.getRow()-1][seat.getCol()-1].isSelected(true);
+            viewSeats[seat.getRow()-1][seat.getCol()-1].setSelected();
         }
     }
 }

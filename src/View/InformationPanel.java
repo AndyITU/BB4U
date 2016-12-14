@@ -2,11 +2,9 @@ package View;
 
 import Model.Show;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
-import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -27,7 +25,7 @@ public class InformationPanel extends JPanel
     private final JLabel auditoriumHeader = new JLabel("Sal nr:");
     private final JButton bookButton;
     private int availableSeats;
-    private int totalSeats;
+    private final int totalSeats;
     private JLabel overallSeatInfo;
     private JFormattedTextField contactPhone;
     private JFormattedTextField contactName;

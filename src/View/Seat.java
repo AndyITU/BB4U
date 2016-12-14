@@ -14,7 +14,7 @@ import java.awt.event.MouseListener;
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
-public class Seat extends JButton implements MouseListener
+class Seat extends JButton implements MouseListener
 {
     private boolean isSelected;
     private boolean isHighlighted;
@@ -190,10 +190,9 @@ public class Seat extends JButton implements MouseListener
 
     /**
      * This method is used to change the isSelected state of Seat.
-     * @param b boolean for setting selected/unselected.
      */
-    void isSelected(Boolean b) {
-        isSelected = b;
+    void setSelected() {
+        isSelected = true;
         repaint();
     }
 

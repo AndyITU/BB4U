@@ -1,12 +1,5 @@
 package Controller;
-import Model.*;
 
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 /**
  * Write a description of class BookingFrame here.
  *

@@ -19,17 +19,16 @@ import java.util.Locale;
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
-public class ReservationEntry extends JButton implements MouseListener {
+class ReservationEntry extends JButton implements MouseListener {
 
-    private Reservation customer;
+    private final Reservation customer;
     private boolean isHighlighted;
-    private int seats;
-    private int audID;
-    private String date;
-    private String movieLabel;
-    private String contactInfo;
-    private String contactName;
-    private final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
+    private final int seats;
+    private final int audID;
+    private final String date;
+    private final String movieLabel;
+    private final String contactInfo;
+    private final String contactName;
 
     /**
      * ReservationEntry needs a Reservation to start creating a graphical outline of the reservation.
@@ -47,6 +46,7 @@ public class ReservationEntry extends JButton implements MouseListener {
         Show s = Booking.getShow(customer.getShow_id());
         seats = customer.getSeats().length;
         audID = customer.getAud_id();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
         date = s.getDate().format(format);
         String movie = s.getMovie();
         if (movie.length() > 32) {

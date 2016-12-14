@@ -15,9 +15,7 @@ import java.text.ParseException;
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
 public class ReservationSearch extends JPanel{
-    private JFormattedTextField contactPhone;
-    private JFormattedTextField contactName;
-    private JButton searchButton;
+    private final JButton searchButton;
 
     public ReservationSearch() {
         super(new GridLayout(1,4));
@@ -25,8 +23,8 @@ public class ReservationSearch extends JPanel{
         setMaximumSize(new Dimension(1000, 30));
         try {
             MaskFormatter phoneRule = new MaskFormatter("########");
-            contactPhone = new JFormattedTextField();
-            contactName = new JFormattedTextField();
+            JFormattedTextField contactPhone = new JFormattedTextField();
+            JFormattedTextField contactName = new JFormattedTextField();
             phoneRule.install(contactPhone);
             add(new JLabel("          Contact Name:"));
             add(contactName);
