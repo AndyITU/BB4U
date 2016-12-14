@@ -54,7 +54,7 @@ public class SearchViewPanel extends JPanel {
     }
     /**
      * This method receives a list of info for a specified JComboBox, and inserts them into it. Duplicate strings are removed, and they
-     * are sorted by alphabetic order.
+     * are sorted by alphabetic order..
      * @param dropDownTitles The list of strings to put inside the dropdown box.
      */
     public void updateInfo(String[] dropDownTitles, JComboBox j) {
