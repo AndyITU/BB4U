@@ -64,7 +64,6 @@ public class SeatPanel extends JPanel {
         setVisible(true);
         startBooking(reservedSeats);
     }
-
     /**
      * This method is used for when making a new reservation. SeatPanel holds a reference to all the seats that it contains. The way the method works
      * is by running through all of them, and checking whether the command .setBooked evaluates to true. If it does, that must mean that the seats were selected by the user,

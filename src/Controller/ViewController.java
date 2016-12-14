@@ -65,7 +65,7 @@ public class ViewController {
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
             customerName = customerName.replace(" ","");
             customerPhone = customerPhone.replace(" ","");
-            if ( !customerName.trim().equals("") && customerPhone.trim().length() == 8 )
+            if ( !customerName.trim().equals("") && customerPhone.trim().length() == 8 && customerName.trim().length() <= 35)
             {
                 try {
                     Reservation r = new Reservation(Database.getNextReservationID(),

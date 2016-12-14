@@ -26,7 +26,7 @@ public class ReservationPanel extends JPanel {
     private final ReservationSearch rsPanel = new ReservationSearch();
 
     /**
-     * This method
+     * This method creates and adds a list o
      * @param reservations
      * @param show
      * @param auditorium

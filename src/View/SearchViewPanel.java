@@ -59,10 +59,9 @@ public class SearchViewPanel extends JPanel {
      */
     public void updateInfo(String[] dropDownTitles, JComboBox j) {
         j.removeAllItems();
-        Set<String> movieDates = new HashSet<>();
-        Collections.addAll(movieDates, dropDownTitles);
-
-        ArrayList<String> dateArrayList = new ArrayList<>(movieDates);
+        Set<String> duplicateRemove = new HashSet<>();
+        Collections.addAll(duplicateRemove, dropDownTitles);
+        ArrayList<String> dateArrayList = new ArrayList<>(duplicateRemove);
         Collections.sort(dateArrayList);
         for (String k : dateArrayList) {
             j.addItem(k);
