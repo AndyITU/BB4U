@@ -29,7 +29,7 @@ public class SearchViewPanel extends JPanel {
      * @param movieTitles the list of movies to add to the SearchViewPanel.
      */
 
-    public SearchViewPanel(String[] movieTitles) {
+    SearchViewPanel(String[] movieTitles) {
         setLayout(new GridLayout(8,2));
         setPreferredSize(new Dimension(1000,50));
         setVisible(true);

@@ -22,7 +22,7 @@ public class Booking {
      * @param id An id of a show
      * @return A show of the given id
      */
-    static Show getShow(int id) {
+    public static Show getShow(int id) {
         if(show == null || show.getId() != id)
             show = Database.getShows(id)[0];
         return show;
