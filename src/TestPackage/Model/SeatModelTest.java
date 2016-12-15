@@ -1,34 +1,28 @@
 package Model;
 
-import org.junit.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by Mikkel on 14-12-2016.
+ * Created by arha on 12/15/2016.
  */
-class SeatModelTest {
-    SeatModel test;
+public class SeatModelTest {
+    SeatModel seat;
     @Before
-    public void setUp() {
-        test = new SeatModel(5,3);
-    }
-
-    @After
-    public void tearDown() {
-        test = null;
+    public void setUp() throws Exception {
+        seat = new SeatModel(10,5);
     }
 
     @Test
-    public void getCol() {
-        assertEquals(5, test.getCol());
+    public void getCol() throws Exception {
+        assertEquals(10,seat.getCol());
     }
 
     @Test
-    public void getRow() {
-        assertEquals(3, test.getRow());
+    public void getRow() throws Exception {
+        assertEquals(5, seat.getRow());
     }
 
 }
