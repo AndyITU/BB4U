@@ -64,18 +64,21 @@ public class Booking {
     }
 
     /**
+     * Unused method. Can be used for retrieving a reservation using name and contact information.
+     * Optimal for searching for reservations in {@link View.ReservationPanel}.
      *
-     * @param name
-     * @param contact_info
-     * @return
+     * @param name Customer name
+     * @param contact_info Customer contact information
+     * @return An array of all reservations by a customer
      */
     static Reservation[] getReservations(String name, String contact_info) {
         return Database.getReservations(name, contact_info);
     }
 
     /**
+     * Retrieves all reservations in the Database.
      *
-     * @return
+     * @return An array containing all reservations
      */
     public static Reservation[] getReservations() {
         return Database.getReservations(0);
@@ -85,6 +88,7 @@ public class Booking {
     /* SETTERS */
 
     /**
+     * Inserts a reservation into the database using given Reservation-object.
      *
      * @param r The reservation to be sent to the database
      * @throws SQLException If there's an error in the query to the database
@@ -113,8 +117,9 @@ public class Booking {
     }
 
     /**
+     * Removes a reservation from the database.
      *
-     * @param r
+     * @param r The reservation to be removed
      */
     static void removeReservation(Reservation r) {
         try {
@@ -127,9 +132,10 @@ public class Booking {
     }
 
     /**
+     * Replaces a reservation from the database.
      *
-     * @param r
-     * @param r1
+     * @param r The reservation to be replaced
+     * @param r1 The new reservation to replace the old one
      */
     static void editReservation(Reservation r, Reservation r1) {
         removeReservation(r);

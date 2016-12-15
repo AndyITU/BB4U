@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by arha on 12/15/2016.
- */
 public class ReservationTest {
     Reservation reservation;
     SeatModel[] seats = {new SeatModel(5,3),new SeatModel(2,6)};
@@ -44,7 +41,7 @@ public class ReservationTest {
 
     @Test
     public void getSeats() throws Exception {
-        assertEquals(seats, reservation.getSeats());
+        assertArrayEquals(seats, reservation.getSeats());
     }
 
 }
