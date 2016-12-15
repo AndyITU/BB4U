@@ -14,7 +14,7 @@ import java.util.Objects;
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
-public class ViewController {
+public class MainController {
 
     private final MainFrame frame;
     private final BookingViewPanel bookingViewPanel;
@@ -28,12 +28,17 @@ public class ViewController {
     private String dateString = "";
     private String auditoriumID = "";
 
-    private static ViewController instance = null;
+    private static MainController instance = null;
+
+    public static void main (String[] args) {
+        createInstance();
+
+    }
 
     /**
      * Constructs an instance of the ViewController-class (singleton)
      */
-    private ViewController() {
+    private MainController() {
         frame = new MainFrame(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
         bookingViewPanel = frame.getBookingPanel();
         searchPanel = frame.getSearchPanel();
@@ -47,7 +52,7 @@ public class ViewController {
      */
     static void createInstance() {
         if (instance == null) {
-            instance = new ViewController();
+            instance = new MainController();
         }
     }
 
@@ -55,7 +60,7 @@ public class ViewController {
      * Returns the instance created by {@link #createInstance()}
      * @return an instance of the ViewController-class (singleton)
      */
-    public static ViewController getInstance() {
+    public static MainController getInstance() {
         return instance;
     }
     private void setupButtons() {

@@ -1,7 +1,7 @@
 package View;
 
 import Controller.Booking;
-import Controller.ViewController;
+import Controller.MainController;
 import Model.Reservation;
 import Model.Show;
 
@@ -92,7 +92,7 @@ class ReservationEntry extends JButton implements MouseListener {
                 "Cancel"
         };
         int answer = JOptionPane.showOptionDialog(null, "Would you like to edit, or remove?", "Reservation", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, optionList, optionList[2]);
-        ViewController.getInstance().sendAnswer(answer, customer);
+        MainController.getInstance().sendAnswer(answer, customer);
     }
 
     /**

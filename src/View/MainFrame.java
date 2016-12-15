@@ -1,7 +1,7 @@
 package View;
 
 import Controller.Booking;
-import Controller.ViewController;
+import Controller.MainController;
 import Model.Auditorium;
 import Model.Show;
 
@@ -42,7 +42,7 @@ public class MainFrame extends JFrame
         bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
         bPanel = new ButtonPanel();
         rPanel = new ReservationPanel(Booking.getReservations(), show.getId(), auditorium);
-        searchPanel = new SearchViewPanel(ViewController.getMovieTitles());
+        searchPanel = new SearchViewPanel(MainController.getMovieTitles());
 
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
