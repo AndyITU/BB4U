@@ -1,6 +1,6 @@
 package Model;
 /**
- * Write a description of class BookingFrame here.
+ * This is the Auditorium class. It includes all necessary information about an auditorium for the "Arrival of Bookings" software.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -8,6 +8,12 @@ package Model;
 public class Auditorium {
     private int id, rows, cols;
 
+    /**
+     * The constructor gives Auditorium all parameters as private values. It checks these values for valid input.
+     * @param id the id of the auditorium.
+     * @param rows the amount of rows in the auditorium.
+     * @param cols the amount of columns in the auditorium.
+     */
     public Auditorium(int id, int rows, int cols) {
         if (id >= 0) this.id = id;
         else throw new IllegalArgumentException();

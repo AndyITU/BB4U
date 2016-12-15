@@ -26,15 +26,15 @@ public class ReservationPanel extends JPanel {
     private final ReservationSearch rsPanel = new ReservationSearch();
 
     /**
-     * This method creates and adds a list o
-     * @param reservations
-     * @param show
-     * @param auditorium
+     * This method creates and adds a list of reservations to itself. It also creates a SeatPanel, a search bar, and a canvas panel.
+     * @param reservations list of reservations to be used by ReservationList and its respective ReservationEntry.
+     * @param show_id the id of the show, to be used by SeatPanel.
+     * @param auditorium the auditorium of the show, also to be used by SeatPanel.
      */
-    public ReservationPanel(Reservation[] reservations, Show show, Auditorium auditorium) {
+    public ReservationPanel(Reservation[] reservations, int show_id, Auditorium auditorium) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(1000, 200));
-        updatePanels(reservations,show.getId(),auditorium);
+        updatePanels(reservations,show_id,auditorium);
         setVisible(true);
     }
 

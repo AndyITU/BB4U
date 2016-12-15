@@ -13,12 +13,12 @@ public class Show {
     private final LocalDateTime date;
     private final LocalTime duration;
     /**
-     * The constructor gives show all parameters as private values.
-     * @param id
-     * @param aud_id
-     * @param movie
-     * @param date
-     * @param duration
+     * The constructor gives show all parameters as private values. It checks some of these values for valid input.
+     * @param id the id of the show.
+     * @param aud_id the id of the auditorium connected to the show.
+     * @param movie name of the movie in show.
+     * @param date date of when the show is displayed.
+     * @param duration how long time the show will last.
      */
 
     public Show(int id, int aud_id, String movie, LocalDateTime date, LocalTime duration) throws IllegalArgumentException {

@@ -32,7 +32,6 @@ class ReservationEntry extends JButton implements MouseListener {
 
     /**
      * ReservationEntry needs a Reservation to start creating a graphical outline of the reservation.
-     *
      * @param res the reservation to be displayed. It makes sure that the movie string displayed is no longer than 32.
      */
     ReservationEntry(Reservation res) {

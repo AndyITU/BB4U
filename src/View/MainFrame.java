@@ -41,7 +41,7 @@ public class MainFrame extends JFrame
         }
         bvPanel = new BookingViewPanel(show, auditorium, reservedSeats);
         bPanel = new ButtonPanel();
-        rPanel = new ReservationPanel(Booking.getReservations(), show, auditorium);
+        rPanel = new ReservationPanel(Booking.getReservations(), show.getId(), auditorium);
         searchPanel = new SearchViewPanel(ViewController.getMovieTitles());
 
         setResizable(false);

@@ -1,6 +1,6 @@
 package Model;
 /**
- * Write a description of class BookingFrame here.
+ * This is the Reservation class. It includes all necessary information about a reservation for the "Arrival of Bookings" software.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -10,7 +10,15 @@ public class Reservation {
     private final String name, contact_info;
     private final SeatModel[] seats;
 
-
+    /**
+     * The constructor gives Reservation all parameters as private values. It checks some of these values for valid input.
+     * @param id id of the reservation.
+     * @param show_id id of the show connected to the reservation.
+     * @param seats the collected seats connected to a single reservation.
+     * @param aud_id id of the auditorium connected to the reservation.
+     * @param name name of the customer that made a reservation.
+     * @param contact_info phone number of the customer that made a reservation.
+     */
     public Reservation(int id, int show_id, SeatModel[] seats, int aud_id, String name, String contact_info) {
         if (id >= 0) this.id = id;
         else throw new IllegalArgumentException();
