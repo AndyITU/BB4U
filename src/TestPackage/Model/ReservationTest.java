@@ -44,7 +44,7 @@ public class ReservationTest {
 
     @Test
     public void getSeats() throws Exception {
-        assertEquals(seats, reservation.getSeats());
+        assertArrayEquals(seats, reservation.getSeats());
     }
 
 }
