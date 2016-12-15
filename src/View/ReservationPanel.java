@@ -3,9 +3,6 @@ package View;
 import Controller.Booking;
 import Model.Auditorium;
 import Model.Reservation;
-import Model.Show;
-//import javafx.scene.control.ListCell;
-
 import javax.swing.*;
 import java.awt.*;
 /**

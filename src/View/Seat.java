@@ -43,9 +43,6 @@ class Seat extends JButton implements MouseListener
         isClickable = b;
         this.seatPanel = seatPanel;
     }
-
-
-
     /**
      * This method draws the graphical display of the Seat. Depending on what state the individual seat is in,
      * the method will draw a corresponding image.
@@ -69,36 +66,6 @@ class Seat extends JButton implements MouseListener
         g.drawString("R: "+rowID, getWidth()/10,(getHeight()));
         g.drawString("S: "+columnID, (getWidth()/2), (getHeight()));
     }
-    //The old method of making squares - Outdated -
-    /*
-    public void makeSquare(Graphics g) {
-        if (isBooked) {
-            g.setColor(Color.red);
-        }
-            else if (isSelected) {
-            g.setColor(Color.pink);
-        }
-            else if (isHighlighted) {
-            g.setColor(Color.yellow);
-        }
-            else {
-                g.setColor(Color.GREEN);
-            }
-
-        g.fillRect(
-        getWidth()/10,
-        getHeight()/10,
-        getWidth()-getWidth()/5,
-        getHeight()-getHeight()/5);
-        
-        g.setColor(Color.BLACK);
-        g.drawRect(
-        getWidth()/10,
-        getHeight()/10,
-        getWidth()-getWidth()/5,
-        getHeight()-getHeight()/5);
-    }
-     */
     /**
      * This method is initiated when the user clicks within the boundaries of Seat.
      * The method makes the seat selected.
@@ -113,12 +80,6 @@ class Seat extends JButton implements MouseListener
             isSelected = !isSelected;
             repaint();
         }
-        /* Idea for selecting multiple seats: Holding shift down will select everything
-         if (e.isShiftDown())  {
-            e.getLocation();
-            repaint();
-        }
-         */
     }
 
     /**
