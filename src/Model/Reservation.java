@@ -6,16 +6,20 @@ package Model;
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
 public class Reservation {
-    private final int id, show_id, aud_id;
+    private int id, show_id, aud_id;
     private final String name, contact_info;
     private final SeatModel[] seats;
 
 
     public Reservation(int id, int show_id, SeatModel[] seats, int aud_id, String name, String contact_info) {
-        this.id = id;
-        this.show_id = show_id;
-        this.seats = seats;
-        this.aud_id = aud_id;
+        if (id >= 0) this.id = id;
+        else throw new IllegalArgumentException();
+        if (show_id >= 0) this.show_id = show_id;
+        else throw new IllegalArgumentException();
+        if (seats != null) this.seats = seats;
+        else throw new IllegalArgumentException();
+        if (aud_id >= 0) this.aud_id = aud_id;
+        else throw new IllegalArgumentException();
         this.name = name;
         this.contact_info = contact_info;
     }

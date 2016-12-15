@@ -58,17 +58,19 @@ class Database {
             statement.executeUpdate(
                     "INSERT INTO shows (aud_id, movie, date, duration) VALUES (4, 'The Lord of The Rings: The Fellowship of the Ring 3D', '2016-11-29 23:30:00', '3:48');");
             statement.executeUpdate(
-                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (5, 'The Hobbit: Desolation of Smaug', '2016-11-30 21:00:00', '2:41');");
+                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (4, 'The Hobbit: Desolation of Smaugost', '2016-11-30 21:00:00', '2:41');");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (5, 10);");
+                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (5, 'Resolution (2012)', '2016-12-24 22:30:00', '1:33') ");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (10, 15);");
+                   "INSERT INTO auditoriums (rows, cols) VALUES (5, 10);");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (6, 10);");
+                    "INSERT INTO auditoriums (rows, cols) VALUES (10, 20);");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (6, 9 );");
+                    "INSERT INTO auditoriums (rows, cols) VALUES (15, 30);");
             statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (5,9);");
+                    "INSERT INTO auditoriums (rows, cols) VALUES (12, 18);");
+            statement.executeUpdate(
+                    "INSERT INTO auditoriums (rows, cols) VALUES (15,5);");
             System.out.println("*** SUCCESS ***\n\nQueries finished successfully\nClosing connection...");
         } catch(SQLException e) {
             System.out.println("*** FAILURE ***");

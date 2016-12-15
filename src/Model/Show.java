@@ -2,7 +2,7 @@ package Model;
 
 import java.time.*;
 /**
- * Write a description of class BookingFrame here.
+ * This is the show model class. It includes all necessary information about a show for the "Arrival of Bookings" software.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -12,10 +12,24 @@ public class Show {
     private final String movie;
     private final LocalDateTime date;
     private final LocalTime duration;
+    /**
+     * The constructor gives show all parameters as private values.
+     * @param id
+     * @param aud_id
+     * @param movie
+     * @param date
+     * @param duration
+     */
 
-    public Show(int id, int aud_id, String movie, LocalDateTime date, LocalTime duration) {
-        this.id = id;
-        this.aud_id = aud_id;
+    public Show(int id, int aud_id, String movie, LocalDateTime date, LocalTime duration) throws IllegalArgumentException {
+        if (id >= 0) this.id = id;
+        else{
+            throw new IllegalArgumentException();
+        }
+        if (aud_id >= 0) this.aud_id = aud_id;
+        else {
+            throw new IllegalArgumentException();
+        }
         this.movie = movie;
         this.date = date;
         this.duration = duration;

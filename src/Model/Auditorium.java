@@ -6,13 +6,15 @@ package Model;
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
  */
 public class Auditorium {
-    private final int id, rows, cols;
+    private int id, rows, cols;
 
     public Auditorium(int id, int rows, int cols) {
-        // Do something here that initializes all the seatModels using Database.getSeats(aud_id)
-        this.id = id;
-        this.rows = rows;
-        this.cols = cols;
+        if (id >= 0) this.id = id;
+        else throw new IllegalArgumentException();
+        if (rows > 0) this.rows = rows;
+        else throw new IllegalArgumentException();
+        if (cols > 0) this.cols = cols;
+        else throw new IllegalArgumentException();
     }
     /**
      * This method returns an object of the type integer whenever it is called.

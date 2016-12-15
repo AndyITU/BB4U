@@ -60,7 +60,7 @@ public class ViewController {
     }
     private void setupButtons() {
         // Booking Panel book Button functionality
-        ActionListener BookingButton = e -> {
+        ActionListener bookingButton = e -> {
             String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
             customerName = customerName.replace(" ","");
@@ -90,7 +90,7 @@ public class ViewController {
             }
 
         };
-        bookingViewPanel.getInfoPanel().getBookButton().addActionListener(BookingButton);
+        bookingViewPanel.getInfoPanel().getBookButton().addActionListener(bookingButton);
         // Reservation seat panels functionality
         frame.setFocusable(true);
 
@@ -151,8 +151,9 @@ public class ViewController {
             searchShow = Database.getShowFromSearch(movieString, auditoriumID, dateString);
             currentShow = searchShow;
             bookingViewPanel.updatePanels(searchShow, Booking.getAuditorium(searchShow.getAud_id()), Booking.getReservedSeats(searchShow.getId()).length);
-            reservationViewPanel.updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getId()));
+            reservationViewPanel.updatePanels(Booking.getReservations(), currentShow.getId(), Booking.getAuditorium(currentShow.getAud_id()));
             frame.changeToPanel(bookingViewPanel);
+            bookingViewPanel.getInfoPanel().getBookButton().addActionListener(bookingButton);
             movieString = "";
             dateString = "";
             auditoriumID = "";
@@ -174,7 +175,7 @@ public class ViewController {
                     );
                     Booking.editReservation(editReservation, r);
                     bookingViewPanel.updatePanels(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
-                    bookingViewPanel.getInfoPanel().getBookButton().addActionListener(BookingButton);
+                    bookingViewPanel.getInfoPanel().getBookButton().addActionListener(bookingButton);
                     if (Booking.getShow(editReservation.getShow_id()) == currentShow)  {
                         bookingViewPanel.getInfoPanel().updateSeatInfo(editReservation.getSeats().length, r.getSeats().length);
                     }
@@ -210,6 +211,7 @@ public class ViewController {
         if (answer == JOptionPane.YES_OPTION) {
             editReservation = r;
             reservationViewPanel.updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
+            setupButtons();
             reservationViewPanel.getReservationSeatPanel().setClickable(true);
             reservationViewPanel.getReservationSeatPanel().setSelectedSeats(r.getSeats());
         }
@@ -217,6 +219,7 @@ public class ViewController {
             Booking.removeReservation(r);
             reservationViewPanel.updatePanels(Booking.getReservations(), r.getShow_id(), Booking.getAuditorium(r.getAud_id()));
             bookingViewPanel.updatePanels(currentShow, Booking.getAuditorium(currentShow.getAud_id()), Booking.getReservedSeats(currentShow.getId()).length);
+            setupButtons();
         }
     }
 }
