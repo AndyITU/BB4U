@@ -52,7 +52,7 @@ public class ViewController {
     }
 
     /**
-     *
+     * Returns the instance created by {@link #createInstance()}
      * @return an instance of the ViewController-class (singleton)
      */
     public static ViewController getInstance() {
@@ -185,7 +185,7 @@ public class ViewController {
                 }
             }
         });
-        /**
+        /*
           //This is currently not implemented correctly.
         reservationViewPanel.getReservationSearch().getSearchButton().addActionListener(e -> {
             String customerName = bookingViewPanel.getInfoPanel().getCustomerName();

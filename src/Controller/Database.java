@@ -12,7 +12,8 @@ import java.util.Locale;
 
 /**
  * In this this, you'll find all the actual calls to the Database.
- * Made with mysql-connecter-java version 5.1.39
+ * All methods and fields are static.
+ * Made with mysql-connector-java version 5.1.39
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -25,66 +26,6 @@ class Database {
 
     private static Connection connection;
     private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd. MMMM - yyyy HH:mm", new Locale("da", "DK"));
-
-    /**
-     * Resets the database tables and inserts some movies and auditoriums for the purpose of testing.
-     * This method WILL throw SQLExceptions if the database does not have the right tables beforehand.
-     *
-     * @param args Unused parameter
-     */
-    public static void main(String[] args) {
-        try {
-            connection = DriverManager.getConnection(DB, USER, PASS);
-            Statement statement = connection.createStatement();
-
-            System.out.println("Database initialized\n");
-            System.out.println("Dropping tables...");
-            statement.executeUpdate("DROP TABLE auditoriums, reservations, shows;");
-            System.out.println("*** SUCCESS ***\nCreating new tables...");
-
-            statement.executeUpdate(
-                    "CREATE TABLE shows (id int AUTO_INCREMENT PRIMARY KEY, aud_id int NOT NULL, movie VARCHAR(128) NOT NULL, date DATETIME NOT NULL, duration TIME NOT NULL);");
-            statement.executeUpdate(
-                    "CREATE TABLE auditoriums (id int AUTO_INCREMENT PRIMARY KEY, rows int NOT NULL, cols int NOT NULL);");
-            statement.executeUpdate(
-                    "CREATE TABLE reservations (id int NOT NULL, show_id int NOT NULL, row int NOT NULL, col int NOT NULL, aud_id int NOT NULL, name VARCHAR(128) NOT NULL, contact_info VARCHAR(128) NOT NULL);");
-            System.out.println("*** SUCCESS ***\nInserting data...");
-            statement.executeUpdate(
-                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (1, 'Star Wars IV - A New Hope', '2016-11-27 21:30:00', '2:01');");
-            statement.executeUpdate(
-                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (2, 'Star Wars V - The Empire Strikes Back', '2016-11-28 22:30:00', '2:04');");
-            statement.executeUpdate(
-                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (3, 'The Lord of The Rings: The Fellowship of the Ring 3D', '2016-11-29 23:30:00', '3:48');");
-            statement.executeUpdate(
-                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (4, 'The Lord of The Rings: The Fellowship of the Ring 3D', '2016-11-29 23:30:00', '3:48');");
-            statement.executeUpdate(
-                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (4, 'The Hobbit: Desolation of Smaugost', '2016-11-30 21:00:00', '2:41');");
-            statement.executeUpdate(
-                    "INSERT INTO shows (aud_id, movie, date, duration) VALUES (5, 'Resolution (2012)', '2016-12-24 22:30:00', '1:33') ");
-            statement.executeUpdate(
-                   "INSERT INTO auditoriums (rows, cols) VALUES (5, 10);");
-            statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (10, 20);");
-            statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (15, 30);");
-            statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (12, 18);");
-            statement.executeUpdate(
-                    "INSERT INTO auditoriums (rows, cols) VALUES (15,5);");
-            System.out.println("*** SUCCESS ***\n\nQueries finished successfully\nClosing connection...");
-        } catch(SQLException e) {
-            System.out.println("*** FAILURE ***");
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-                System.out.println("Connection successfully closed");
-            } catch (SQLException e) {
-                System.out.println("WARNING: Unable to close connection!");
-                e.printStackTrace();
-            }
-        }
-    }
 
 
     /* GETTERS */
@@ -173,7 +114,7 @@ class Database {
      * Otherwise it returns the auditorium with the given id.
      *
      * @param id Either an integer less than 1 or the id of an auditorium
-     * @return An array of shows or an array containing a single show
+     * @return An array of either one or all auditorium
      */
     static Auditorium[] getAuditoriums(int id) {
         Auditorium[] auditoriums;
@@ -276,28 +217,33 @@ class Database {
     }
 
     /**
+     * Retrieves all reservations for a single or all shows using {@link #getReservations(String[])}.
      *
-     * @param show_id
-     * @return
+     * @param show_id Either an integer less than one for all shows or the id of a show
+     * @return An array of reservations
      */
     static Reservation[] getReservations(int show_id) {
         return getReservations(new String[]{Integer.toString(show_id)});
     }
 
     /**
-     * @param name Name to be stored in database
-     * @param contact_info Contact information to be stored in database
-     * @return
+     * Can be used for retrieving a reservation using name and contact information.
+     * Optimal for searching for reservations in {@link View.ReservationPanel}.
+     *
+     * @param name Customer name
+     * @param contact_info Customer contact information
+     * @return An array of all reservations by a customer
      */
     static Reservation[] getReservations(String name, String contact_info) {
         return getReservations(new String[]{name, contact_info});
     }
 
     /**
+     * Checks whether or not the given seats are reserved for the given show.
      *
-     * @param show_id
-     * @param seats
-     * @return
+     * @param show_id The show to search in
+     * @param seats The seats to be checked
+     * @return True of any of the seats are reserved, false if none of the seats are reserved
      */
     static boolean isReserved(int show_id, SeatModel[] seats) {
         try {
@@ -327,8 +273,9 @@ class Database {
     }
 
     /**
+     * Returns the next reservation id from the database to be used for a new reservation.
      *
-     * @return
+     * @return The next reservation id
      */
     static int getNextReservationID() {
         int id = 1;
