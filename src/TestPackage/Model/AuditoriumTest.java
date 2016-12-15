@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by arha on 12/15/2016.
- */
 public class AuditoriumTest {
     Auditorium auditorium;
     @Before

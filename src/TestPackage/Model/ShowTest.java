@@ -1,6 +1,5 @@
 package Model;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,9 +8,6 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by arha on 12/15/2016.
- */
 public class ShowTest {
     private Show show;
     @Before
