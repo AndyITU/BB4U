@@ -31,9 +31,12 @@ public class MainController {
 
     private static MainController instance = null;
 
+    /**
+     * The main method of instantiating the "Arrival of bookings" software.
+     * @param args unused.
+     */
     public static void main (String[] args) {
         createInstance();
-
     }
 
     /**
