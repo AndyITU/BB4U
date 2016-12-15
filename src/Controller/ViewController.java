@@ -186,8 +186,8 @@ public class ViewController {
                 }
             }
         });
-
-        // Search in reservation action listener
+        /**
+          //This is currently not implemented correctly.
         reservationViewPanel.getReservationSearch().getSearchButton().addActionListener(e -> {
             String customerName = bookingViewPanel.getInfoPanel().getCustomerName();
             String customerPhone = bookingViewPanel.getInfoPanel().getCustomerPhone();
@@ -197,7 +197,10 @@ public class ViewController {
                     customerName,
                     customerPhone));
         });
-        }
+         */
+    }
+
+
 
     public static String[] getMovieTitles() {
         return Search.getMovies();

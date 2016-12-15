@@ -17,6 +17,11 @@ import java.text.ParseException;
 public class ReservationSearch extends JPanel{
     private final JButton searchButton;
 
+    /**
+     * The constructor creates the JFormattedTextFields and installs a format rule in them, such that the phone number can only consist
+     * of numbers, and can't be longer than 8. The text field does not have a format rule, and is as such vulnerable to SQL-injection.
+     */
+
     public ReservationSearch() {
         super(new GridLayout(1,4));
         setPreferredSize(new Dimension(1000, 20));
