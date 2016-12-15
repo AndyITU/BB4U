@@ -303,9 +303,9 @@ class Database {
     /* SETTERS */
 
     /**
+     * Executes the given query if it's an update-query.
      *
-     *
-     * @param q
+     * @param q The query to be executed
      * @throws SQLException If there is an error in the given query
      */
     static void updateTable(String q) throws SQLException {

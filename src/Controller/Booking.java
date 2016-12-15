@@ -4,7 +4,8 @@ import Model.*;
 import javax.swing.*;
 import java.sql.SQLException;
 /**
- * Write a description of class BookingFrame here.
+ * All booking-related functionality should be in this class.
+ * Works as middleware for the Database-controller.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.

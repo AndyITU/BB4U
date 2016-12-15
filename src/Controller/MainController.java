@@ -9,7 +9,8 @@ import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.Objects;
 /**
- * Write a description of class BookingFrame here.
+ * The main controller for the project. The program is opened through this controller's main method.
+ * This class also handles most interactions between view and controller, and oftentimes controls the view.
  *
  * @author Mikkel Kaj Andersen, Andreas Clausen, Mads Brodt.
  * @version Grundlæggende Programmering, Biograf Projekt, 2016.
@@ -205,11 +206,21 @@ public class MainController {
     }
 
 
-
+    /**
+     * Retrieves all movie titles from shows in the database.
+     *
+     * @return An array of all movie titles
+     */
     public static String[] getMovieTitles() {
         return Search.getMovies();
     }
 
+    /**
+     * Handles the users answer when a reservation is selected and either edits or removes a reservation.
+     *
+     * @param answer The answer from the user
+     * @param r The reservation to be edited or removed
+     */
     public void sendAnswer(int answer, Reservation r) {
         if (answer == JOptionPane.YES_OPTION) {
             editReservation = r;
